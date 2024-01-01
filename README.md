@@ -7,6 +7,7 @@
 
 > **Unleash your creativity, not your wallet!**
 
+![SEND-WITH-SES (1)](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/de86ebaa-3f5b-4be7-bd55-99ad1905d729)
 
 
 ## ✨ Why Choose Send With SES Email Designer?
