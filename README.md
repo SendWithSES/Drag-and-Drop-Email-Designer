@@ -3,7 +3,7 @@
 
 > **Get responsive, accessible HTML emails that work in (almost) every email client.** 
 
-> **Negligible setups. Pure HTML. No intermediate code wranglers like mjml.**
+> **Pure HTML. No intermediate code wranglers like mjml.**
 
 > **Fast and Light Weight - under 1 MB (excluding dependencies).** 
 
