@@ -1,7 +1,7 @@
 
 # 💌 Send With SES - Drag and Drop HTML Email Designer - Truly free and open source.
 
-> **Get responsive, accessible HTML emails that work in (almost) every email client.** 
+> **Responsive HTML emails that work in (almost) every email client.** 
 
 > **Pure HTML. No intermediate code wranglers like mjml.**
 
