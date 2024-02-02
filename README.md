@@ -5,7 +5,7 @@
 
 > **Negligible setups. Pure HTML. No intermediate code wranglers like mjml.**
 
-> **Fast and Light Weight - under 2 MB.** 
+> **Fast and Light Weight - under 1 MB (excluding dependencies).** 
 
 > **Unleash your creativity, not your wallet!**
 
