@@ -3,7 +3,9 @@
 
 > **Get responsive, accessible HTML emails that work in (almost) every email client.** 
 
-> **Negligible setups. Pure HTML. No intermediate code wranglers like mjml.** 
+> **Negligible setups. Pure HTML. No intermediate code wranglers like mjml.**
+
+> **Fast and Light Weight - under 2 MB.** 
 
 > **Unleash your creativity, not your wallet!**
 
@@ -16,16 +18,18 @@
 
 - **Truly Free:** Because the ones that say 'free', are not.
 
-- **Truly Works:** Because the ones that are free don't seem to work.  
+- **Truly Works:** Because the ones that are free don't seem to work.
+
+- **Truly Fast and Light Weight:** Because you have better things to do with your time.  
 
 - **Truly Magical:** Design like a pro without coding headaches. Our minimal interface gets out of your way.
   
 - **Three Template Types:** Create and save unlimited templates. 
   - **Drag and Drop Designer** - Start designing beautiful emails immediately. 
-  - **HTML Code Editor** - Reuse HTML templates that you already have or code them from scratch.
+  - **HTML Code Editor (Coming Soon)** - Reuse HTML templates that you already have or code them from scratch.
   - **Plain Text Emails** - _'Minimalemalists'_. This is for you.  
     
-- **SES Integration:** Seamlessly integrate with Amazon SES for reliable and scalable email delivery. Because sending emails should be as smooth as designing them.
+- **Easy Integration:** Get HTML output that you can save as a template and use with Amazon SES or any email service provider. Because sending emails should be as smooth as designing them.
 
 ## 🚀 Built On Solid Foundation.
 Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is based on the amazing work done by three people. 
