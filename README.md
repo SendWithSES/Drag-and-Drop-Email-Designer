@@ -27,7 +27,7 @@
     
 - **SES Integration:** Seamlessly integrate with Amazon SES for reliable and scalable email delivery. Because sending emails should be as smooth as designing them.
 
-## 🚀 Built From the Best.
+## 🚀 Built On Solid Foundation.
 Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is based on the amazing work done by three people. 
 
 - Ted Goas - https://www.cerberusemail.com
@@ -35,7 +35,7 @@ Send With SES Email Designer follows a few simple but solid patterns to achieve 
 - Mark Robbins - https://www.goodemailcode.com
 
 ## 🎨 Live Demo.
-Signup for a free account on Send With SES (https://sendwithses.com) and start playing around with the email designer. (We're working on a standalone demo site).
+We're working on a standalone demo site. Meanwhile you can play around with the email designer on Send With SES (https://sendwithses.com).
 
 ## 🤝 Contribute.
 Feel free to fork the repository, make improvements, and submit pull requests. Together, let's make **Send With SES Email Designer** even more fabulous.
