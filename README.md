@@ -11,7 +11,6 @@
 
 ![SEND-WITH-SES (1)](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/de86ebaa-3f5b-4be7-bd55-99ad1905d729)
 
-
 ## ✨ Why Choose Send With SES Email Designer?
 
 - **Truly Open Source:** Use it for personal use or commercial use or whatever.
@@ -32,17 +31,17 @@
 - **Easy Integration:** Get HTML output that you can save as a template and use with Amazon SES or any email service provider. Because sending emails should be as smooth as designing them.
 
 ## 🚀 Built On Solid Foundation.
-Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is based on the amazing work done by three people. 
+Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is built upon the amazing work done by these people.
 
 - Ted Goas - https://www.cerberusemail.com
 - Nicole Merlin - https://www.emailwizardry.com.au
 - Mark Robbins - https://www.goodemailcode.com
 
 ## 🎨 Live Demo.
-We're working on a standalone demo site. Meanwhile you can play around with the email designer on Send With SES (https://sendwithses.com).
+Play around with the live demo at https://designer.sendwithses.org. You can design a template and send yourself a test email.
 
 ## 🤝 Contribute.
-Feel free to fork the repository, make improvements, and submit pull requests. Together, let's make **Send With SES Email Designer** even more fabulous.
+Feel free to fork the repository, make improvements, and submit pull requests.
 
 ## 🐛 Issues or Ideas:
 Spotted a bug or got an idea? Just open an issue.
