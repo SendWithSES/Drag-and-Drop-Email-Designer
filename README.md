@@ -1,15 +1,7 @@
 
-# 💌 Send With SES - Drag and Drop HTML Email Designer - Truly free and open source.
+# 💌 Send With SES - HTML Email Designer.
 
-> **Responsive HTML emails that work in (almost) every email client.** 
-
-> **Pure HTML. No intermediate code wranglers like mjml.**
-
-> **Fast and Light Weight - under 1 MB (excluding dependencies).** 
-
-> **Unleash your creativity, not your wallet!**
-
-![SEND-WITH-SES (1)](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/de86ebaa-3f5b-4be7-bd55-99ad1905d729)
+![sendwithses-opensource-drag-and-drop-html-editor](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/86020ce2-a818-4b7f-8823-f5c898b737ee)
 
 ## ✨ Why Choose Send With SES Email Designer?
 
@@ -19,19 +11,22 @@
 
 - **Truly Works:** Because the ones that are free don't seem to work.
 
+- **Truly HTML:** No intermediate code wranglers like mjml. 
+
 - **Truly Fast and Light Weight:** Because you have better things to do with your time.  
 
-- **Truly Magical:** Design like a pro without coding headaches. Our minimal interface gets out of your way.
-  
-- **Three Template Types:** Create and save unlimited templates. 
-  - **Drag and Drop Designer** - Start designing beautiful emails immediately. 
-  - **HTML Code Editor (Coming Soon)** - Reuse HTML templates that you already have or code them from scratch.
-  - **Plain Text Emails** - _'Minimalemalists'_. This is for you.  
-    
-- **Easy Integration:** Get HTML output that you can save as a template and use with Amazon SES or any email service provider. Because sending emails should be as smooth as designing them.
+- **Truly No-Code:** Design like a pro without coding headaches. Our minimal interface gets out of your way.
 
-## 🚀 Built On Solid Foundation.
-Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is built upon the amazing work done by these people.
+- **Truly Democratic:** Save HTML output as a template and use with ANY email service provider.
+  
+## 3️⃣ Three Template Types
+Comes with three template types that let you design any kind of transactional or marketing emails. Altogther, you can create and save unlimited templates. 
+  - **Drag and Drop Designer** - Start designing beautiful emails immediately. 
+  - **HTML Code Editor** - Reuse HTML templates that you already have or code them from scratch.
+  - **Plain Text Emails** - _'Minimalemalists'_. This is for you.  
+
+## 🚀 Built On Solid Fundamentals.
+Send With SES Email Designer follows a few simple but solid patterns to achieve responsive and accessible HTML email that works in (almost) every email client. It is built upon some fundamental email design concepts laid down by these people.
 
 - Ted Goas - https://www.cerberusemail.com
 - Nicole Merlin - https://www.emailwizardry.com.au
@@ -40,8 +35,7 @@ Send With SES Email Designer follows a few simple but solid patterns to achieve 
 ## 🎨 Live Demo.
 Play around with the live demo at https://designer.sendwithses.org. You can design a template and send yourself a test email.
 
-
-## Installation
+## 👩‍💻 Installation
 
 Install via NPM:
 
@@ -55,7 +49,7 @@ Or via YARN:
 yarn add @send-with-ses/ng-email-designer
 ```
 
-**Image Handling**
+## 🖼️ Image Handling
 
 Images can be directly uploaded to a cloud storage of your choice (ex: AWS S3, Cloudflare R2, GCP Cloud Storage etc).
 
@@ -76,4 +70,4 @@ Please implement your image upload functionality and provide it to the library a
 Feel free to fork the repository, make improvements, and submit pull requests.
 
 ## 🐛 Issues or Ideas:
-Spotted a bug or got an idea? Just open an issue.
+Spotted a bug or got an idea? Just open an issue or write to opensource at sendwithses dot org.
