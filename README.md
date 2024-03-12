@@ -55,6 +55,22 @@ Or via YARN:
 yarn add @send-with-ses/ng-email-designer
 ```
 
+**Image Handling**
+
+Images can be directly uploaded to a cloud storage of your choice (ex: AWS S3, Cloudflare R2, GCP Cloud Storage etc).
+
+```html
+<lib-email-designer #emailEditor class="px-0"
+        [type]="selectedTemplateType" [template]="selectedTemplate"
+        (imageSelectionTriggered)="onImageSelectionTrigger($event)"
+        (imageUploadTriggered)="onImageUploadTrigger($event)"
+        (emailContentChanged)="onEmailContentChange($event)"
+        >
+</lib-email-designer>
+```
+
+Please implement your image upload functionality and provide it to the library as above (imageUploadTriggered/imageSelectionTriggered).
+
 [Click here](https://www.npmjs.com/package/@send-with-ses/ng-email-designer) for more documentation
 ## 🤝 Contribute.
 Feel free to fork the repository, make improvements, and submit pull requests.
