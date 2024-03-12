@@ -70,4 +70,4 @@ Please implement your image upload functionality and provide it to the library a
 Feel free to fork the repository, make improvements, and submit pull requests.
 
 ## 🐛 Issues or Ideas:
-Spotted a bug or got an idea? Just open an issue or write to opensource at sendwithses dot org.
+Spotted a bug or got an idea? Just open an issue or write to designer at sendwithses dot org.
