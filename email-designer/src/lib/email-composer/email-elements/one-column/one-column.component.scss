@@ -1,0 +1,11 @@
+.structure-col {
+    border: 1px dashed #ccc;
+    /* margin: 5px; */
+    padding: 5px;
+    text-align: center;
+    min-height: 40px;
+
+    &.selected {
+        border-color: transparent;
+    }
+}

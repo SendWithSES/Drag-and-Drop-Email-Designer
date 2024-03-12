@@ -1,0 +1,32 @@
+<div class="email-footer-container" (click)="footerClick()" [class.selected]="footerSelected">
+    <div class="email-footer-brands">
+        <ng-container *ngIf="footer.brands && footer.brands.length;">
+            <ng-container *ngFor="let b of footer.brands">
+                <a *ngIf='isValidLink(b.link); else noLink' [href]="b.link" target="_blank" class="footer-icon"
+                    [innerHtml]="b.svgTxt  | sanitize : 'html'">
+                </a>
+                <ng-template #noLink>
+                    <a href="javascript:void(0);" class="footer-icon" [innerHtml]="b.svgTxt  | sanitize : 'html'">
+                    </a>
+                </ng-template>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="email-footer-content">
+        <ng-container *ngIf="footer.content;else emptyContent">
+            <div [ngStyle]="{'font-family':footer.font?footer.font:'Verdana','font-size':footer.fontSize?footer.fontSize:'14px'}"
+                [innerHTML]="footer.content  | sanitize : 'html'">
+            </div>
+        </ng-container>
+        <ng-template #emptyContent>
+            <div
+                [ngStyle]="{'font-family':footer.font?footer.font:'Verdana','font-size':footer.fontSize?footer.fontSize:'14px'}">
+                Click here to add footer text.
+            </div>
+        </ng-template>
+    </div>
+    <div [ngStyle]="{'font-family':footer.font?footer.font:'Verdana',
+    'font-size':footer.fontSize?footer.fontSize:'14px',
+    'color':footer.unsubscribeColor?footer.unsubscribeColor:defaultUnsubscribeColor}" class="email-footer-unsub"
+        *ngIf="footer && footer.unsubscribe">{{'{{Unsubscribe}}'}}</div>
+</div>

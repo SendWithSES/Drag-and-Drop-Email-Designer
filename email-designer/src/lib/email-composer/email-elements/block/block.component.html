@@ -1,0 +1,31 @@
+<div (click)="selectBlock($event)" class="block-container" id="block-{{this.sIndex}}-{{this.cIndex}}-{{bIndex}}"
+    [class.selected]="selectedSIindex===sIndex && selectedCindex===cIndex && selectedBIndex===bIndex">
+    <ng-container [ngSwitch]="block.type">
+        <ng-container *ngSwitchCase="'Text'">
+            <app-email-text [block]="block"></app-email-text>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Body'">
+            <app-email-body [block]="block"></app-email-body>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Image'">
+            <app-email-image [block]="block"></app-email-image>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Video'">
+            <app-email-video [block]="block"></app-email-video>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Button'">
+            <app-email-button [block]="block"></app-email-button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Divider'">
+            <app-email-divider [block]="block"></app-email-divider>
+        </ng-container>
+    </ng-container>
+    <div *ngIf="selectedSIindex===sIndex && selectedCindex===cIndex && selectedBIndex===bIndex" class="block-hover-box"
+        [class.left]="cIndex===0">
+        <span *ngIf="!firstIndex" (click)="swapBlockInStucture(sIndex,cIndex,bIndex-1,bIndex)"><i
+                class="fa-solid fa-arrow-up"></i></span>
+        <span *ngIf="!lastIndex" (click)="swapBlockInStucture(sIndex,cIndex,bIndex,bIndex+1)"><i
+                class="fa-solid fa-arrow-down"></i></span>
+        <span (click)="deleteBlockInStucture(sIndex,cIndex,bIndex)"><i class="fa-solid fa-trash-can"></i></span>
+    </div>
+</div>

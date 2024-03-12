@@ -1,0 +1,23 @@
+::ng-deep {
+    .structure-container {
+        cursor: pointer;
+        position: relative;
+        overflow: visible;
+
+        .structure-hover-box {
+            position: absolute;
+            top: 0;
+            left: -65px;
+
+            > span {
+                display: inline-block;
+                margin: 2px;
+            }
+        }
+    }
+
+    .email-text-block p {
+        font-size: 16px !important;
+        color: #333;
+    }
+}

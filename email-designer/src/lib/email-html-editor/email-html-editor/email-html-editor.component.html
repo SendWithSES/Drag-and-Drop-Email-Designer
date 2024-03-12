@@ -1,0 +1,16 @@
+<div style="height:100%;">
+    <!-- <app-email-form [emailForm]="htmlData" (onEmailFormChange)="onEmailFormChange($event)"></app-email-form> -->
+    <div class="monaco-editor-div">
+        <div class="monaco-editor-inner-div">
+            <div class="editor-outer-div">
+                <app-editor-html [code]="htmlContent" (codeChangeEvent)="htmlEditorCodeChange($event)"
+                    (codeUpdated)="onCodeUpldated($event)"></app-editor-html>
+            </div>
+            <div class="editor-html-output-div">
+                <div id="editor-html-output">
+                    <app-editor-html-output-view [htmlContent]="htmlEditorCode"></app-editor-html-output-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

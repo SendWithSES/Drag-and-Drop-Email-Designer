@@ -1,0 +1,16 @@
+.col-2-parent {
+    display: flex;
+
+    .structure-col {
+        width: 50%;
+        border: 1px dashed #ccc;
+        margin: 5px;
+        padding: 5px;
+        text-align: center;
+        min-height: 40px;
+
+        &.selected {
+            border: 1px dashed #FF6666;
+        }
+    }
+}

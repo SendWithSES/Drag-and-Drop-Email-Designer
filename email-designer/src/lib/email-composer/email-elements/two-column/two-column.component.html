@@ -1,0 +1,26 @@
+<div class="col-2-parent structure-container">
+    <div class="structure-col" [class.selected]="selectedSIindex===sIndex && selectedCIndex===0"
+        (click)="twoColumnClicked(0)">
+        <ng-container *ngFor="let b of structure.blocks[0];let i=index; let f = first;let l = last">
+            <app-block [block]="b" [sIndex]="sIndex" [cIndex]="0" [bIndex]="i" [firstIndex]="f"
+                [lastIndex]="l"></app-block>
+        </ng-container>
+        <!-- <ng-content></ng-content>
+        <img src="https://placekitten.com/200/50" width="200" height="50" alt="alt_text" border="0"
+            style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"> -->
+    </div>
+    <div class="structure-col" [class.selected]="selectedSIindex===sIndex && selectedCIndex===1"
+        (click)="twoColumnClicked(1)">
+        <ng-container *ngFor="let b of structure.blocks[1];let i=index; let f = first;let l = last">
+            <app-block [block]="b" [sIndex]="sIndex" [cIndex]="1" [bIndex]="i" [firstIndex]="f"
+                [lastIndex]="l"></app-block>
+        </ng-container>
+        <!--  <ng-content></ng-content>
+        <img src="https://placekitten.com/200/50" width="200" height="50" alt="alt_text" border="0"
+            style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"> -->
+    </div>
+    <!-- <div *ngIf="selectedSIindex===sIndex" class="structure-hover-box">
+        <span>&uarr;</span>
+        <span>&darr;</span>
+    </div> -->
+</div>

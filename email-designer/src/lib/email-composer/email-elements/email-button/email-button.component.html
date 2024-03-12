@@ -1,0 +1,29 @@
+<div class="email-button-container" [ngStyle]="{'text-align':block.align}">
+    <!-- <button type="button" class="email-button" [ngStyle]="{color:block.color,'background-color':block.backgroundColor}">
+        {{block.content?block.content:"Click on me"}}
+    </button> -->
+    <!--  <button *ngIf="block.link" type="button" class="email-button"
+        [ngStyle]="{'background-color': block.backgroundColor}">
+        <a [href]="block.link" target="_blank" rel="noopener noreferrer" class="anchor-link"
+            [ngStyle]="{color: block.color,'font-family':block.font?block.font:'Verdana','font-size':block.fontSize?block.fontSize:'16px','text-align':block.align?block.align:'center'}">
+            {{ block.content }}
+        </a>
+    </button>
+
+    <button *ngIf="!block.link" type="button" class="email-button"
+        [ngStyle]="{color: block.color, 'background-color': block.backgroundColor,'font-family': block.font?block.font:'Verdana','font-size':block.fontSize?block.fontSize:'16px','text-align':block.align?block.align:'center'}">
+        {{ block.content }}
+    </button> -->
+    <button type="button" class="email-button" *ngIf="block.content;else emptyBtn"
+        [ngStyle]="{color: block.color, 'background-color': block.backgroundColor,'font-family': block.font?block.font:'Verdana','font-size':block.fontSize?block.fontSize:'16px','text-align':block.align?block.align:'center'}">
+        {{ block.content }}
+    </button>
+    <ng-template #emptyBtn>
+        <button type="button" class="email-button"
+            [ngStyle]="{color: block.color, 'background-color': block.backgroundColor,'font-family': block.font?block.font:'Verdana','font-size':block.fontSize?block.fontSize:'16px','text-align':block.align?block.align:'center'}">
+            Click To Edit
+        </button>
+    </ng-template>
+
+
+</div>

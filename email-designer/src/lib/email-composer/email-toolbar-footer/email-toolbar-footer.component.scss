@@ -1,0 +1,328 @@
+/* Footer content Styles */
+
+// .footertxt-inp {
+//     color: #555;
+//     font-size: 12px;
+//     padding: 20px;
+//     border: none;
+// }
+.footer-txt-editor {
+    padding-inline: 14px;
+}
+
+.text-editor {
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background-color: #eee;
+}
+
+.search-icon {
+    border: none;
+    background-color: #fff;
+    border-radius: 0px;
+    color: #ccc;
+    // border-left: 1px solid #ccc;
+    // margin-left: 0px !important;
+}
+
+.icon-note {
+    color: #ef8081;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 6px;
+    margin-top: 10px;
+}
+
+.declamation-wrapper {
+    padding: 1px;
+
+    .email-note {
+        color: #ef8081;
+        font-size: 12px;
+        font-weight: normal;
+        margin-bottom: 6px;
+        margin-inline: 0px;
+        margin-top: 10px;
+    }
+
+    .unsub-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .checkbox-label {
+        padding-left: 8px;
+        vertical-align: top;
+        cursor: pointer;
+        color: #555;
+        font-size: 14px;
+        font-weight: normal;
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .unsub-txt {
+        margin: 5px 0px;
+    }
+
+    .umpteen-txt {
+        color: #f52d2d;
+        font-size: 13px;
+        font-weight: 400;
+        margin-bottom: 3px;
+        // margin-inline: 16px;
+        margin-inline: 4px;
+    }
+
+    .umpteen-txt:last-child {
+        word-wrap: break-word;
+    }
+
+    .input-group {
+        height: 100%;
+        background: #f8f8f8;
+
+        .color-picker-wrapper.input-group-text {
+            background: transparent;
+        }
+    }
+
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+.input-group-text {
+    border-radius: 0px;
+    // width: 51px;
+    border: none;
+    padding-inline: 10px;
+}
+
+h4 {
+    font-size: 15px;
+    color: #555;
+    font-weight: 700;
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+.btn-type-wrapper {
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 46px;
+        line-height: 18px;
+        padding: 4px;
+    }
+}
+
+::ng-deep .icon-container .svg-inline--fa {
+    height: 26px !important;
+}
+
+h5 {
+    font-weight: 400;
+    font-size: 13px;
+    color: #555;
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+.custom-border {
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+input,
+.form-control {
+    color: #555;
+    font-size: 14px;
+    padding: 12px;
+    border: none;
+}
+
+.color-picker-wrapper.input-group-text {
+    border: none;
+    border-radius: 0px;
+    background: #fff;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.icon-wrapper.input-group-text {
+    display: flex;
+    flex-direction: column;
+    padding: 3px 5px;
+    color: #ccc;
+    border: none;
+    border-radius: 0px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+
+    i:first-child {
+        margin-bottom: 3px;
+    }
+
+    i:hover {
+        color: #ef8081;
+    }
+}
+
+input[type="color"] {
+    padding: 0px;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    border: none;
+    // -webkit-appearance: none;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: 1px solid #ccc;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border: 1px solid #ccc;
+}
+
+.link-picker {
+    border: 1px solid #ccc;
+    border-left: none;
+}
+
+.col-sm-2 {
+    border: 1px solid #ccc !important;
+}
+
+/* ngb typeaHead styles */
+::ng-deep .dropdown-menu.show {
+    width: 100%;
+    border-radius: 0;
+
+    .dropdown-item {
+        font-size: 14px !important;
+    }
+
+    .dropdown-item.active {
+        background-color: #555 !important;
+    }
+}
+
+.invalid-link {
+    border-color: red;
+}
+
+/* toolbar editor move it to common styles file */
+.editor-tool-wrapper {
+    border: 1px solid #ccc;
+    border-bottom: none;
+
+    .editor-tool-header {
+        background-color: #f8f8f8;
+        color: #666;
+        padding: 9px;
+        font-weight: 700;
+        font-size: 14px;
+        border-right: 1px solid #ccc;
+    }
+
+    .select-value {
+        border: none !important;
+        padding-block: 9px;
+    }
+
+    /* +.editor-tool-wrapper {
+        border-bottom: none;
+    } */
+}
+
+/* Font Dropdown move it to common styles file */
+.font-dropdown {
+    line-height: 26px;
+    padding: 5px 5px;
+    width: 249px;
+    max-width: 100%;
+
+    .dropdown-label {
+        background: none;
+        border: none;
+        color: #555;
+        font-size: 14px;
+        font-weight: normal;
+        // width: max-content;
+        width: 100%;
+        padding: 3px 3px 0px;
+        text-align: left;
+        position: relative;
+    }
+
+    .dropdown-option {
+        transform: translate(-1px, 39px) !important;
+        border-radius: 0px;
+        background-color: #fff;
+        width: 249px;
+        border-color: #ccc;
+
+        // min-width: 170px;
+        .dropdown-item {
+            padding: 2px 8px;
+            font-size: 14px;
+            position: relative;
+            color: #555;
+            height: 40px;
+            line-height: 31px;
+
+            &:hover {
+                background-color: #EEE;
+            }
+
+            &:focus {
+                background-color: #EEE;
+            }
+        }
+    }
+
+    .dropdown_item_name {
+        text-overflow: ellipsis;
+        width: 185px;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    // .dropdown-item .dropdown_item_name:hover, {
+    //     background-color: #555;
+    // }
+    .dropdown_name {
+        display: block;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 0px;
+    }
+
+    .dropdown-toggle::after {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 20px;
+    }
+}
+
+/* Font Dropdown End */
+
+.line-break {
+    border-top: 1px dashed #aaa;
+    width: 30%;
+    margin: 24px auto;
+}

@@ -1,0 +1,56 @@
+.monaco-editor-div {
+    // height: 500px;
+    // height :calc(100% - 170px)
+    height: 100%;
+}
+
+.monaco-editor-div .monaco-editor-inner-div,
+::ng-deep .monaco-editor-div .editor-container {
+    height: 100% !important;
+}
+
+.monaco-editor-inner-div {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f5f5f5;
+}
+
+.editor-outer-div,
+.editor-html-output-div {
+    width: 50%;
+    overflow: auto;
+    text-align: initial;
+}
+
+// .editor-html-output-div {
+//     height: calc(100vh - 55px);
+// }
+
+.editor-outer-div {
+    overflow: hidden;
+}
+
+#editor-html-output {
+    font-size: 16px;
+    padding: 10px;
+    word-break: break-word;
+}
+
+.template-indicator-txt {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #d1d1d1;
+    font-size: 20px;
+    z-index: 1;
+    position: relative;
+    top: 20%;
+}
+
+.add-icon {
+    color: #3ed39b;
+    opacity: 0.7;
+    font-size: 36px;
+    font-weight: 700;
+    cursor: pointer;
+}

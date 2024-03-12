@@ -1,0 +1,26 @@
+::ng-deep {
+    .empty-image-block {
+        min-height: 200px;
+        color: #CCCCCC;
+        cursor: pointer;
+        background: #EEEEEE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            color: #ccc;
+            font-size: 40px;
+        }
+    }
+
+    .email-image-block {
+        color: rgb(0, 0, 0);
+        word-break: break-all;
+        line-height: 40px;
+        font-size: 16px;
+        font-style: normal;
+        padding: 10px 5px;
+
+    }
+}

@@ -1,0 +1,20 @@
+@import "bootstrap.min.css";
+@import "../../node_modules/suneditor/dist/css/suneditor.min";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+
+input:focus {
+    box-shadow: none !important;
+}
+.text-color {
+    color: #aaa;
+}
+
+.sun-editor .se-wrapper .se-wrapper-inner {
+    height: auto !important;
+    padding: 11px 10px;
+    min-height: 52px;
+}
+
+.sun-editor-editable * {
+    margin-block: 4px !important;
+}

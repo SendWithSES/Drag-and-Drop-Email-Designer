@@ -1,0 +1,13 @@
+<div class="message-outer-wrapper" *ngIf="message.header && message.body" (click)="message.header='';message.body='';"
+  [ngClass]="{'success': message.message_type==='success', 'error': message.message_type==='error'}">
+  <div class="check-mark-wrapper" *ngIf="message.message_type==='success'">
+    <i class="fas fa-check"></i>
+  </div>
+  <div class="cross-mark-wrapper" *ngIf="message.message_type==='error'">
+    <i class="far fa-times-circle"></i>
+  </div>
+  <div class="messages-wrapper">
+    <p class="heading-message">{{message.header}}</p>
+    <p class="body-message">{{message.body}}</p>
+  </div>
+</div>

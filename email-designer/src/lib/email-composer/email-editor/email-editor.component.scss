@@ -1,0 +1,82 @@
+.email-main-container {
+    padding: 30px 10px 60px;
+    background: #f1f1f1;
+    background-size: auto;
+    width: 100%;
+    /* margin-bottom: 65px; */
+    position: relative;
+    min-height: calc(100% - 120px);
+    /* padding-bottom: 75px; */
+    overflow: auto;
+    // height: calc(100vh - 166px);
+    height: calc(100vh - 56px);
+
+    .email-inner-container {
+        background: #fff;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 5px;
+    }
+
+    .structure-main-container {
+        padding: 5px;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 0 0 1px transparent;
+
+        &.selected {
+            box-shadow: 0 0 0 1px #ff6666;
+        }
+
+        .structure-hover-box {
+            position: absolute;
+            right: 0;
+            color: #fff;
+            z-index: 3;
+            bottom: -34px;
+
+            >span {
+                display: inline-block;
+                margin-right: 3px;
+                background: #ff6666;
+                width: 25px;
+                font-size: 14px;
+                padding: 6px;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .email-footer-outer-container {
+        background: transparent;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 5px;
+    }
+
+    .loader-template {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999999999;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background-color: #eeeeee;
+
+    }
+}
+
+::ng-deep {
+    app-email-loader {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgb(0 0 0 / 10%);
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

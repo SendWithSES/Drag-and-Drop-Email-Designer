@@ -1,0 +1,104 @@
+<div class="btn-container">
+    <div class="col-sm-12 header-txt">
+        Button
+        <span class="icons-container">
+            <i class="fas fa-align-left" (click)="alignText('left')"
+                [ngStyle]="{'color': currentAlignment==='left' ? '#555':'#bbb'}"></i>
+            <i class="fas fa-align-center" (click)="alignText('center')"
+                [ngStyle]="{'color': currentAlignment==='center' ? '#555':'#bbb'}"></i>
+            <i class="fas fa-align-right" (click)="alignText('right')"
+                [ngStyle]="{'color': currentAlignment==='right' ? '#555':'#bbb'}"></i>
+        </span>
+    </div>
+    <div class="row gx-0">
+        <div class="row gx-0 btn-type-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Button Color</div>
+            <div class="col-6 col-sm-7">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Button Color" [(ngModel)]="btnBgColorValue"
+                        value="{{btnBgColorValue}}" (ngModelChange)="btnBgColorChange()">
+                    <span class="color-picker-wrapper input-group-text">
+                        <input type="color" id="colorPicker" class="form-control" [(ngModel)]="btnBgColorValue"
+                            value="#EEEEEE" (ngModelChange)="btnBgColorChange()">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Force next columns to break to new line at md breakpoint and up -->
+        <div class="w-100 d-none d-md-block"></div>
+
+        <div class="row gx-0 btn-type-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Text Color</div>
+            <div class="col-6 col-sm-7">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Button Text Color"
+                        [(ngModel)]="btnTxtColorValue" (ngModelChange)="btnTxtColorChange()"
+                        value="{{btnTxtColorValue}}">
+                    <span class="color-picker-wrapper input-group-text">
+                        <input type="color" id="colorPicker" class="form-control" [(ngModel)]="btnTxtColorValue"
+                            value="#6D71E7" (ngModelChange)="btnTxtColorChange()">
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-none d-md-block"></div>
+        <div class="row gx-0 btn-type-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Text Font</div>
+            <div class="col-6 col-sm-7">
+                <div class="input-group">
+                    <select class="form-select select-value" [(ngModel)]="selectedFont" (change)="onFontChange($event)"
+                        aria-label="Default select example">
+                        <option *ngFor="let font of fontFamilyList" [value]="font"> {{ font }} </option>
+                    </select>
+                    <!-- <input type="text" class="form-control" placeholder="Button Font"> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-none d-md-block"></div>
+
+        <div class="row gx-0 btn-type-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Font Size</div>
+            <div class="col-6 col-sm-7">
+                <div class="input-group">
+                    <select class="form-select select-value" [(ngModel)]="selectedFontSize"
+                        (change)="onFontSizeChange($event)" aria-label="Default select example">
+                        <option *ngFor="let fontSize of fontSizeList" [value]="fontSize"> {{ fontSize }} </option>
+                    </select>
+                    <!-- <input type="text" class="form-control" placeholder="Button Fontsize"> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-none d-md-block"></div>
+
+        <div class="row gx-0 btn-type-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Button Text</div>
+            <div class="col-6 col-sm-7">
+                <div class="btn-txt">
+                    <input type="text" class="form-control btn-input-txt" [(ngModel)]="btnTextContent"
+                        (ngModelChange)="btnTxtContentChange()" placeholder="Click to edit">
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-none d-md-block"></div>
+
+        <div class="row gx-0 btn-link-wrapper">
+            <div class="col-6 col-sm-5 btn-type-header">Button Link</div>
+            <div class="col-6 col-sm-7">
+                <div class="input-group">
+                    <!-- <input type="text" class="form-control" [(ngModel)]="btnLink" (ngModelChange)="btnLinkChange()"
+                        placeholder="https://voteism.org"> -->
+                    <input type="text" class="form-control link-txt" [(ngModel)]="btnLink"
+                        placeholder="https://sendwithses.com">
+                    <span class="icon-wrapper input-group-text" [ngStyle]="{color: btnLink ? '#ef8081':'#ccc'}"
+                        (click)="btnLinkChange()">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

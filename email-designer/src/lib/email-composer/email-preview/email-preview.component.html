@@ -1,0 +1,36 @@
+<div class="email-preview" [class.mobile]="previewType === 'mobile'">
+    <div class="email-preview-header">
+        <!-- <div class="close-btn-container">
+            <span (click)="back()"><i class="fas fa-xmark"></i></span>
+        </div> -->
+        <div class="btn_wrapper">
+            <button type="button" class="close-btn pull-right" data-dismiss="modal" (click)="back()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <!-- Toggle View Icons-->
+        <div class="device-btn-container">
+            <span (click)="showDesktop()" [class.selected]="previewType === 'desktop'"><i class='fas fa-desktop'></i></span>
+            <span (click)="showMobile()" [class.selected]="previewType === 'mobile'"><i class='fas fa-mobile-alt'></i></span>
+            <span (click)="showHtml()" [class.selected]="previewType === 'html'"><i class='fas fa-code'></i></span>
+        </div>
+    </div>
+    <!-- Side by side View -->
+    <!-- <div class="email-preview-body" [ngStyle]="{'background-color':bgColor}">
+        <iframe #iframe class="desktop-view" [src]="blobUrl | sanitize" (load)="onLoad()"></iframe>
+        <iframe #iframe2 class="mobile-view" [src]="blobUrl | sanitize" (load)="onLoad()"></iframe>
+    </div> -->
+    <!-- Side by side View End -->
+    <!-- Toggle View -->
+    <div class="email-preview-body d-flex" *ngIf="previewType !== 'html'"
+        [ngStyle]="isPlainText ? {'background-color': '#FFFFFF'} : {'background-color': bgColor}">
+        <iframe #iframe2 [src]="blobUrl | sanitize" (load)="onLoad()"></iframe>
+    </div>
+    <div class="email-preview-body html p-4 pb-5" *ngIf="previewType === 'html'"
+        [ngStyle]="{'background-color': bgColor}">
+        <pre><code>{{previewContent}}</code></pre>
+        <span class="copy-btn btn btn-light" (click)="copyHtml()">Copy</span>
+    </div>
+    <!-- Toggle View End-->
+
+</div>

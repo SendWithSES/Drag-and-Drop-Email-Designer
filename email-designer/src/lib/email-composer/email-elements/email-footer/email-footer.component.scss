@@ -1,0 +1,59 @@
+.email-footer-container {
+    border: 1px dashed #ccc;
+    padding: 10px 5px;
+    margin: 10px;
+
+    &.selected {
+        border-color: #FF6666;
+    }
+
+    .email-footer-brands {
+        color: #aaaaaa;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+
+        .footer-icon {
+            min-width: 30px;
+        }
+
+        // fa-icon {
+        //     margin-right: 20px !important;
+        //     font-size: 25px;
+        // }
+    }
+
+    .email-footer-content,
+    .email-footer-unsub {
+        text-align: center;
+        margin: 20px 5px;
+        cursor: pointer;
+    }
+
+    .email-footer-unsub {
+        color: #aaa;
+    }
+
+    .email-footer-content {
+        font-size: 14px;
+        font-weight: 400;
+        word-wrap: break-word;
+        color: #aaa;
+    }
+
+    .email-footer-unsub {
+        font-size: 14px;
+        font-weight: 400;
+    }
+}
+
+::ng-deep .footer-icon {
+    // margin-right: 10px;
+    margin: 4px 5px;
+    line-height: 0px;
+
+    .svg-inline--fa {
+        height: auto !important;
+    }
+}

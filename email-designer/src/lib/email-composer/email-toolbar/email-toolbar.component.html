@@ -1,0 +1,244 @@
+<div class="email-toolbar">
+    <div class="container column-boxes overflow-hidden">
+        <div class="row " style="padding: 4px;">
+            <div class="col col-lg-12 col-xl-6 one-column flex-center" (click)="onOneClick()">
+                <div class="">
+                    <div class="p-3 col-custom-border"></div>
+                    <span class="col-txt">One Column</span>
+                </div>
+
+            </div>
+            <div class="col col-lg-12 col-xl-6 two-column flex-center" (click)="onTwoClick()">
+                <div class="">
+                    <div class="p-3 col-custom-border">
+                        <div class="splitter"></div>
+                    </div>
+                    <span class="col-txt">Two Columns</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container action-list_types">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onTextClick()">
+                    <i class="fa-solid fa-heading"></i>
+                    <h6>Heading Text</h6>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onBodyTextClick()">
+                    <i class="fa-solid fa-align-justify"></i>
+                    <h6>Body Text</h6>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onImageClick()">
+                    <i class="fa-solid fa-image"></i>
+                    <h6>Image</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onVideoClick()">
+                    <i class="fa-solid fa-video"></i>
+                    <h6>Video</h6>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onButtonClick()">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    <h6>Button</h6>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-box" (click)="onDividerClick()">
+                    <i class="fa-solid fa-minus"></i>
+                    <h6>Divider</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-content-warpper">
+        <div class="container bgColor-container mt-3">
+            <div class="row gx-0">
+                <span class="header-txt">
+                    <h4>Background Color</h4>
+                </span>
+                <div class="col-sm-12">
+                    <div class="custom-border input-group">
+                        <input type="text" class="form-control" placeholder="Background Color"
+                            [(ngModel)]="bgPickerValue" value="{{bgPickerValue}}" (ngModelChange)="updateBgColor()">
+                        <span class="color-picker-wrapper input-group-text">
+                            <input type="color" class="form-control" value="{{bgPickerValue}}"
+                                [(ngModel)]="bgPickerValue" (ngModelChange)="updateBgColor()">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container contentBg-container mt-3 mb-3">
+            <div class="row gx-0">
+                <span class="header-txt">
+                    <h4> Content Background Color</h4>
+                </span>
+                <div class="col-sm-12">
+                    <div class="custom-border input-group">
+                        <input type="text" class="form-control" placeholder="Content Background Color"
+                            [(ngModel)]="contentBgValue" value="{{contentBgValue}}"
+                            (ngModelChange)="updateContentBgColor()">
+                        <span class="color-picker-wrapper input-group-text">
+                            <input type="color" id="colorPicker" class="form-control" [(ngModel)]="contentBgValue"
+                                value="{{contentBgValue}}" (ngModelChange)="updateContentBgColor()">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="!logoSelected;else logoContainer">
+
+        <div class="container headingTxt-container mt-3" *ngIf="selectedBType === blockType.Text && !isFooterVisible">
+            <app-email-content-editor [bodyType]="selectedBType" [sIndex]="selectedSIindex" [cIndex]="selectedCindex"
+                [bIndex]="selectedBIndex" [content]="headerContent"
+                [selectedBlock]="selectedBlock"></app-email-content-editor>
+        </div>
+
+        <div class="container mt-3" *ngIf="selectedBType === blockType.Body && !isFooterVisible">
+            <app-email-content-editor [sIndex]="selectedSIindex" [cIndex]="selectedCindex" [bIndex]="selectedBIndex"
+                [content]="bodyContent" [bodyType]="selectedBType"></app-email-content-editor>
+        </div>
+
+        <div class="container mt-3 image-upload-wrapper" *ngIf="selectedBType === blockType.Image && !isFooterVisible">
+            <div class="row gx-0">
+                <span class="header-txt">
+                    <h4>Image</h4>
+                </span>
+                <div class="col-sm-12">
+                    <div class="custom-border image-upload-content" (click)="imageSelectionTrigger()">
+                        <i class="fa-solid fa-upload"></i>
+                        <span class="image_limit">
+                            Upload Image (Max 2 MB)
+                        </span>
+                    </div>
+                    <p class="my-2 text-center text-color">Or</p>
+                    <div class="form-group mt-2 position-relative image-link" style="border: 1px solid #ccc;">
+                        <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageUrl"
+                            placeholder="Image Url">
+                        <span class="play-icon" (click)="changeImageUrl()">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group mt-2 position-relative image-link" style="border: 1px solid #ccc;">
+                    <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageLink"
+                        placeholder="Link to open on clicking image">
+                    <span class="play-icon" (click)="changeImageLink()">
+                        <!-- <i class="fa-solid fa-play"></i> -->
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="container video-contaner mt-3" *ngIf="selectedBType == blockType.Video && !isFooterVisible">
+            <div class="row gx-0">
+                <span class="header-txt">
+                    <h4>Video</h4>
+                </span>
+                <div class="col-sm-12">
+                    <div class="custom-border position-relative">
+                        <input type="text" class="form-control" [(ngModel)]="videoUrl"
+                            placeholder="Youtube or Vimeo URL">
+                        <span class="play-icon" (click)="getVideoData()">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container btn-contaner mt-3" *ngIf="selectedBType == blockType.Button && !isFooterVisible">
+            <app-email-toolbar-button [sIndex]="selectedSIindex" [cIndex]="selectedCindex" [bIndex]="selectedBIndex"
+                [btnBgColorValue]="btnBgColorValue" [btnTxtColorValue]="btnTxtColorValue"
+                [btnTextContent]="btnTextContent" [btnLink]="btnLink" [selectedFont]="fontName"
+                [selectedFontSize]="fontSizeCount" [currentAlignment]="btnAlign">
+            </app-email-toolbar-button>
+        </div>
+
+        <div class="container divider-contaner mt-3" *ngIf="selectedBType == blockType.Divider && !isFooterVisible">
+
+            <div class="row gx-0">
+                <div class="col-sm-12 header-txt">
+                    <h4>Divider Background Color </h4>
+                </div>
+                <div class="col-sm-12">
+                    <div class="custom-border input-group">
+                        <input type="text" class="form-control" placeholder="Divide Background Color"
+                            [(ngModel)]="dividerBgClrValue" value="{{dividerBgClrValue}}"
+                            (ngModelChange)="dividerBgChange()">
+                        <span class="color-picker-wrapper input-group-text">
+                            <input type="color" class="form-control" value="{{dividerBgClrValue}}"
+                                [(ngModel)]="dividerBgClrValue" (ngModelChange)="dividerBgChange()">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="footer-container" *ngIf="false"> -->
+        <div class="footer-container" *ngIf="isFooterVisible">
+            <div class="container mt-3">
+                <app-email-toolbar-footer [sIndex]="selectedSIindex" [cIndex]="selectedCindex" [bIndex]="selectedBIndex"
+                    [footerContent]="footerContent" [selectedBrands]="selectedBrands" [footer]="footer"
+                    [includeUnsubscribe]="includeUnsubscribe" [unsubscribeColor]="unsubscribeColor"
+                    (imageUploadTriggered)="onImageUploadTrigger($event)"></app-email-toolbar-footer>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #logoContainer>
+        <div class="container mt-3 image-upload-wrapper logo-Container">
+            <div class="row gx-0">
+                <!-- <span class="header-txt"> -->
+                <!-- <h4>Logo</h4> -->
+                <div class="col-sm-12 logo-header-txt">
+                    Logo
+                    <span class="icons-container">
+                        <i class="fas fa-align-left" (click)="alignText('left')"
+                            [ngStyle]="{'color': currentLogoAlignment==='left' ? '#555':'#bbb'}"></i>
+                        <i class="fas fa-align-center" (click)="alignText('center')"
+                            [ngStyle]="{'color': currentLogoAlignment==='center' ? '#555':'#bbb'}"></i>
+                        <i class="fas fa-align-right" (click)="alignText('right')"
+                            [ngStyle]="{'color': currentLogoAlignment==='right' ? '#555':'#bbb'}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <div class="custom-border image-upload-content" (click)="imageSelectionTrigger(true)">
+                        <i class="fa-solid fa-upload"></i>
+                        <span class="image_limit">
+                            Upload Image (Max 2 MB)
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group mt-2 position-relative image-link" style="border: 1px solid #ccc;">
+                    <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageLink"
+                        placeholder="Link to open on clicking image">
+                    <span class="play-icon" (click)="updateLogoLink()">
+                        <!-- <i class="fa-solid fa-play"></i> -->
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <div style="height: 146px;">
+    </div>
+</div>

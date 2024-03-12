@@ -1,0 +1,9 @@
+<div class="text-block email-text-block">
+    <div *ngIf="hasText(block.content); else emptyBlock">
+        <div [ngStyle]="{'font-family':this.block.font?this.block.font:'Verdana','font-size':this.block.fontSize?this.block.fontSize:'28px'}"
+            [innerHTML]="block.content | sanitize : 'html'"></div>
+    </div>
+    <ng-template #emptyBlock>
+        <div class="empty-block header-content email-text-no-content">Click to add Header</div>
+    </ng-template>
+</div>

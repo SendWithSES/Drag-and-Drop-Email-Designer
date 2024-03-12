@@ -1,0 +1,9 @@
+<div class="image-block email-video-block">
+    <div *ngIf="block.src">
+        <img [src]="block.src"
+            [ngStyle]="{'width': block.width || '100%','max-width':'100%','height': block.height || null}" />
+        <img [src]='playImage'
+            style="top: 50%;left: 50%;transform: translate(-50%, -50%);position: absolute;width: 40px;height: 40px;background:#0000;">
+    </div>
+    <div class="empty-video-block" *ngIf="!block.src"><i class="fa-solid fa-video"></i></div>
+</div>

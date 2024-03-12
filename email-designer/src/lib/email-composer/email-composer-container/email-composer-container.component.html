@@ -1,0 +1,22 @@
+<div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%;">
+        <div class="col-3 toolbar-container border-top-0">
+            <app-email-toolbar
+                (imageSelectionTriggered)="onImageSelectionTrigger($event)"
+                (imageUploadTriggered)="onImageUploadTrigger($event)"></app-email-toolbar>
+        </div>
+        <div class="col-sm-9 email-editor-container">
+            <div class="right_container">
+                <!-- <app-email-form [emailForm]="sesDesignerData"
+                    (onEmailFormChange)="onEmailFormChange($event)"></app-email-form> -->
+                <app-email-editor></app-email-editor>
+            </div>
+            <!-- <ng-template #emptyTemplates>
+                <div class="template-indicator-txt">Click <i class="fas fa-plus add-icon"
+                        (click)="onAddNewTemplate()"></i>
+                    to create your first 'Send With SES Designer' template</div>
+            </ng-template> -->
+        </div>
+    </div>
+</div>
+<app-email-message></app-email-message>

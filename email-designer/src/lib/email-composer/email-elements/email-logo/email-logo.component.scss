@@ -1,0 +1,49 @@
+.email-logo-container {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px dashed #ccc;
+    margin: 10px;
+    position: relative;
+
+    &.selected {
+        border-color: #FF6666;
+    }
+
+    .email-logo {
+        height: 60px;
+        width: 100px;
+        background: #EEEEEE;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+
+        .logo-text {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+        }
+    }
+
+    .logo-hover-box {
+
+        position: absolute;
+        right: 0;
+        color: #fff;
+        z-index: 3;
+        bottom: -34px;
+
+        >span {
+            display: inline-block;
+            margin-right: 3px;
+            background: #ff6666;
+            width: 25px;
+            font-size: 14px;
+            padding: 6px;
+            opacity: 0.8;
+        }
+    }
+}

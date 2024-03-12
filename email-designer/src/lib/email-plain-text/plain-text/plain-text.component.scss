@@ -1,0 +1,40 @@
+.template-indicator-txt {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #d1d1d1;
+    font-size: 20px;
+    z-index: 1;
+    position: relative;
+    top: 20%;
+}
+
+.add-icon {
+    color: #3ed39b;
+    opacity: 0.7;
+    font-size: 36px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+::ng-deep {
+    .plainTxt-wrapper .sun-editor {
+        border-top: none;
+        border-bottom: none;
+        overflow: hidden;
+
+        .se-wrapper {
+            .se-wrapper-inner {
+                height: calc(100vh - 238px) !important;
+                overflow: auto;
+                padding: 10px 10px;
+            }
+        }
+
+        .sun-editor-editable p {
+            padding: 0 !important;
+            margin: 0 0 16px 0 !important;
+            line-height: 160%;
+        }
+    }
+}

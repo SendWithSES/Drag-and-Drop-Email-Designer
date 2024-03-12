@@ -1,0 +1,37 @@
+<div class="mail-content">
+    <table cellpadding="5" cellspacing="5" class="w-100">
+        <tbody>
+            <tr>
+                <td class="mail-inner-row">
+                    <div class="input-group">
+                        <span class="input-group-addon">Name</span>
+                        <input id="name_" placeholder="Business Name" type="text" class="form-control">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="mail-inner-row">
+                    <div class="input-group">
+                        <span class="input-group-addon">From</span>
+                        <input id="from_" placeholder="" type="text" class="form-control"
+                            (ngModelChange)="inputFormChange('mail_from')" (keypress)="from_inp_change()">
+                        <input disabled type="text" class="domain-input border-left-1" />
+                        <div class="email-text">
+                            @
+                            <!-- {{emailTemplate.mail_from}}@{{domain}} -->
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="mail-inner-row">
+                    <div class="input-group">
+                        <span class="input-group-addon">Subject</span>
+                        <input id="subject_" placeholder="Subject Line" type="text" class="form-control">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,47 @@
+<!-- <div *ngIf="loading; else content" class="loader-wrapper">
+    <i class="fa fa-spinner" aria-hidden="true"></i>
+</div>
+<ng-template #content> -->
+<ng-container *ngIf="emailElements;else noContent">
+    <div role="article" aria-roledescription="email" lang="en" class="email-main-container"
+        [ngStyle]="{'background-color':emailElements.general.background}">
+        <div width="100%" style="margin: auto;position: relative;">
+            <div *ngIf="emailElements.general.isLoading" class="loader-template">
+            </div>
+            <div class="email-inner-container" [ngStyle]="{'background-color':emailElements.general.contentBackground}">
+                <app-email-logo [logo]="emailElements.general.logo"></app-email-logo>
+                <ng-container *ngFor="let s of emailElements.structures;let i=index; let f = first;let l = last">
+                    <div class="structure-main-container" [class.selected]="selectedSIindex===i" id="structure-{{i}}">
+                        <ng-container *ngIf="s.type === '1'">
+                            <app-one-column [structure]="s" [sIndex]="i" (oneClicked)="setSelectedIndex(i,0)"
+                                (click)="setSelectedIndex(i,0)"></app-one-column>
+                        </ng-container>
+                        <ng-container *ngIf="s.type === '2'">
+                            <app-two-column [structure]="s" [sIndex]="i"
+                                (twoClicked)="setSelectedIndex(i,$event)"></app-two-column>
+                        </ng-container>
+                        <div *ngIf="selectedSIindex===i " class="structure-hover-box">
+                            <span (click)="swapUpStucture(i)" *ngIf="!f"><i class="fa-solid fa-arrow-up"></i></span>
+                            <span (click)="swapDownStucture(i)" *ngIf="!l"><i class="fa-solid fa-arrow-down"></i></span>
+                            <span (click)="deleteStucture(i)"
+                                *ngIf="emailElements.structures && emailElements.structures.length>1"><i
+                                    class="fa-solid fa-trash-can"></i></span>
+                        </div>
+                    </div>
+
+
+                </ng-container>
+            </div>
+            <div class="email-footer-outer-container">
+                <app-email-footer [footer]="emailElements.general.footer"></app-email-footer>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #noContent>
+    <div class="loader-wrapper">
+        <i class="fa fa-spinner loading" aria-hidden="true"></i>
+    </div>
+</ng-template>
+
+<!-- </ng-template> -->

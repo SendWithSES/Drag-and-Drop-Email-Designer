@@ -1,0 +1,138 @@
+.email-preview {
+    height: 100vh;
+    width: 100%;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+
+    .email-preview-header {
+        height: 55px;
+        border: 1px solid #ccc;
+        align-items: center;
+        background: #eee;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .btn_wrapper {
+            border-right: 1px solid #ccc;
+            height: 55px;
+            position: absolute;
+            left: 0px;
+
+            .close-btn {
+                color: #555;
+                opacity: 0.5;
+                font-size: 36px;
+                font-weight: 700;
+                border: none;
+                background: none !important;
+                width: 65px;
+                height: 55px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .close-btn:hover {
+                opacity: 1;
+                background: none !important;
+                cursor: pointer;
+            }
+        }
+
+        .device-btn-container {
+            display: flex;
+            font-size: 26px;
+
+            span {
+                padding: 10px;
+                cursor: pointer;
+                color: #aaa;
+
+                &.selected {
+                    color: #555;
+                }
+
+                &:hover {
+                    color: #555;
+                }
+
+                i {
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+
+    /* Side by side View */
+    /* .email-preview-body {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+
+        iframe {
+            height: 100%;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        .desktop-view {
+            width: 65%;
+        }
+
+        .mobile-view {
+            width: 35%;
+        }
+    } */
+
+    /* Side by side View End*/
+
+    /* Toggle View  */
+
+    .email-preview-body {
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        box-sizing: border-box;
+        // display: flex;
+        place-content: stretch center;
+        align-items: stretch;
+        flex: 1 1 auto;
+        &.html {
+            overflow: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #aaa;
+        }
+    }
+
+    iframe {
+        height: 100%;
+        width: 100%;
+        border: 0;
+        flex: 1 1 100%;
+        box-sizing: border-box;
+        max-width: 100%;
+        will-change: width;
+        transition: all 300ms ease-in-out;
+        height: calc(100vh - 55px);
+    }
+
+    &.mobile {
+        iframe {
+            flex: 1 1 360px;
+            max-width: 360px;
+            min-width: 360px;
+        }
+    }
+
+    /*  Toggle View End */
+}

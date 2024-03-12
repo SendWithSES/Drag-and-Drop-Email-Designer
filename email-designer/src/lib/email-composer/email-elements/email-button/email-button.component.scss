@@ -1,0 +1,26 @@
+.email-button-container {
+    // justify-content: center;
+    padding: 10px 5px;
+    flex-direction: row;
+    box-sizing: border-box;
+    // display: flex;
+    font-family: verdana, sans-serif !important;
+
+    .email-button {
+        color: rgb(255, 255, 255);
+        width: auto;
+        background-color: rgb(197, 73, 73);
+        font-family: verdana, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        padding: 12px 25px;
+        border: 0px solid rgb(65, 65, 65);
+        border-radius: 3px;
+        line-height: 120%;
+    }
+
+    .anchor-link {
+        text-decoration: none;
+    }
+}

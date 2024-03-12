@@ -1,0 +1,6 @@
+<div class="structure-col structure-container" [class.selected]="selectedSIindex===sIndex" (click)="oneColumClicked()">
+    <ng-container *ngFor="let b of structure.blocks[0];let i=index; let f = first;let l = last">
+        <app-block [block]="b" [sIndex]="sIndex" [cIndex]="0" [bIndex]="i" [firstIndex]="f" [lastIndex]="l"></app-block>
+    </ng-container>
+
+</div>

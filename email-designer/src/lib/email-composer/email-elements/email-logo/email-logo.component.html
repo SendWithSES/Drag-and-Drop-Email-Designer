@@ -1,0 +1,15 @@
+<div class="email-logo-container" (click)="selectLogo()" [class.selected]="logoSelected"
+    [ngStyle]="{'justify-content': logo.align}">
+    <div class="email-logo" *ngIf="!logo.src">
+        <i class="fa-solid fa-image" aria-hidden="true"></i>
+        <span class="logo-text">Your Logo</span>
+    </div>
+    <div *ngIf="logo.src">
+        <img [src]="logo.src"
+            [ngStyle]="{'width': logo.width || '100%','max-width':'100%','height': logo.height || null}" />
+    </div>
+    <div *ngIf="logoSelected && logo.src" class="logo-hover-box">
+
+        <span (click)="clearLogo()"><i class="fa-solid fa-trash-can"></i></span>
+    </div>
+</div>
