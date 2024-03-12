@@ -40,6 +40,22 @@ Send With SES Email Designer follows a few simple but solid patterns to achieve 
 ## 🎨 Live Demo.
 Play around with the live demo at https://designer.sendwithses.org. You can design a template and send yourself a test email.
 
+
+## Installation
+
+Install via NPM:
+
+```
+npm install @send-with-ses/ng-email-designer
+```
+
+Or via YARN:
+
+```
+yarn add @send-with-ses/ng-email-designer
+```
+
+[Click here](https://www.npmjs.com/package/@send-with-ses/ng-email-designer) for more documentation
 ## 🤝 Contribute.
 Feel free to fork the repository, make improvements, and submit pull requests.
 
