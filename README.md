@@ -26,7 +26,7 @@ Comes with three template types that let you design any kind of transactional or
   - **Plain Text Emails** - _'Minimalemalists'_. This is for you.  
 
 ## 🚀 Built On Solid Fundamentals.
-Send With SES Email Designer follows a few fundamental rules to achieve emails that work in nearly all email clients (web and mobile). It is built upon some great work done by these people.
+Send With SES Email Designer follows a few fundamental rules to design emails that work in nearly all email clients (web and mobile). It is built upon some great work done by these people.
 
 - Ted Goas - https://www.cerberusemail.com
 - Nicole Merlin - https://www.emailwizardry.com.au
