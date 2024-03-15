@@ -16,7 +16,7 @@ This email designer was originally built for use within https://sendwithses.com.
 - **Truly No-Code:** Design like a pro without coding headaches. Our minimal interface gets out of your way.
 - **Truly Democratic:** Save HTML output as a template and use with ANY email service provider.
   
-## 3️⃣ Three Template Types
+## 3️⃣ Three Ways To Create Templates
 Comes with three template types that let you design any kind of transactional or marketing emails. Altogther, you can create and save unlimited templates. 
   - **Drag and Drop Designer** - Start designing beautiful emails immediately. 
   - **HTML Code Editor** - Reuse HTML templates that you already have or code them from scratch.
