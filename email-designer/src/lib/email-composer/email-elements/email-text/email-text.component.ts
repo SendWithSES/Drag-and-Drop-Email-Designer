@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { BlockBean } from '../../models';
-import { EmailElementService } from '../../email-element.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BlockBean } from '../../models';
 
 @Component({
   selector: 'app-email-text',
@@ -12,12 +11,10 @@ export class EmailTextComponent {
   @Input()
   block!: BlockBean;
   headerFont: any;
-  constructor(private emailElementService: EmailElementService, private domSanitizer: DomSanitizer) { }
+
+  constructor(private domSanitizer: DomSanitizer) { }
+
   ngOnInit() {
-    // this.emailElementService.getElements().subscribe((elements) => {
-    //   this.headerFont = elements.general.font?.header?.fontFamily
-    // });
-    //console.log(this.block)
   }
 
   getSafeHtml(content: any): SafeHtml {

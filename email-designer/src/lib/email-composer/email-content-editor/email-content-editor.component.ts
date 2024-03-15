@@ -118,12 +118,6 @@ export class EmailContentEditorComponent {
         this.changeContent('')
       }
     }
-    /* if (changes['content']) {
-      if (this.ngxSunEditor) {
-        //this.ngxSunEditor.setContents('');
-      }
-
-    } */
   }
   changeContent(content: string) {
     setTimeout(() => {
@@ -139,35 +133,12 @@ export class EmailContentEditorComponent {
     if (this.ngxSunEditor) {
       const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`
       this.ngxSunEditor.setDefaultStyle(styles);
-      /* console.log(styles, 'styles')
-      console.log(this.ngxSunEditor.getContents(true), 'getContents')
-      console.log(this.headerContent, 'headerContent') */
     }
   }
-  onFontChange(font: string) {
-    this.selectedFont = font;
-    this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'font', this.selectedFont);
-    this.changeHeaderEditorStyles()
-  }
-  onFontSizeChange() {
-    this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'fontSize', this.selectedFontSize)
-    this.changeHeaderEditorStyles()
-  }
-  onFormatChange() {
-    this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'format', this.selectedFormat)
-    this.selectedFontSize = this.fontSizes[this.selectedFormat];
-    this.onFontSizeChange()
-    //this.changeHeaderEditorStyles()
-  }
   headerTxtChange(headerContent: any) {
-    // console.log(headerContent, 'text')
     this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', headerContent.content)
   }
-  bodyTxtChange(bodyContent: any) {
-    this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', bodyContent.content)
-  }
   ngOnDestroy() {
-    //this.content = '';
   }
 
 }

@@ -146,16 +146,12 @@ export class EmailToolbarFooterComponent {
     try {
       console.log('Image Upload Trigger', brand);
       this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
-      // const imgUrl = await this.getImageUrl(brand)
-      // brand.src = imgUrl;
-      // this.updateFooterSelected(brand)
     } catch (err) {
       console.log('Footer link error', err);
     }
   }
 
   isValidLink(link: string): boolean {
-    // return Boolean(new URL(link));
     try {
       const url = new URL(link);
       return !!url.host;
@@ -195,57 +191,8 @@ export class EmailToolbarFooterComponent {
     return updatedSvgTxt;
   }
 
-  convertSvgToPng(selectedItem: any): void {
-    const url = this.getSvgUrl(selectedItem.svgTxt);
-    this.svgUrlToPng(url, (imgData) => {
-      this.pngImage = imgData;
-      selectedItem.src = imgData; // Set the src property here
-      // console.log(this.pngImage)
-      URL.revokeObjectURL(url);
-    });
-  }
-
-  getSvgUrl(svg: string): string {
-    return URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
-  }
-
-  svgUrlToPng(svgUrl: string, callback: (imgData: string) => void): void {
-
-    const svgImage = new Image();
-    document.body.appendChild(svgImage);
-    svgImage.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = svgImage.width;
-      canvas.height = svgImage.height;
-
-      const canvasCtx = canvas.getContext('2d');
-      canvasCtx?.drawImage(svgImage, 0, 0);
-
-      const imgData = canvas.toDataURL('image/png');
-      callback(imgData);
-
-      document.body.removeChild(svgImage);
-    };
-
-    svgImage.src = svgUrl;
-  }
-  onFontChange(font: string) {
-    this.selectedFont = font
-    /* this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'font', this.selectedFont);
-    this.changeHeaderEditorStyles() */
-    this.emailElementService.onFooterFontChange(this.selectedFont);
-    this.changeHeaderEditorStyles();
-  }
-  onFontSizeChange() {
-    /* this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'fontSize', this.selectedFontSize)
-    this.changeHeaderEditorStyles() */
-    this.emailElementService.onFooterSizeChange(this.selectedFontSize)
-    this.changeHeaderEditorStyles();
-  }
   ngOnChanges(changes: SimpleChanges) {
-
     if (changes['footer']) {
-      //this.selectedBlock = this.emailElementService.getBlockContent(this.sIndex, this.cIndex, this.bIndex);
       if (this.footer.font) {
         this.selectedFont = this.footer.font;
       }

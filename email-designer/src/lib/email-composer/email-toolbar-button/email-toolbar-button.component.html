@@ -1,13 +1,13 @@
-<div class="btn-container">
-    <div class="col-sm-12 header-txt">
+<div class="btn-container sws-border">
+    <div class="col-sm-12 header-text">
         Button
         <span class="icons-container">
-            <i class="fas fa-align-left" (click)="alignText('left')"
-                [ngStyle]="{'color': currentAlignment==='left' ? '#555':'#bbb'}"></i>
-            <i class="fas fa-align-center" (click)="alignText('center')"
-                [ngStyle]="{'color': currentAlignment==='center' ? '#555':'#bbb'}"></i>
-            <i class="fas fa-align-right" (click)="alignText('right')"
-                [ngStyle]="{'color': currentAlignment==='right' ? '#555':'#bbb'}"></i>
+            <i class="aln-icon fas fa-align-left" (click)="alignText('left')"
+                [class.selected]="currentAlignment==='left'"></i>
+            <i class="aln-icon fas fa-align-center" (click)="alignText('center')"
+                [class.selected]="currentAlignment==='center'"></i>
+            <i class="aln-icon fas fa-align-right" (click)="alignText('right')"
+                [class.selected]="currentAlignment==='right'"></i>
         </span>
     </div>
     <div class="row gx-0">
@@ -51,7 +51,6 @@
                         aria-label="Default select example">
                         <option *ngFor="let font of fontFamilyList" [value]="font"> {{ font }} </option>
                     </select>
-                    <!-- <input type="text" class="form-control" placeholder="Button Font"> -->
                 </div>
             </div>
         </div>
@@ -66,7 +65,6 @@
                         (change)="onFontSizeChange($event)" aria-label="Default select example">
                         <option *ngFor="let fontSize of fontSizeList" [value]="fontSize"> {{ fontSize }} </option>
                     </select>
-                    <!-- <input type="text" class="form-control" placeholder="Button Fontsize"> -->
                 </div>
             </div>
         </div>
@@ -89,8 +87,6 @@
             <div class="col-6 col-sm-5 btn-type-header">Button Link</div>
             <div class="col-6 col-sm-7">
                 <div class="input-group">
-                    <!-- <input type="text" class="form-control" [(ngModel)]="btnLink" (ngModelChange)="btnLinkChange()"
-                        placeholder="https://voteism.org"> -->
                     <input type="text" class="form-control link-txt" [(ngModel)]="btnLink"
                         placeholder="https://sendwithses.com">
                     <span class="icon-wrapper input-group-text" [ngStyle]="{color: btnLink ? '#ef8081':'#ccc'}"

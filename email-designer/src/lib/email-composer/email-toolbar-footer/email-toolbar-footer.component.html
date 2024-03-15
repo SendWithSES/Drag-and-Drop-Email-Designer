@@ -1,16 +1,18 @@
 <div class="row">
     <div class="col-sm-12 footer-txt-editor">
-        <h4 class="text-editor"> Enter Footer Text</h4>
-        <ngx-suneditor #footerSunEditor class="ngx-suneditor-wrapper" [options]="footerEditorOptions"
-            [content]="footerContent" (onChange)="FooterTxtChange($event)" (paste)="onFooterTxtPaste($event)"
-            (onPaste)="onFooterTxtPaste($event)"></ngx-suneditor>
+        <div class="sws-border">
+            <h4 class="header-text">Enter Footer Text</h4>
+            <ngx-suneditor #footerSunEditor class="ngx-suneditor-wrapper" [options]="footerEditorOptions"
+                [content]="footerContent" (onChange)="FooterTxtChange($event)" (paste)="onFooterTxtPaste($event)"
+                (onPaste)="onFooterTxtPaste($event)"></ngx-suneditor>
+        </div>
     </div>
 </div>
 
 <div class="socialBrand-wrapper mt-3">
     <div class="row gx-0 mt-2">
         <div class="col-sm-12">
-            <div class="input-group custom-border">
+            <div class="input-group sws-border">
                 <input type="text" class="form-control" [(ngModel)]="selectedValue" [ngbTypeahead]="search"
                     id="autocompleteInput" placeholder="Search social or brand icon"
                     (selectItem)="onSelectItem($event)" />
@@ -21,21 +23,15 @@
         </div>
     </div>
     <div class="socialBrand-wrapper mt-3" *ngFor="let brand of selectedBrands;let i = index">
-        <div class="row gx-0 btn-type-wrapper">
+        <div class="row gx-0 btn-type-wrapper sws-border">
             <div class="col-6 col-sm-2">
-                <span class="icon-container" [ngStyle]="{'background-color': '#EEEEEE'}">
-                    <!-- <i class="fab fa-{{ brand.toLowerCase() }}" [ngStyle]="{'color':colorPickerValue}"></i> -->
+                <span class="icon-container">
                     <fa-icon id="toolBar-icon-wrapper-{{brand.iconName}}" [icon]="brand"
                         [ngStyle]="{'color':brand.color}"></fa-icon>
                 </span>
             </div>
-            <div class="col-6 col-sm-10 link-picker">
+            <div class="col-6 col-sm-10">
                 <div class="input-group">
-                    <!-- [(ngModel)]="iconLink" -->
-                    <!-- <input type="text" class="form-control" [(ngModel)]="selectedBrandLinks[brand.iconName]"
-                        placeholder="{{brand.iconName}} link"> -->
-                    <!-- <input type="text" class="form-control" [(ngModel)]="selectedBrandLinks[brand.iconName]"
-                        placeholder="{{brand.iconName}} link"> -->
                     <input type="text" class="form-control" [(ngModel)]="brand.link"
                         placeholder="{{brand.iconName}} link">
 
@@ -48,14 +44,6 @@
                             [ngStyle]="{'color': !isValidLink(brand.link)? '#ccc':'#ef8081'}"></i>
                         <i class="fa-solid fa-trash-can" (click)="deleteIcon(brand)"></i>
                     </span>
-                    <!--   <span class="icon-wrapper input-group-text" [ngStyle]="{color: iconLink  ? '#555':'#ccc'}"
-                        (click)="ftrLinkChange(brand)">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                    </span>
-                    <span class="icon-wrapper input-group-text" (click)="deleteIcon(brand)">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </span> -->
-
                 </div>
             </div>
         </div>
@@ -64,14 +52,14 @@
         emails.</div>
     <div class="line-break"></div>
     <div class="declamation-wrapper">
-        <div class="row gx-0 btn-type-wrapper">
+        <div class="row gx-0 btn-type-wrapper sws-border">
             <div class="col-6 col-sm-2">
-                <span class="icon-container" [ngStyle]="{'background-color': '#EEEEEE'}">
+                <span class="icon-container">
                     <input type="checkbox" class="unsub-checkbox" [checked]="includeUnsubscribe" id="unsubscribe"
                         name="unsubscribe" value="unsubscribe" (click)="unsubscribeStatus()">
                 </span>
             </div>
-            <div class="col-6 col-sm-10 link-picker">
+            <div class="col-6 col-sm-10">
                 <div class="input-group">
                     <label for="unsubscribe" (click)="unsubscribeStatus()" class="checkbox-label">
                         Include Unsubscribe Link
@@ -81,21 +69,9 @@
                         <input type="color" class="form-control" [(ngModel)]="unsubscribeColor"
                             (ngModelChange)="unsubscribeColorChange()">
                     </span>
-                    <!-- <span class="icon-wrapper input-group-text">
-                        <i class="fa-solid fa-floppy-disk" [ngStyle]="{'color': '#ccc'}"></i>
-                        <i class="fa-solid fa-trash-can"></i>
-                    </span> -->
-
                 </div>
             </div>
         </div>
-        <!-- <div class="unsub-txt" (click)="unsubscribeStatus()">
-            <input type="checkbox" class="unsub-checkbox" [checked]="includeUnsubscribe" id="unsubscribe"
-                name="unsubscribe" value="unsubscribe">
-            <label for="unsubscribe" class="checkbox-label">
-                Include Unsubscribe Link
-            </label>
-        </div> -->
         <p class="email-note">
             <b>NOTE:</b> All marketing emails MUST contain an unsubscribe link. Not having one will affect your sending
             reputation and your

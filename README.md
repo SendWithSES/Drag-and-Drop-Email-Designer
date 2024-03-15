@@ -62,8 +62,28 @@ Images can be directly uploaded to a cloud storage of your choice (ex: AWS S3, C
 ```
 [Click here](https://www.npmjs.com/package/@send-with-ses/ng-email-designer) for more documentation
 
-## 🎨 UI Theming (Coming soon)
+## 🎨 UI Theming and Styles
+
 You can make a few changes to make the Email Designer match your website colors.
+
+Import the following styles into your global styles file (e.g., styles.scss):
+
+```css
+@import '../node_modules/email-designer/src/lib/theme.scss';
+@import '../node_modules/email-designer/src/lib/email-editor.css';
+```
+
+To make the Email Designer match your website's UI, include the following in your main.scss or styles.scss file and change the colors as you like.
+
+```css
+ :root {
+    --sws-icon-color: #ccc;
+    --sws-icon-hover-color: #555;
+    --sws-header-background: #eee;
+    --sws-header-text-color: #555;
+    --sws-border-color: #ccc;
+ }
+```
 
 ## 🤝 Contribute.
 Feel free to fork the repository, make improvements, and submit pull requests.

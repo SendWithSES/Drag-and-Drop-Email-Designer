@@ -14,12 +14,12 @@ export class EmailFooterComponent {
   footerSelected!: boolean
   defaultBrands: any = this.emailElementService.initialElement.general.footer.brands;
   includeUnsubscribe!: any;
-  defaultUnsubscribeColor = ConstantsData.defaultUnsubscribeColor
+  defaultUnsubscribeColor = ConstantsData.defaultUnsubscribeColor;
+
   constructor(private emailElementService: EmailElementService, private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.emailElementService.footerVisibility$.subscribe(l => {
-      //console.log(l, 'l')
       this.footerSelected = l
     });
   }
@@ -28,9 +28,6 @@ export class EmailFooterComponent {
     this.emailElementService.resetBlockSelection()
     this.emailElementService.logoSelected$.next(false);
     this.emailElementService.footerVisibility$.next(true)
-    // this.emailElementService.getElements().subscribe((e) => {
-    //   console.log(e)
-    // })
   }
   getSafeHtml(content: any): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(content);

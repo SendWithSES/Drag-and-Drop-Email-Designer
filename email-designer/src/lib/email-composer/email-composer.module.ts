@@ -62,13 +62,18 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    FormsModule, NgbDropdownModule, FontAwesomeModule,
+    FormsModule,
+    NgbDropdownModule,
+    FontAwesomeModule,
     ReactiveFormsModule,
     NgbTypeaheadModule,
     NgxSuneditorModule,
   ],
   exports: [
-    EmailComposerContainerComponent, EmailToolbarComponent, EmailEditorComponent, EmailPreviewComponent
+    EmailComposerContainerComponent,
+    EmailToolbarComponent,
+    EmailEditorComponent,
+    EmailPreviewComponent
 
   ]
 })

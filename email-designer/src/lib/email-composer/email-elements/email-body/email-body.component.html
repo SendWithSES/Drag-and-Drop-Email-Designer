@@ -1,11 +1,6 @@
-<!-- <div class="body-block email-text-block" [ngStyle]="{ 'font-family': bodyTxtFont }">
-    <div *ngIf="block.content" [innerHTML]="getSafeHtml(block.content)"></div>
-    <div class="empty-block" *ngIf="!block.content">Click to add body text</div>
-</div> -->
 <div class="body-block email-text-block">
     <div *ngIf="hasText(block.content); else emptyBlock">
-        <!-- <div [innerHTML]="getSafeHtml(block.content)"></div> -->
-        <div [ngStyle]="{'font-family':this.block.font?this.block.font:'Verdana','font-size':this.block.fontSize?this.block.fontSize:'16px'}"
+        <div [ngStyle]="{ 'font-family': this.block.font || 'Verdana', 'font-size': this.block.fontSize || '16px' }"
             [innerHTML]="block.content | sanitize : 'html'"></div>
     </div>
     <ng-template #emptyBlock>

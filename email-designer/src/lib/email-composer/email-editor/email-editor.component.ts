@@ -30,13 +30,7 @@ export class EmailEditorComponent {
         this.emailElements = null;
         this.cd.detectChanges();
       }
-
-      // console.log(emailElements)
     });
-    /* this.emailElementService.showLoader$.subscribe((showLoader) => {
-      this.showLoader = showLoader;
-      this.cd.detectChanges()
-    }); */
     this.emailElementService.selectedStructureIndex$.subscribe(i => {
       this.selectedSIindex = i;
     });

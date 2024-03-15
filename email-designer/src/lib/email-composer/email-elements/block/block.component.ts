@@ -48,8 +48,6 @@ export class BlockComponent {
         const selectedCindex = this.selectedCindex ? this.selectedCindex : 0;
 
         setTimeout(() => {
-          /* this.es.selectedBlockIndex$.next(i)
-          this.es.selectedBlockType$.next(type) */
           const block = this.es.getBlockDetails(selectedSIindex, selectedCindex, i);
           if (block) {
             this.es.setSelectedBlock(i, block.type, selectedSIindex, selectedCindex)

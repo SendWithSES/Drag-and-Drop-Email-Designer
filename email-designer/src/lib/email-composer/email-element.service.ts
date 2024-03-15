@@ -257,8 +257,6 @@ export class EmailElementService {
   selectedBlockIndex!: number;
   showLoader$: Subject<boolean> = new Subject<boolean>();
   contentUpdated$: Subject<boolean> = new Subject<boolean>();
-  // footerVisibility = new Subject<boolean>();
-  // footerVisibility$ = this.footerVisibility.asObservable();
   footerVisibility$: Subject<boolean> = new Subject<boolean>();
   contactsCount = 0;
   contactsList: any[] = [];
@@ -281,9 +279,7 @@ export class EmailElementService {
   }
   setSelectedBlock(index: number, type: BlockType, sIndex: number, cIndex: number) {
     this.selectedBlockType = type;
-    // this.selectedBlockType$.next(type);
     this.selectedBlockIndex = index;
-    // this.selectedBlockIndex$.next(index);
     this.setSelectedStructureIndex(sIndex)
     this.setSelectedStructureColumn(cIndex)
     this.selectedBlockIndex$.next(index);
@@ -503,8 +499,6 @@ export class EmailElementService {
   editBlockContent(sIndex: number, cIndex: number, bIndex: number, property: string, value: string): void {
     const structure = this.emailElements.structures[sIndex];
     if (structure && structure.blocks && structure.blocks[cIndex]) {
-      // console.log('block property update', property, value);
-      // console.log(structure.blocks[cIndex][bIndex]);
       this.emailElements.structures[sIndex].blocks[cIndex][bIndex][property] = value;
       this.emailElements$.next(this.emailElements);
       this.contentUpdated$.next(true);
@@ -555,11 +549,6 @@ export class EmailElementService {
     return new Observable((observer) => {
       if (this.isYouTubeUrl(videoUrl)) {
         const videoId = this.extractYouTubeVideoId(videoUrl);
-        // const videoId = 'JGQI5pkK82w&t'
-        // https://www.youtube.com/watch?v=JGQI5pkK82w&t=4s
-        // https://www.youtube.com/watch?v=qcmUy_iFT-A
-        // https://www.youtube.com/watch?v=vBoOXP6BkDI
-        // https://youtu.be/vBoOXP6BkDI?si=upzJEFf2eMIdn4Ls
 
         if (videoId) {
           this.checkYoutubeUrl(videoUrl).subscribe({

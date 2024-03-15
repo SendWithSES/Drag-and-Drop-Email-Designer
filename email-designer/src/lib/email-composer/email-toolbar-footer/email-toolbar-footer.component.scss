@@ -1,19 +1,7 @@
 /* Footer content Styles */
 
-// .footertxt-inp {
-//     color: #555;
-//     font-size: 12px;
-//     padding: 20px;
-//     border: none;
-// }
 .footer-txt-editor {
     padding-inline: 14px;
-}
-
-.text-editor {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    background-color: #eee;
 }
 
 .search-icon {
@@ -21,8 +9,6 @@
     background-color: #fff;
     border-radius: 0px;
     color: #ccc;
-    // border-left: 1px solid #ccc;
-    // margin-left: 0px !important;
 }
 
 .icon-note {
@@ -108,7 +94,6 @@ p {
 
 h4 {
     font-size: 15px;
-    color: #555;
     font-weight: 700;
     padding: 8px;
     margin-bottom: 0px;
@@ -122,6 +107,8 @@ h4 {
         height: 46px;
         line-height: 18px;
         padding: 4px;
+        background-color: #EEE;
+        border-right: 1px solid var(--sws-border-color);
     }
 }
 
@@ -135,11 +122,6 @@ h5 {
     color: #555;
     padding: 8px;
     margin-bottom: 0px;
-}
-
-.custom-border {
-    border: 1px solid #ccc;
-    position: relative;
 }
 
 input,
@@ -194,15 +176,6 @@ input[type="color"]::-webkit-color-swatch {
 
 input[type="color"]::-moz-color-swatch {
     border: 1px solid #ccc;
-}
-
-.link-picker {
-    border: 1px solid #ccc;
-    border-left: none;
-}
-
-.col-sm-2 {
-    border: 1px solid #ccc !important;
 }
 
 /* ngb typeaHead styles */
@@ -300,9 +273,6 @@ input[type="color"]::-moz-color-swatch {
         overflow: hidden;
     }
 
-    // .dropdown-item .dropdown_item_name:hover, {
-    //     background-color: #555;
-    // }
     .dropdown_name {
         display: block;
         width: 100%;

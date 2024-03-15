@@ -1,7 +1,6 @@
 <!-- <div *ngIf="loading; else content" class="loader-wrapper">
     <i class="fa fa-spinner" aria-hidden="true"></i>
-</div>
-<ng-template #content> -->
+</div> -->
 <ng-container *ngIf="emailElements;else noContent">
     <div role="article" aria-roledescription="email" lang="en" class="email-main-container"
         [ngStyle]="{'background-color':emailElements.general.background}">
@@ -43,5 +42,3 @@
         <i class="fa fa-spinner loading" aria-hidden="true"></i>
     </div>
 </ng-template>
-
-<!-- </ng-template> -->

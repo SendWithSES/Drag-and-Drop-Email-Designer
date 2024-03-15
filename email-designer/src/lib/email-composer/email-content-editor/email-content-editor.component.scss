@@ -1,19 +1,13 @@
-.text-editor {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    background-color: #eee;
-}
 
 h4 {
     font-size: 15px;
-    color: #555;
     font-weight: 700;
     padding: 8px;
     margin-bottom: 0px;
 }
 
 /* .body-txt-editor,
-.header-txt-editor {
+.header-text-editor {
     padding: 0;
     -webkit-transition: box-shadow 250ms ease-out;
     -moz-transition: box-shadow 250ms ease-out;
@@ -127,10 +121,6 @@ h4 {
     .sun-editor .se-btn {
         height: 32px;
         width: 32px;
-    }
-
-    .header-suneditor-wrapper {
-        /* font-weight: bold; */
     }
 
     .bodyEditor {

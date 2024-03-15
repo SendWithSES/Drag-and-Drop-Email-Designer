@@ -444,12 +444,7 @@ export class EmailHtmlGeneratorService {
       </tr>
       `
     }
-    /* <div 
-  style="${resetStyles}word-wrap:break-word;max-width:630px;margin:20px;font-family: ${footer.font ? this.getFontFamily(footer.font) : this.defaultFont};font-size:${footer.fontSize ? footer.fontSize : '14px'}">
-  ${footer.content}
-  </div> */
-    /* const unsubscribe = footer.unsubscribe ? `<a href="${footer.unsubscribeLink}" target="_blank" 
-    style="color: #b1b1b1; text-decoration: none;">{{Unsubscribe}}</a>` : ''; */
+
     const resetStyles = "text-decoration: none;font-weight: normal;padding:0;";
     const path = isPreview ? this.unsubscribePath : "{{Unsubscribe}}"
     const unsubscribe = footer.unsubscribe ? `<span 
@@ -581,15 +576,6 @@ export class EmailHtmlGeneratorService {
   getText(block: BlockBean) {
     let text = '';
     if (block.content) {
-      /* let headerContent = `${block.content}`;
-      const resetStyles = "color:#000000;font-weight: normal;padding:0;margin:0;"
-      if (block.format === 'H1') {
-        headerContent = `<h1 style="${resetStyles}font-family: ${block.font ? this.getFontFamily(block.font) : this.defaultFont};font-size:${block.fontSize ? block.fontSize : '28px'}">${block.content}</h1>`
-      } else if (block.format === 'H2') {
-        headerContent = `<h2 style="${resetStyles}font-family: ${block.font ? this.getFontFamily(block.font) : this.defaultFont};font-size:${block.fontSize ? block.fontSize : '26px'}">${block.content}</h2>`
-      } if (block.format === 'H3') {
-        headerContent = `<h3 style="${resetStyles}font-family: ${block.font ? this.getFontFamily(block.font) : this.defaultFont};font-size:${block.fontSize ? block.fontSize : '22px'}">${block.content}</h3>`
-      } */
       text = `
         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
         style="margin: auto;width: 100%;">
@@ -600,7 +586,6 @@ export class EmailHtmlGeneratorService {
           </tr>
         </table>
       `
-      // text = `${block.content}`
     }
     return text;
   }
@@ -608,8 +593,6 @@ export class EmailHtmlGeneratorService {
     let text = '';
     console.log(block, 'block')
     if (block.content) {
-      /* const resetStyles = "color:#000000;font-weight: normal;padding:0;margin:0;"
-      const content =`<div style="${resetStyles}font-family: ${block.font ? this.getFontFamily(block.font) : this.defaultFont};font-size:${block.fontSize ? block.fontSize : '16px'}">${block.content}</div>` */
       text = `
         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
         style="margin: auto;width: 100%;">
@@ -757,26 +740,20 @@ export class EmailHtmlGeneratorService {
     <!DOCTYPE html>
     <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
         xmlns:o="urn:schemas-microsoft-com:office:office">
-    
-    ${this.getHead(true, isPreview)}
-    
-    
-    <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly;">
+      ${this.getHead(true, isPreview)} 
+      <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly;">
         <center role="article" aria-roledescription="email" lang="en" style="width: 100%;">
-                <table class="email-center-table" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-                 
+          <table class="email-center-table" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">     
             <tr>
-                <td style="padding:0 10px;">
-                ${emailContent}
-                ${this.getSpacer(5, 10)}
-                </td>
+              <td style="padding:0 10px;">
+              ${emailContent}
+              ${this.getSpacer(5, 10)}
+              </td>
             </tr> 
-            </table>
-            
-              </center>
-              </body>
-
-              </html>`;
+          </table>      
+        </center>
+      </body>
+    </html>`;
 
     return html;
   }

@@ -56,7 +56,7 @@ export class EmailToolbarComponent {
   footerSubscription!: Subscription;
 
   selectedFontSize = '14px';
-  currentLogoAlignment: 'left' | 'center' | 'right' = 'center';
+  currentAlignment: 'left' | 'center' | 'right' = 'center';
   footer!: Footer;
   unsubscribeColor!: any;
 
@@ -194,10 +194,6 @@ export class EmailToolbarComponent {
     this.es.updateContentBgColor(this.contentBgValue)
 
   }
-  updateColor() {
-    // Update the color input value with the text input value
-    //document.getElementById("colorPicker")?.setAttribute("value", this.bgPickerValue);
-  }
   dividerBgChange() {
     this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'color', this.dividerBgClrValue);
   }
@@ -222,8 +218,8 @@ export class EmailToolbarComponent {
     this.imageLink = '';
   }
   alignText(alignValue: 'left' | 'center' | 'right'): void {
-    this.currentLogoAlignment = alignValue;
-    this.es.updateLogoAlign(this.currentLogoAlignment)
+    this.currentAlignment = alignValue;
+    this.es.updateLogoAlign(this.currentAlignment)
   }
 
   onImageUploadTrigger(data: any) {

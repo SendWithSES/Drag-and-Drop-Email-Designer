@@ -6,9 +6,6 @@
 
 .column-boxes {
     padding: 20px 18px;
-    border-bottom: 1px solid #ccc;
-    // height: 80px;
-    /* height: 105px; */
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -18,9 +15,8 @@
         justify-content: center;
     }
 
-    .col-txt {
+    .icon-text {
         font-size: 13px;
-        // color: #ccc;
         font-weight: 700;
         padding: 8px 5px;
         margin-bottom: 0px;
@@ -29,7 +25,6 @@
     }
 
     .col-custom-border {
-        border: 3px solid #ccc;
         position: relative;
         padding: 10px !important;
         width: 111px;
@@ -37,7 +32,6 @@
 
         // background-color: #fff;
         .splitter {
-            border-left: 3px solid #ccc;
             height: 100%;
             width: 1px;
             position: absolute;
@@ -48,26 +42,9 @@
 
     .one-column,
     .two-column {
-        color: #ccc;
+        // color: #ccc;
         padding-inline: 25px;
-
-        &:hover {
-            color: #555;
-
-            .col-custom-border {
-                border-color: #555;
-            }
-
-            .splitter {
-                border-color: #555;
-            }
-        }
     }
-}
-
-.custom-border {
-    border: 1px solid #ccc;
-    position: relative;
 }
 
 .colo-picker {
@@ -80,7 +57,6 @@
 
 /* action-list_types Heading,Bold txt,image,video Icons  */
 .action-list_types {
-    border-bottom: 1px solid #ccc;
     padding: 20px;
 
     .col-md-4 {
@@ -94,7 +70,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        color: #ccc;
+        // color: #ccc;
 
         i.fa-solid {
             font-size: 32px;
@@ -124,15 +100,10 @@
     }
 }
 
-.bg-content-warpper {
-    border-bottom: 1px solid #ccc;
-}
-
 /* Heading Text Styles End */
 
 h4 {
     font-size: 15px;
-    color: #555;
     font-weight: 700;
     padding: 8px;
     margin-bottom: 0px;
@@ -144,18 +115,6 @@ h5 {
     color: #555;
     padding: 8px;
     margin-bottom: 0px;
-}
-
-.header-txt {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    background-color: #eee;
-}
-
-.text-editor {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    background-color: #eee;
 }
 
 input,
@@ -173,8 +132,6 @@ input,
         flex-direction: column;
         align-items: center;
         text-align: center;
-        // background-color: #f8f8f8;
-        // padding: 15px;
         cursor: pointer;
         height: 100px;
         display: flex;
@@ -184,11 +141,9 @@ input,
         i.fa-upload {
             font-size: 25px;
             text-align: center;
-            color: #aaa;
         }
 
         .image_limit {
-            color: #aaa;
             font-size: 14px;
             margin-top: 4px;
             font-weight: 700;
@@ -214,10 +169,6 @@ input[type="color"] {
     border: none;
     // -webkit-appearance: none;
 }
-
-// input[type="color"]::-webkit-color-swatch-wrapper {
-// 	padding: 0;
-// }
 
 input[type="color"]::-webkit-color-swatch {
     border: 1px solid #ccc;
@@ -253,14 +204,10 @@ input[type="color"]::-moz-color-swatch {
 
 /* Logo Styles */
 .logo-Container {
-    .logo-header-txt {
-        border: 1px solid #ccc;
-        background-color: #eee;
-        color: #555;
+    .logo.header-text {
         font-size: 16px;
         padding: 5px 8px;
         font-weight: 700;
-        border-bottom: none;
     }
 
     .icons-container {
