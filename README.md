@@ -48,7 +48,7 @@ yarn add @send-with-ses/ng-email-designer
 
 ## 🖼️ Image Handling
 
-Images can be directly uploaded to a cloud storage of your choice (ex: AWS S3, Cloudflare R2, GCP Cloud Storage etc). Please implement your image upload functionality and provide it to the library as below (imageUploadTriggered/imageSelectionTriggered).
+You can use a cloud storage of your choice (ex: AWS S3, Cloudflare R2, GCP Cloud Storage etc) for storing your images. Please implement your image upload functionality and provide it to the library as below (imageUploadTriggered/imageSelectionTriggered).
 
 
 ```html
