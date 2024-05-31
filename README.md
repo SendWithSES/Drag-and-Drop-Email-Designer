@@ -92,7 +92,7 @@ Feel free to fork the repository, make improvements, and submit pull requests.
 Spotted a bug or got an idea? Just open an issue or write to designer at sendwithses dot org.
 
 ## ⭐ Minimal Rationalism (Optional Reading)
-Send With SES Designer focuses on simplicty and ease of use over a heavy feature set. Over years of sending emails, we've come across some email patterns that work and many that don't. Some are design related while some are organisation related. Let's break some bubbles here - in no particular order.
+Send With SES Designer focuses on simplicity and ease of use over a heavy feature set. Over years of sending emails, we've come across some email patterns that work and many that don't. Some are design related while some are organisation related. Let's break some bubbles here - in no particular order.
 - Remember, you are designing an email, not a website. If you want fine-grain controls like 'line heights', you are at the wrong place.
 - The more you nitpick on the design, the more likely it will break in email clients. (i.e. more moving parts == more breakages). 
 - Transactional emails are best delivered in plain text.
