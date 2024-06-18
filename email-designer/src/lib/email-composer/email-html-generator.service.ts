@@ -544,29 +544,37 @@ export class EmailHtmlGeneratorService {
     }
     let blockHtml = `<table ${trAlign}  role="presentation" cellspacing="0" cellpadding="0" border="0"
     style="margin: auto;width:100%;">
-    <tr>
-    <td style="padding:0 0 20px 0;${tdAlign}">`;
+    <tr>`;
+    const addCellContent = (content: string) => {
+      blockHtml += `<td style="padding:0 0 20px 0;${tdAlign}">${content}</td>`;
+    };
     switch (block.type) {
       case BlockType.Text:
-        blockHtml += this.getText(block);
+        if (block.content != ConstantsData.headerTextContent) {
+          // blockHtml += this.getText(block);
+          addCellContent(this.getText(block));
+        }
         break;
       case BlockType.Body:
-        blockHtml += this.getBody(block);
+        if (block.content != ConstantsData.bodyTextContent) {
+          addCellContent(this.getBody(block));
+        }
         break;
       case BlockType.Button:
-        blockHtml += this.getButton(block);
+        addCellContent(this.getButton(block));
         break;
       case BlockType.Image:
-        blockHtml += this.getImage(block, cols);
+        addCellContent(this.getImage(block, cols));
+        // blockHtml += this.getImage(block, cols);
         break;
       case BlockType.Video:
-        blockHtml += this.getVideo(block, cols);
+        addCellContent(this.getVideo(block, cols));
         break;
       case BlockType.Divider:
-        blockHtml += this.getDivider(block);
+        addCellContent(this.getDivider(block));
         break;
     }
-    blockHtml += `</td></tr></table>`
+    blockHtml += `</tr></table>`
     return blockHtml;
   }
   getDivider(block: BlockBean) {
@@ -633,26 +641,29 @@ export class EmailHtmlGeneratorService {
   }
   getVideo(block: BlockBean, cols: number) {
     let imageText = '';
-    const playImage = ConstantsData.youtubePlayIcon;
     if (block.src) {
-      const playIconElem = `<img src='${playImage}' style="top: 50%;left: 50%;transform: translate(-50%, -50%);position: absolute;width: 40px;height: 40px;background: #0000;">`
+      const tableBodyElem =
+        ` <tr>
+            <td></td>
+            <td rowspan="2"> 
+              <img src="${block.src}" width="100%" style="max-width: 100%; height: auto; display: block;">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style='text-align:center;'>
+             <span style='background:none;display:inline-block;width: 0;height:0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-left: 30px solid red;'></span>
+            </td>
+          </tr>`
       if (cols === 1) {
         imageText = `
-        <div class="image-container" style="position: relative;">
-        <img src="${block.src}" width="${block.width || '100%'}" height="" alt="alt_text" border="0" style="max-width: 100%; height: auto; margin: auto; display: block;" class="g-img">
-        ${playIconElem}
-        </div>
-        `
+              <table border="0" cellpadding="0" cellspacing="0">
+                ${tableBodyElem} 
+              </table>`
       } else {
         imageText = `
-        <div class="image-container" style="position: relative;">
-        <img src="${block.src}"  width="${block.width || '100%'}"  height=""
-        border="0" alt="alt_text"
-        style="max-width: 100%; height: auto; line-height: 20px;"
-        class="center-on-narrow">
-        ${playIconElem}
-        </div>
-        `
+              <table border="0" cellpadding="0" cellspacing="0">
+                ${tableBodyElem} 
+              </table>`
       }
       if (block.link) {
         imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`

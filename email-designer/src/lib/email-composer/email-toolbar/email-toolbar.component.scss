@@ -167,6 +167,7 @@ input[type="color"] {
     height: 25px;
     cursor: pointer;
     border: none;
+    border-radius: 0;
     // -webkit-appearance: none;
 }
 
@@ -195,6 +196,7 @@ input[type="color"]::-moz-color-swatch {
         align-items: center;
         cursor: pointer;
         color: #ccc;
+        font-size: 20px;
     }
 
     i:hover {

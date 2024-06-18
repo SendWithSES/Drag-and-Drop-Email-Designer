@@ -46,7 +46,7 @@ export class EmailToolbarComponent {
   btnTxtColorValue: any = ConstantsData.btnTxtColorValue;
   dividerBgClrValue: any = ConstantsData.dividerBgClrValue
 
-  videoUrl = '';
+  videoUrl: any = '';
   imageUrl = '';
   imageLink: any = '';
   logoSelected = false;
@@ -105,12 +105,20 @@ export class EmailToolbarComponent {
         case this.blockType.Image:
           this.imageLink = this.selectedBlock.link;
           break;
+        case this.blockType.Video:
+          this.videoUrl = this.selectedBlock.link;
+          break;
 
       }
     });
 
     this.es.logoSelected$.subscribe(l => {
-      this.logoSelected = l
+      this.logoSelected = l;
+      if (this.logoSelected) {
+        if (this.emailElements.general.logo) {
+          this.imageLink = this.emailElements.general.logo.link;
+        }
+      }
     })
     this.footerSubscription = this.es.footerVisibility$.subscribe((visibility) => {
       if (this.emailElements) {
@@ -215,7 +223,7 @@ export class EmailToolbarComponent {
   }
   updateLogoLink() {
     this.es.updateLogoLink(this.imageLink);
-    this.imageLink = '';
+    // this.imageLink = '';
   }
   alignText(alignValue: 'left' | 'center' | 'right'): void {
     this.currentAlignment = alignValue;

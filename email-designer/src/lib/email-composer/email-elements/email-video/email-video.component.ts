@@ -9,5 +9,4 @@ import { ConstantsData } from '../../constants';
 })
 export class EmailVideoComponent {
   @Input() block!: BlockBean;
-  playImage = ConstantsData.youtubePlayIcon;
 }
