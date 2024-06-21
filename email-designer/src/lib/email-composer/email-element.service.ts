@@ -704,7 +704,7 @@ export class EmailElementService {
         }
       }
     }
-    console.log('updateAddBrand', this.emailElements.general.footer.brands);
+    // console.log('updateAddBrand', this.emailElements.general.footer.brands);
     this.emailElements$.next(this.emailElements);
     this.contentUpdated$.next(true);
   }

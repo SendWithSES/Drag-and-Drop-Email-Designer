@@ -132,7 +132,8 @@ export class EmailToolbarComponent {
           this.selectedBrands = this.es.initialElement.general.footer.brands;
           // this.emailElements.general.footer.brands = this.es.initialElement.general.footer.brands
         }
-        this.includeUnsubscribe = this.footer.unsubscribe ? this.footer.unsubscribe : this.es.initialElement.general.footer.unsubscribe;
+        // this.includeUnsubscribe = this.footer.unsubscribe ? this.footer.unsubscribe : this.es.initialElement.general.footer.unsubscribe;
+        this.includeUnsubscribe = this.footer.unsubscribe;
         this.unsubscribeColor = this.footer.unsubscribeColor ? this.footer.unsubscribeColor : ConstantsData.defaultUnsubscribeColor;
 
       }
@@ -231,12 +232,12 @@ export class EmailToolbarComponent {
   }
 
   onImageUploadTrigger(data: any) {
-    console.log('Image Upload Trigger', data);
+    // console.log('Image Upload Trigger', data);
     this.imageUploadTriggered.emit(data);
   }
 
   imageSelectionTrigger(isLogo = false) {
-    console.log('Image Selection Trigger', isLogo, this.selectedSIindex, this.selectedCindex, this.selectedBIndex);
+    // console.log('Image Selection Trigger', isLogo, this.selectedSIindex, this.selectedCindex, this.selectedBIndex);
     this.imageSelectionTriggered.emit({ s: this.selectedSIindex, c: this.selectedCindex, b: this.selectedBIndex, logo: isLogo });
   }
 

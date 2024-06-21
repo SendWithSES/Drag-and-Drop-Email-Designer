@@ -47,7 +47,8 @@ input:focus {
 }
 
 .sun-editor {
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
+    border: none;
 }
 .sun-editor .se-wrapper .se-wrapper-inner {
     height: auto !important;

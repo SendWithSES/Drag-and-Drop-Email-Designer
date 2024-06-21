@@ -599,7 +599,7 @@ export class EmailHtmlGeneratorService {
   }
   getBody(block: BlockBean) {
     let text = '';
-    console.log(block, 'block')
+    // console.log(block, 'block')
     if (block.content) {
       text = `
         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
@@ -651,7 +651,7 @@ export class EmailHtmlGeneratorService {
           </tr>
           <tr>
             <td colspan="2" style='text-align:center;'>
-             <span style='background:none;display:inline-block;width: 0;height:0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-left: 30px solid red;'></span>
+             <span style='background-color: transparent !important;background:none;display:inline-block;width: 0;height:0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-left: 30px solid red;'></span>
             </td>
           </tr>`
       if (cols === 1) {

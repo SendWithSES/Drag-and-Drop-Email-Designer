@@ -66,12 +66,12 @@ export class EmailEditorComponent {
   }
 
   onImageSelectionTrigger(data: any) {
-    console.log('onImageSelectionTrigger', data);
+    // console.log('onImageSelectionTrigger', data);
     this.imageSelectionTriggered.emit(data);
   }
 
   onImageUploadTrigger(data: any) {
-    console.log('onImageUploadTrigger', data);
+    // console.log('onImageUploadTrigger', data);
     this.imageUploadTriggered.emit(data);
   }
 

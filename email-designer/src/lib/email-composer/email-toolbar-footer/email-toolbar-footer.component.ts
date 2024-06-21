@@ -113,12 +113,14 @@ export class EmailToolbarFooterComponent {
       this.selectedBrands.push(selectedItem);
       this.emailElementService.selectedBrands = this.selectedBrands;
       if (selectedItem.color === undefined) {
-        selectedItem.color = '#aaaaaa'
-        this.updateFooterSelected(selectedItem);
-      } else {
-        this.updateFooterSelected(selectedItem);
+        selectedItem.color = '#aaaaaa';
       }
-      this.getSvgIcons(selectedItem)
+  
+      // Fetch and process SVG icons
+      this.getSvgIcons(selectedItem, () => {
+        this.updateFooterSelected(selectedItem);
+      });
+
       setTimeout(() => {
         this.selectedValue = '';
       }, 100);
@@ -144,7 +146,7 @@ export class EmailToolbarFooterComponent {
 
   async footerLinkChange(brand: any) {
     try {
-      console.log('Image Upload Trigger', brand);
+      // console.log('Image Upload Trigger', brand);
       this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
     } catch (err) {
       console.log('Footer link error', err);
@@ -161,14 +163,19 @@ export class EmailToolbarFooterComponent {
   }
 
   iconColorChange(brand: Brand): void {
-    this.updateFooterSelected(brand);
-    this.getSvgIcons(brand)
+    // this.updateFooterSelected(brand);
+    // this.getSvgIcons(brand)
+    this.getSvgIcons(brand, () => {
+      this.updateFooterSelected(brand);
+    });
   }
+
   updateFooterSelected(brandList?: any) {
     this.emailElementService.updateOrAddBrandList(this.selectedBrands, brandList);
 
   }
-  getSvgIcons(selectedItem: any) {
+
+  getSvgIcons(selectedItem: any, callback: () => void) {
     setTimeout(() => {
       const faIcon = document.getElementById(`toolBar-icon-wrapper-${selectedItem.iconName}`)
       if (faIcon) {
@@ -176,9 +183,11 @@ export class EmailToolbarFooterComponent {
         const SvgColorFill = this.updateFillColor(svgTxt, selectedItem.color);
         const updatedSvgTxt = this.updateFontSize(SvgColorFill, '30px');
         selectedItem.svgTxt = updatedSvgTxt;
+        callback();
       }
     }, 0)
   }
+
   updateFillColor(svgTxt: string, color: string): string {
     // Replace the fill attribute with the new color
     const updatedSvgTxt = svgTxt.replace(/fill=".*?"/, `fill="${color}"`);
