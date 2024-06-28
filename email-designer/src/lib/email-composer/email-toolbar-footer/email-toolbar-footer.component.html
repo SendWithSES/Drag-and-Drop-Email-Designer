@@ -24,13 +24,13 @@
     </div>
     <div class="socialBrand-wrapper mt-3" *ngFor="let brand of selectedBrands;let i = index">
         <div class="row gx-0 btn-type-wrapper sws-border">
-            <div class="col-6 col-sm-2">
+            <div class="col-2">
                 <span class="icon-container">
                     <fa-icon id="toolBar-icon-wrapper-{{brand.iconName}}" [icon]="brand"
                         [ngStyle]="{'color':brand.color}"></fa-icon>
                 </span>
             </div>
-            <div class="col-6 col-sm-10">
+            <div class="col-10"> <!-- col-6 col-sm-10 -->
                 <div class="input-group">
                     <input type="text" class="form-control" [(ngModel)]="brand.link"
                         placeholder="{{brand.iconName}} link">
@@ -53,13 +53,15 @@
     <div class="line-break"></div>
     <div class="declamation-wrapper">
         <div class="row gx-0 btn-type-wrapper sws-border">
-            <div class="col-6 col-sm-2">
+            <div class="col-2">
+                <!-- col-6 col-sm-2 -->
                 <span class="icon-container">
                     <input type="checkbox" class="unsub-checkbox" [checked]="includeUnsubscribe" id="unsubscribe"
                         name="unsubscribe" value="unsubscribe" (click)="unsubscribeStatus()">
                 </span>
             </div>
-            <div class="col-6 col-sm-10">
+            <div class="col-10">
+                <!-- col-6 col-sm-10 -->
                 <div class="input-group">
                     <label for="unsubscribe" (click)="unsubscribeStatus()" class="checkbox-label">
                         Include Unsubscribe Link

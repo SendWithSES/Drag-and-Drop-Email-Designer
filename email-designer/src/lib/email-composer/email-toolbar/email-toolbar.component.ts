@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { ConstantsData } from '../constants'
 import { EmailElementService } from '../email-element.service';
@@ -15,11 +15,13 @@ import { BlockBean, BlockType, EmailElements, Footer, Logo, StructureType } from
 })
 export class EmailToolbarComponent {
   @ViewChild('fileInput') fileInputElement!: ElementRef;
+  @Input() isMobileView: any;
 
   @Output() oneClicked = new EventEmitter<void>();
   @Output() twoClicked = new EventEmitter<void>();
   @Output() imageUploadTriggered = new EventEmitter<any>();
   @Output() imageSelectionTriggered = new EventEmitter<any>();
+  @Output() closeSlideanel = new EventEmitter<any>();
 
   selectedSIindex!: number;
   selectedCindex!: number;
@@ -282,4 +284,8 @@ export class EmailToolbarComponent {
     this.footerSubscription.unsubscribe();
   }
 
+  closeSidebar(event: any) {
+    this.es.elementClickedStatus.next(false);
+    this.closeSlideanel.emit(false)
+  }
 }

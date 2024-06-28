@@ -261,6 +261,7 @@ export class EmailElementService {
   contactsCount = 0;
   contactsList: any[] = [];
   selectedBrands: any[] = [];
+  elementClickedStatus: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -717,5 +718,4 @@ export class EmailElementService {
     this.emailElements$.next(this.emailElements);
     this.contentUpdated$.next(true);
   }
-
 }

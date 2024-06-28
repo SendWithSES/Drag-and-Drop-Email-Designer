@@ -4,6 +4,8 @@
             [innerHTML]="block.content | sanitize : 'html'"></div>
     </div>
     <ng-template #emptyBlock>
-        <div class="empty-block">Click to add body text</div>
+        <div class="empty-block">
+            {{ismobileView ? "Add body text":"Click to add body text"}}
+        </div>
     </ng-template>
 </div>

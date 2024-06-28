@@ -20,6 +20,7 @@ export class EmailLogoComponent {
     this.es.resetBlockSelection()
     this.es.footerVisibility$.next(false)
     this.es.logoSelected$.next(true);
+    this.es.elementClickedStatus.next(true);
   }
   clearLogo() {
     this.es.clearLogo()

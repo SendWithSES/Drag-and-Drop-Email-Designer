@@ -31,11 +31,11 @@
 }
 
 .add-icon {
-    color: #3ed39b;
-    opacity: 0.7;
-    font-size: 36px;
-    font-weight: 700;
-    cursor: pointer;
+  color: #3ed39b;
+  opacity: 0.7;
+  font-size: 36px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .right_container {
@@ -44,11 +44,33 @@
 
 /* Sun Editor Overrides */
 ::ng-deep {
-
-    .sun-editor .se-btn-tray {
-        padding: 8px 3px 0;
-        ;
-    }
+  .sun-editor .se-btn-tray {
+    padding: 8px 3px 0;
+  }
 }
 
 /* Sun Editor Overrides End*/
+
+
+/* Sidebar  Styles */
+
+.overlay-side-panel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #0006;
+  z-index: 5;
+  height: 100%;
+}
+
+.side-panel {
+  width: 85%;
+  height: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+}

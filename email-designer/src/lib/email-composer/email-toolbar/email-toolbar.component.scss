@@ -1,233 +1,259 @@
 .email-toolbar {
-    overflow-y: scroll;
-    height: calc(100vh - 56px);
-    background-color: #fff;
-    overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 56px);
+  background-color: #fff;
+  overflow-x: hidden;
 }
 
 .column-boxes {
-    padding: 20px 18px;
-    cursor: pointer;
+  padding: 20px 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  .flex-center {
     display: flex;
     justify-content: center;
+  }
 
-    .flex-center {
-        display: flex;
-        justify-content: center;
+  .icon-text {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 5px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .col-custom-border {
+    position: relative;
+    padding: 10px !important;
+    width: 111px;
+    height: 36px;
+
+    // background-color: #fff;
+    .splitter {
+      height: 100%;
+      width: 1px;
+      position: absolute;
+      top: 0;
+      left: 50%;
     }
+  }
 
-    .icon-text {
-        font-size: 13px;
-        font-weight: 700;
-        padding: 8px 5px;
-        margin-bottom: 0px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .col-custom-border {
-        position: relative;
-        padding: 10px !important;
-        width: 111px;
-        height: 36px;
-
-        // background-color: #fff;
-        .splitter {
-            height: 100%;
-            width: 1px;
-            position: absolute;
-            top: 0;
-            left: 50%;
-        }
-    }
-
-    .one-column,
-    .two-column {
-        // color: #ccc;
-        padding-inline: 25px;
-    }
+  .one-column,
+  .two-column {
+    // color: #ccc;
+    padding-inline: 25px;
+  }
 }
 
 .colo-picker {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    width: 25px !important;
-    height: 30px !important;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  width: 25px !important;
+  height: 30px !important;
 }
 
 /* action-list_types Heading,Bold txt,image,video Icons  */
 .action-list_types {
-    padding: 20px;
+  padding: 20px;
 
-    .col-md-4 {
-        padding-left: 20px;
-        cursor: pointer;
+  //   .col-md-4 {
+  //     padding-left: 20px;
+  //     cursor: pointer;
+  //   }
+
+  .icon-box {
+    // margin: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    // color: #ccc;
+    cursor: pointer;
+
+    i.fa-solid {
+      font-size: 32px;
+      margin-bottom: 10px;
     }
+  }
 
-    .icon-box {
-        // margin: 3px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        // color: #ccc;
+  h6 {
+    font-size: 13px;
+    margin-bottom: 0px;
+    text-wrap: nowrap;
+    font-weight: bold;
+  }
 
-        i.fa-solid {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-    }
-
-    h6 {
-        font-size: 13px;
-        margin-bottom: 0px;
-        text-wrap: nowrap;
-        font-weight: bold;
-    }
-
-    .icon-box:hover {
-        color: #555;
-    }
+  .icon-box:hover {
+    color: #555;
+  }
 }
 
 /* Heading Text Styles */
 .headingTxt-container {
-    .headingtxt-inp {
-        color: #555;
-        font-size: 12px;
-        padding: 20px;
-        border: none;
-    }
+  .headingtxt-inp {
+    color: #555;
+    font-size: 12px;
+    padding: 20px;
+    border: none;
+  }
 }
 
 /* Heading Text Styles End */
 
 h4 {
-    font-size: 15px;
-    font-weight: 700;
-    padding: 8px;
-    margin-bottom: 0px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 8px;
+  margin-bottom: 0px;
 }
 
 h5 {
-    font-weight: 400;
-    font-size: 13px;
-    color: #555;
-    padding: 8px;
-    margin-bottom: 0px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #555;
+  padding: 8px;
+  margin-bottom: 0px;
 }
 
 input,
 .form-control {
-    color: #555;
-    font-size: 12px;
-    padding: 10px;
-    border: none;
+  color: #555;
+  font-size: 12px;
+  padding: 10px;
+  border: none;
 }
 
 /* Image Upload content Styles */
 .image-upload-wrapper {
-    .image-upload-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        cursor: pointer;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        background-color: #fff;
+  .image-upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
 
-        i.fa-upload {
-            font-size: 25px;
-            text-align: center;
-        }
-
-        .image_limit {
-            font-size: 14px;
-            margin-top: 4px;
-            font-weight: 700;
-        }
+    i.fa-upload {
+      font-size: 25px;
+      text-align: center;
     }
+
+    .image_limit {
+      font-size: 14px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+  }
 }
 
 /* End */
 
 /* Color Picker Styles */
 .color-picker-wrapper.input-group-text {
-    border: none;
-    border-radius: 0px;
-    background: #fff;
-    padding: 7px;
+  border: none;
+  border-radius: 0px;
+  background: #fff;
+  padding: 7px;
 }
 
 input[type="color"] {
-    padding: 0px;
-    width: 35px;
-    height: 25px;
-    cursor: pointer;
-    border: none;
-    border-radius: 0;
-    // -webkit-appearance: none;
+  padding: 0px;
+  width: 35px;
+  height: 25px;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  // -webkit-appearance: none;
 }
 
 input[type="color"]::-webkit-color-swatch {
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 input[type="color"]::-moz-color-swatch {
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 /* Color Picker Styles End */
 
 .video-contaner,
 .image-link {
-    .play-icon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        display: flex;
-        height: 100%;
-        padding: 5px;
-        background: #fff;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        color: #ccc;
-        font-size: 20px;
-    }
+  .play-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    display: flex;
+    height: 100%;
+    padding: 5px;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 20px;
+  }
 
-    i:hover {
-        color: #ef8081;
-    }
+  i:hover {
+    color: #ef8081;
+  }
 }
 
 /* Logo Styles */
 .logo-Container {
-    .logo.header-text {
-        font-size: 16px;
-        padding: 5px 8px;
-        font-weight: 700;
-    }
+  .logo.header-text {
+    font-size: 16px;
+    padding: 5px 8px;
+    font-weight: 700;
+  }
 
-    .icons-container {
-        float: right;
-        display: flex;
-        align-items: center;
-        margin-top: 2px;
-        font-size: 20px;
-    }
+  .icons-container {
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    font-size: 20px;
+  }
 
-    i:hover {
-        cursor: pointer;
-    }
+  i:hover {
+    cursor: pointer;
+  }
 
-    .fa-align-left,
-    .fa-align-center,
-    .fa-align-right {
-        margin-right: 10px;
-    }
+  .fa-align-left,
+  .fa-align-center,
+  .fa-align-right {
+    margin-right: 10px;
+  }
+}
+
+/* Mobile layout Styles */
+.mobile-email-toolbar {
+  height: 100%;
+  .close-btn {
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #555;
+    opacity: 0.3;
+    font-size: 26px;
+    font-weight: 700;
+    border: none;
+    background: none;
+    position: absolute;
+    right: 10px;
+  }
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: none;
+  }
 }

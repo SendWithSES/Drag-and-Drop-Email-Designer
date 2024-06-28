@@ -1,4 +1,4 @@
-<div class="email-toolbar">
+<div class="email-toolbar" [ngClass]="{'mobile-email-toolbar': isMobileView}">
     <div class="container column-boxes sws-divider overflow-hidden">
         <div class="row " style="padding: 4px;">
             <div class="col col-lg-12 col-xl-6 one-column flex-center" (click)="onOneClick()">
@@ -16,51 +16,40 @@
                 </div>
             </div>
         </div>
+        <button *ngIf="isMobileView" class="close-btn" (click)="closeSidebar($event)">
+            &#xD7;
+        </button>
     </div>
 
-    <div class="container action-list_types sws-divider">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onTextClick()">
-                    <i class="icon fa-solid fa-heading"></i>
-                    <h6 class="icon-text">Heading Text</h6>
-                </div>
+    <div class="container action-list_types sws-divider text-center" >
+        <div class="row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
+            <div class="col icon-box" (click)="onTextClick()">
+                <i class="icon fa-solid fa-heading"></i>
+                <h6 class="icon-text">Heading Text</h6>
+            </div>
+            <div class="col icon-box" (click)="onBodyTextClick()">
+                <i class="icon fa-solid fa-align-justify"></i>
+                <h6 class="icon-text">Body Text</h6>
             </div>
 
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onBodyTextClick()">
-                    <i class="icon fa-solid fa-align-justify"></i>
-                    <h6 class="icon-text">Body Text</h6>
-                </div>
+            <div class="col icon-box" (click)="onImageClick()">
+                <i class="icon fa-solid fa-image"></i>
+                <h6 class="icon-text">Image</h6>
             </div>
 
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onImageClick()">
-                    <i class="icon fa-solid fa-image"></i>
-                    <h6 class="icon-text">Image</h6>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onVideoClick()">
-                    <i class="icon fa-solid fa-video"></i>
-                    <h6 class="icon-text">Video</h6>
-                </div>
+            <div class="col icon-box" (click)="onVideoClick()">
+                <i class="icon fa-solid fa-video"></i>
+                <h6 class="icon-text">Video</h6>
             </div>
 
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onButtonClick()">
-                    <i class="icon fa-solid fa-ticket-simple"></i>
-                    <h6 class="icon-text">Button</h6>
-                </div>
+            <div class="col icon-box" (click)="onButtonClick()">
+                <i class="icon fa-solid fa-ticket-simple"></i>
+                <h6 class="icon-text">Button</h6>
             </div>
 
-            <div class="col-md-4">
-                <div class="icon-box" (click)="onDividerClick()">
-                    <i class="icon fa-solid fa-minus"></i>
-                    <h6 class="icon-text">Divider</h6>
-                </div>
+            <div class="col icon-box" (click)="onDividerClick()">
+                <i class="icon fa-solid fa-minus"></i>
+                <h6 class="icon-text">Divider</h6>
             </div>
         </div>
     </div>
@@ -207,7 +196,7 @@
                     Logo
                     <span class="icons-container">
                         <i class="aln-icon fas fa-align-left" (click)="alignText('left')"
-                        [class.selected]="currentAlignment==='left'"></i>
+                            [class.selected]="currentAlignment==='left'"></i>
                         <i class="aln-icon fas fa-align-center" (click)="alignText('center')"
                             [class.selected]="currentAlignment==='center'"></i>
                         <i class="aln-icon fas fa-align-right" (click)="alignText('right')"

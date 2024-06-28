@@ -2,10 +2,10 @@
     [class.selected]="selectedSIindex===sIndex && selectedCindex===cIndex && selectedBIndex===bIndex">
     <ng-container [ngSwitch]="block.type">
         <ng-container *ngSwitchCase="'Text'">
-            <app-email-text [block]="block"></app-email-text>
+            <app-email-text [block]="block" [ismobileView]="mobileView"></app-email-text>
         </ng-container>
         <ng-container *ngSwitchCase="'Body'">
-            <app-email-body [block]="block"></app-email-body>
+            <app-email-body [block]="block" [ismobileView]="mobileView"></app-email-body>
         </ng-container>
         <ng-container *ngSwitchCase="'Image'">
             <app-email-image [block]="block"></app-email-image>

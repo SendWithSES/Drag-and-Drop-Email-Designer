@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { EmailHtmlGeneratorService } from "./email-composer/email-html-generator.service";
 import { TemplateBean } from "./beans/templateBean";
 import { EmailElementService } from "./email-composer/email-element.service";
+import { EmailComposerContainerComponent } from "./email-composer/email-composer-container/email-composer-container.component";
 
 @Component({
   selector: "lib-email-designer",
@@ -11,12 +12,17 @@ import { EmailElementService } from "./email-composer/email-element.service";
   ],
 })
 export class EmailEditorComponent {
+  @ViewChild('emailComposer') emailComposer!: EmailComposerContainerComponent;
+
   @Input() type!: string;
   @Input() template!: TemplateBean;
+  @Input() isMobileView!: any;
+  @Input() isOffCanvasTrigger!: any;
 
   @Output() emailContentChanged: EventEmitter<any> = new EventEmitter<any>();
   @Output() imageUploadTriggered: EventEmitter<any> = new EventEmitter<any>();
   @Output() imageSelectionTriggered: EventEmitter<any> = new EventEmitter<any>();
+  @Output() closeSlideabr: EventEmitter<any> = new EventEmitter<any>();
 
   content: any = '';
   previewType = 'desktop';
@@ -66,17 +72,14 @@ export class EmailEditorComponent {
   }
 
   onImageSelectionTrigger(data: any) {
-    // console.log('onImageSelectionTrigger', data);
     this.imageSelectionTriggered.emit(data);
   }
 
   onImageUploadTrigger(data: any) {
-    // console.log('onImageUploadTrigger', data);
     this.imageUploadTriggered.emit(data);
   }
 
   imageSelected(image: any, inputData: any) {
-    console.log('Image is selected', image, inputData);
     if (inputData.source === 'footer') {
       inputData.src = image.src;
       this.elementsService.updateOrAddBrandList(null, inputData);
@@ -87,5 +90,13 @@ export class EmailEditorComponent {
         this.elementsService.updateImageVideoBlockContent(inputData.s, inputData.c, inputData.b, image);
       }
     }
+  }
+
+  openOffcanvas(slidebarStatus: any) {
+    this.emailComposer.openOffcanvas(slidebarStatus)
+  }
+
+  closeSidebar(event: any) {
+    this.closeSlideabr.emit(event);
   }
 }

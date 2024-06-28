@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import { EmailElementService } from '../email-element.service';
 import { EmailElements } from '../models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-email-composer-container',
@@ -9,10 +10,13 @@ import { EmailElements } from '../models';
 })
 export class EmailComposerContainerComponent {
   @Input() sesDesignerData: any = {};
+  @Input() isMobileView: any;
+  @Input() isOffCanvasTrigger: any;
 
   @Output() imageUploadTriggered: EventEmitter<any> = new EventEmitter<any>();
   @Output() imageSelectionTriggered: EventEmitter<any> = new EventEmitter<any>();
   @Output() onEmailContentChange: EventEmitter<EmailElements> = new EventEmitter<EmailElements>();
+  @Output() closeSlideanel: EventEmitter<EmailElements> = new EventEmitter<EmailElements>();
 
   mail_content: any;
   ses_data: any;
@@ -23,7 +27,8 @@ export class EmailComposerContainerComponent {
     mail_subject: ''
   }
   sesContent: any;
-
+  showSlidebar: any = false;
+  blockClickedSub!: Subscription;
   constructor(private es: EmailElementService, private cd: ChangeDetectorRef) {
 
   }
@@ -33,6 +38,7 @@ export class EmailComposerContainerComponent {
       this.ses_data = emailElements;
       this.onEmailContentChange.emit({ ...this.sesDesignerData, content: emailElements });
     });
+    this.blockClickedSub = this.es.elementClickedStatus.subscribe(data => this.showSlidebar = data);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -61,12 +67,26 @@ export class EmailComposerContainerComponent {
   }
 
   onImageSelectionTrigger(data: any) {
-    // console.log('onImageSelectionTrigger', data);
     this.imageSelectionTriggered.emit(data);
   }
 
   onImageUploadTrigger(data: any) {
-    // console.log('onImageUploadTrigger', data);
     this.imageUploadTriggered.emit(data);
+  }
+
+  openOffcanvas(slidebarStatus: any) {
+    this.showSlidebar = slidebarStatus;
+  }
+
+  closeSidebar(event: any) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.closeSlideanel.emit(event);
+    this.showSlidebar = false;
+  }
+
+  ngOnDestroy() {
+    if (this.blockClickedSub) this.blockClickedSub.unsubscribe();
   }
 }

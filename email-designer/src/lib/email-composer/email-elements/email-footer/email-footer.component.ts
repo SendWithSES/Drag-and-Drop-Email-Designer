@@ -28,6 +28,7 @@ export class EmailFooterComponent {
     this.emailElementService.resetBlockSelection()
     this.emailElementService.logoSelected$.next(false);
     this.emailElementService.footerVisibility$.next(true)
+    this.emailElementService.elementClickedStatus.next(true);
   }
   getSafeHtml(content: any): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(content);

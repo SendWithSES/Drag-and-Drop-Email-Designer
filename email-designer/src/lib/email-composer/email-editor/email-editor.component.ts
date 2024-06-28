@@ -47,7 +47,6 @@ export class EmailEditorComponent {
     this.emailElementService.resetAllSelection();
   }
   setSelectedIndex(i: number, column: number) {
-    console.log('set Selected Index', i, column);
     this.emailElementService.setSelectedStructureIndex(i)
     this.emailElementService.setSelectedStructureColumn(column);
     if (!(this.emailElements.structures[i] &&

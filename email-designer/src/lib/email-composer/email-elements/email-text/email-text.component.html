@@ -4,6 +4,8 @@
             [innerHTML]="block.content | sanitize : 'html'"></div>
     </div>
     <ng-template #emptyBlock>
-        <div class="empty-block header-content email-text-no-content">Click to add Header</div>
+        <div class="empty-block header-content email-text-no-content">
+            {{ismobileView ? "Add Header":"Click to add Header"}}
+        </div>
     </ng-template>
 </div>

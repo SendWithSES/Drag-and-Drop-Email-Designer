@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { BlockBean, BlockType } from '../../models';
 import { EmailElementService } from '../../email-element.service';
 import { Subject } from 'rxjs';
@@ -22,6 +22,7 @@ export class BlockComponent {
   selectedBIndex!: number;
   selectedBType!: BlockType;
   destroy$ = new Subject<void>();
+  mobileView!: boolean;
 
   constructor(private es: EmailElementService) { }
 
@@ -55,6 +56,8 @@ export class BlockComponent {
           this.scrollIntoView(`block-${selectedSIindex}-${selectedCindex}-${i}`)
         }, 100);
       });
+
+    this.detectMobileView();
   }
   ngOnDestroy() {
     this.destroy$.next()
@@ -62,6 +65,7 @@ export class BlockComponent {
   }
   selectBlock(event: any) {
     this.es.setSelectedBlock(this.bIndex, this.block.type, this.sIndex, this.cIndex);
+    this.es.elementClickedStatus.next(true);
     event.stopPropagation();
   }
   swapBlockInStucture(sIndex: number, cIndex: number, bIndex1: number, bIndex2: number) {
@@ -75,4 +79,12 @@ export class BlockComponent {
     element?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.detectMobileView();
+  }
+  detectMobileView(): any {
+    const windowWidth = window.innerWidth;
+    this.mobileView = (windowWidth <= 480 || /Mobi|Android/i.test(navigator.userAgent) || /iPhone/i.test(navigator.userAgent)) ? true : false;;
+  }
 }

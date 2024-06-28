@@ -20,7 +20,7 @@ This email designer was originally built for use within https://sendwithses.com.
 Comes with three template types that let you design any kind of transactional or marketing emails. Altogther, you can create and save unlimited templates. 
   - **Drag and Drop Designer** - Start designing beautiful emails immediately. 
   - **HTML Code Editor** - Reuse HTML templates that you already have or code them from scratch.
-  - **Plain Text Emails** - _'Minimalemalists'_. This is for you.  
+  - **Plain Text Emails** - _'Minimalists'_. This is for you.  
 
 ## 🚀 Built On Solid Fundamentals.
 Follows a few fundamental rules to design emails that work in nearly all email clients (web and mobile). It is built upon some great work done by these people.

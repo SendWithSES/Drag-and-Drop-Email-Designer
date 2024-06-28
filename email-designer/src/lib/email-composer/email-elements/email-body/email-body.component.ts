@@ -11,6 +11,7 @@ export class EmailBodyComponent {
   @Input()
   block!: BlockBean;
   bodyTxtFont: any;
+  @Input() ismobileView!: boolean;
 
   constructor(private domSanitizer: DomSanitizer) { }
 

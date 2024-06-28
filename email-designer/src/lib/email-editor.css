@@ -1,15 +1,15 @@
 @import "bootstrap.min.css";
-@import "../../node_modules/suneditor/dist/css/suneditor.min";
-@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import "../../../../node_modules/suneditor/dist/css/suneditor.min";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 
 
 .ng-email-editor .icon,
 .ng-email-editor .icon-text {
-    color: var(--sws-icon-color);
+  color: var(--sws-icon-color);
 }
 .ng-email-editor .icon-box:hover .icon,
 .ng-email-editor .icon-box:hover .icon-text {
-    color: var(--sws-icon-hover-color);
+  color: var(--sws-icon-hover-color);
 }
 .ng-email-editor .col-custom-border {
     border: 3px solid var(--sws-icon-color);
@@ -27,7 +27,7 @@
     border-bottom: 1px solid var(--sws-border-color);
 }
 .ng-email-editor .sws-divider {
-    border-bottom: 1px solid var(--sws-border-color);
+  border-bottom: 1px solid var(--sws-border-color);
 }
 .ng-email-editor .sws-border {
     border: 1px solid var(--sws-border-color);
@@ -58,4 +58,8 @@ input:focus {
 
 .sun-editor-editable * {
     margin-block: 4px !important;
+}
+
+.ng-email-editor .mobile-padding {
+  padding-inline: 0px;
 }

@@ -1,30 +1,25 @@
-<div class="ng-email-editor">
+<div class="ng-email-editor" [ngClass]="{row: isMobileView && !isOffCanvasTrigger}">
     <ng-container *ngIf="type === 'ses_designer'">
-        <app-email-composer-container
-            [sesDesignerData]="template"
+        <app-email-composer-container [sesDesignerData]="template"
             (imageSelectionTriggered)="onImageSelectionTrigger($event)"
-            (imageUploadTriggered)="onImageUploadTrigger($event)"
-            (onEmailContentChange)="onEmailContentChange($event)">
+            (imageUploadTriggered)="onImageUploadTrigger($event)" (onEmailContentChange)="onEmailContentChange($event)"
+            [isMobileView]="isMobileView"
+            [ngClass]="{'mobile-padding': isMobileView}" #emailComposer (closeSlideanel)="closeSidebar($event)">
         </app-email-composer-container>
     </ng-container>
     <ng-container *ngIf="type === 'html_editor'">
-        <app-email-html-editor
-            [htmlData]="template"
-            (onHtmlContentChange)="onEmailContentChange($event)">
+        <app-email-html-editor [htmlData]="template" (onHtmlContentChange)="onEmailContentChange($event)"
+            [ngClass]="{'mobile-padding': isMobileView}">
         </app-email-html-editor>
     </ng-container>
     <ng-container *ngIf="type === 'plain_text'">
-        <app-plain-text
-            [plainTxtData]="template"
-            (onPlainTxtContentChange)="onEmailContentChange($event)">
+        <app-plain-text [plainTxtData]="template" (onPlainTxtContentChange)="onEmailContentChange($event)"
+            [ngClass]="{'mobile-padding': isMobileView}">
         </app-plain-text>
     </ng-container>
     <ng-container *ngIf="showPreviewPanel">
-        <app-email-preview
-            [previewType]="previewType"
-            [previewContent]="previewContent"
-            [isPlainText]="type === 'plain_text'"
-            (backToEditor)="hidePreview()"
-        ></app-email-preview>
+        <app-email-preview [previewType]="previewType" [previewContent]="previewContent"
+            [isPlainText]="type === 'plain_text'" (backToEditor)="hidePreview()"
+            [ngClass]="{'mobile-padding': isMobileView}"></app-email-preview>
     </ng-container>
 </div>

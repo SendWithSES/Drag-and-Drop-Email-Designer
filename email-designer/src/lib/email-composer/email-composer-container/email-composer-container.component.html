@@ -1,15 +1,28 @@
-<div class="container-fluid" style="height: 100%;">
-    <div class="row" style="height: 100%;">
-        <div class="col-3 toolbar-container border-top-0">
-            <app-email-toolbar
-                (imageSelectionTriggered)="onImageSelectionTrigger($event)"
+<div style="height: 100%;" [ngClass]="{'container-fluid':!isMobileView}">
+    <div style="height: 100%;" [ngClass]="{row:!isMobileView}">
+
+        <div class="col-3 toolbar-container border-top-0" *ngIf="!isMobileView">
+            <app-email-toolbar (imageSelectionTriggered)="onImageSelectionTrigger($event)"
                 (imageUploadTriggered)="onImageUploadTrigger($event)"></app-email-toolbar>
         </div>
-        <div class="col-sm-9 email-editor-container">
+
+        <div class="email-editor-container" [ngClass]="{'col-sm-9':!isMobileView}">
             <div class="right_container">
                 <app-email-editor></app-email-editor>
             </div>
         </div>
+
+        <div class="overlay-side-panel" [hidden]="!showSlidebar || !isMobileView"
+            (click)="showSlidebar ? closeSidebar($event) :''">
+            <div class="side-panel" (click)="$event.stopPropagation()">
+                <div class="toolbar-container ng-email-editor border-top-0">
+                    <app-email-toolbar (imageSelectionTriggered)="onImageSelectionTrigger($event)"
+                        (imageUploadTriggered)="onImageUploadTrigger($event)" [isMobileView]="isMobileView"
+                        (closeSlideanel)="closeSidebar($event)"></app-email-toolbar>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <app-email-message></app-email-message>
