@@ -79,6 +79,10 @@ export class EmailToolbarFooterComponent {
   }
 
   ngOnInit() {
+    this.selectedBrands = this.selectedBrands.map((brand: any) => ({
+      ...brand,
+      changed: brand.changed === undefined ? false : brand.changed,
+    }));
   }
 
   FooterTxtChange(footerContent: any) {
@@ -115,7 +119,7 @@ export class EmailToolbarFooterComponent {
       if (selectedItem.color === undefined) {
         selectedItem.color = '#aaaaaa';
       }
-  
+
       // Fetch and process SVG icons
       this.getSvgIcons(selectedItem, () => {
         this.updateFooterSelected(selectedItem);
@@ -146,25 +150,31 @@ export class EmailToolbarFooterComponent {
 
   async footerLinkChange(brand: any) {
     try {
-      // console.log('Image Upload Trigger', brand);
-      this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
+      if (this.isValidLink(brand.link) && (brand.changed || brand.src === undefined)) {
+        // console.log('Image Upload Trigger', brand);
+        this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
+        brand.changed = false;
+      }
     } catch (err) {
       console.log('Footer link error', err);
+      brand.changed = true;
     }
   }
 
   isValidLink(link: string): boolean {
     try {
       const url = new URL(link);
-      return !!url.host;
+      // return !!url.host;
+      return url.protocol === 'https:' && url.hostname.endsWith('.com');
     } catch (error) {
       return false;  // the URL is not valid
     }
   }
 
   iconColorChange(brand: Brand): void {
-    // this.updateFooterSelected(brand);
-    // this.getSvgIcons(brand)
+    if (!brand.changed) {
+      brand.changed = true;
+    }
     this.getSvgIcons(brand, () => {
       this.updateFooterSelected(brand);
     });
@@ -174,7 +184,6 @@ export class EmailToolbarFooterComponent {
     this.emailElementService.updateOrAddBrandList(this.selectedBrands, brandList);
 
   }
-
   getSvgIcons(selectedItem: any, callback: () => void) {
     setTimeout(() => {
       const faIcon = document.getElementById(`toolBar-icon-wrapper-${selectedItem.iconName}`)
@@ -187,7 +196,6 @@ export class EmailToolbarFooterComponent {
       }
     }, 0)
   }
-
   updateFillColor(svgTxt: string, color: string): string {
     // Replace the fill attribute with the new color
     const updatedSvgTxt = svgTxt.replace(/fill=".*?"/, `fill="${color}"`);

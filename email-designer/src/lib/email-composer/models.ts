@@ -47,6 +47,7 @@ export interface Brand {
     iconName: any;
     prefix: any;
     svgTxt?: string; // Add this property
+    changed?: boolean;
 }
 
 export class Structure {
