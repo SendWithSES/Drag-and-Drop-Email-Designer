@@ -4,7 +4,7 @@
 ![sendwithses-opensource-drag-and-drop-html-editor](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/86020ce2-a818-4b7f-8823-f5c898b737ee)
 
 ## 👹 Who?
-This email designer was originally built for use within SENDUNE (formerly Send With SES).
+This email designer was originally built for use within [**SENDUNE**](https://sendune.com/) (formerly Send With SES).
 
 ## ⁉️ Why Choose SENDUNE Email Designer?
 
