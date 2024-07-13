@@ -1,12 +1,12 @@
 
-# 💌 Send With SES - HTML Email Designer.
+# 💌 SENDUNE - HTML Email Designer.
 
 ![sendwithses-opensource-drag-and-drop-html-editor](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/86020ce2-a818-4b7f-8823-f5c898b737ee)
 
 ## 👹 Who?
-This email designer was originally built for use within https://sendwithses.com.
+This email designer was originally built for use within SENDUNE (formerly Send With SES).
 
-## ⁉️ Why Choose Send With SES Email Designer?
+## ⁉️ Why Choose SENDUNE Email Designer?
 
 - **Truly Open Source:** Use it for personal use or commercial use or whatever.
 - **Truly Free:** Because the ones that say 'free', are not.
@@ -92,7 +92,7 @@ Feel free to fork the repository, make improvements, and submit pull requests.
 Spotted a bug or got an idea? Just open an issue or write to designer at sendwithses dot org.
 
 ## ⭐ Minimal Rationalism (Optional Reading)
-Send With SES Designer focuses on simplicity and ease of use over a heavy feature set. Over years of sending emails, we've come across some email patterns that work and many that don't. Some are design related while some are organisation related. Let's break some bubbles here - in no particular order.
+SENDUNE Designer focuses on simplicity and ease of use over a heavy feature set. Over years of sending emails, we've come across some email patterns that work and many that don't. Some are design related while some are organisation related. Let's break some bubbles here - in no particular order.
 - Remember, you are designing an email, not a website. If you want fine-grain controls like 'line heights', you are at the wrong place.
 - The more you nitpick on the design, the more likely it will break in email clients. (i.e. more moving parts == more breakages). 
 - Transactional emails are best delivered in plain text.
