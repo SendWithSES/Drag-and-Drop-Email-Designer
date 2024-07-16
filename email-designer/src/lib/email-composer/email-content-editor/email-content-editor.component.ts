@@ -69,6 +69,7 @@ export class EmailContentEditorComponent {
     resizingBar: false,
     defaultStyle: 'font-size: 16px;font-family: Verdana', // Set your desired default font size here
     linkProtocol: '', // Set the default protocol for links
+    linkTargetNewWindow: true,
   };
   editorOptions!: SunEditorOptions;
 
@@ -104,7 +105,7 @@ export class EmailContentEditorComponent {
   }
   ngOnChanges(changes: SimpleChanges) {
 
-    if (changes['bIndex'] || (changes['cIndex'] && (this.bIndex || this.bIndex === 0))) {
+    if ((changes['content'] && changes['sIndex']) || changes['bIndex'] || (changes['cIndex'] && (this.bIndex || this.bIndex === 0))) {
       //this.content = '';
       this.selectedBlock = this.emailElementService.getBlockContent(this.sIndex, this.cIndex, this.bIndex);
       //this.content = this.selectedBlock.content;

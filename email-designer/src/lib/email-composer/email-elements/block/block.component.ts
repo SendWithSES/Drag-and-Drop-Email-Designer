@@ -73,6 +73,7 @@ export class BlockComponent {
   }
   deleteBlockInStucture(sIndex: number, cIndex: number, bIndex: number) {
     this.es.deleteBlockInStucture(sIndex, cIndex, bIndex);
+    this.es.resetBlockSelection(true);
   }
   scrollIntoView(id: string) {
     const element = document.getElementById(id);

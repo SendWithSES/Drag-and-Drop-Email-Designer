@@ -55,6 +55,7 @@ export class EmailEditorComponent {
       this.emailElements.structures[i].blocks[column].length)) {
       this.emailElementService.resetBlockSelection(true)
     }
+    this.emailElementService.resetBlockSelection(true);
   }
   swapUpStucture(sIndex: number) {
     this.swapStucture(sIndex - 1, sIndex)
@@ -69,6 +70,7 @@ export class EmailEditorComponent {
   }
   deleteStucture(sIndex: number) {
     this.emailElementService.deleteStucture(sIndex)
+    this.emailElementService.resetAllSelection();
   }
   scrollIntoView(id: string) {
     const element = document.getElementById(id);
