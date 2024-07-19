@@ -30,7 +30,7 @@ Follows a few fundamental rules to design emails that work in nearly all email c
 - Mark Robbins - https://www.goodemailcode.com
 
 ## 🎪 Live Demo.
-Play around with the live demo at https://designer.sendwithses.org. You can design a template and send yourself a test email.
+Play around with the live demo at https://designer.sendune.com. You can design a template and send yourself a test email.
 
 ## 👩‍💻 Installation
 
