@@ -71,7 +71,6 @@ export class PlainTextComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['plainTxtData'] && changes['plainTxtData'].currentValue) {
-      console.log(this.plainTxtData, 'plainTxtData');
       const { content, mail_name, mail_from, mail_subject } = this.plainTxtData
       this.plainTxtContent = content;
       this.formData = { mail_name, mail_from, mail_subject }

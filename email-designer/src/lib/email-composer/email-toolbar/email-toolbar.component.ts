@@ -1,8 +1,8 @@
-import { Subscription } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
-import { ConstantsData } from '../constants'
+import { ConstantsData, logoAlignment, logoTypesData } from '../constants'
 import { EmailElementService } from '../email-element.service';
 import { EmailMessageService } from '../email-message/email-message.service';
 import { BlockBean, BlockType, EmailElements, Footer, Logo, StructureType } from '../models';
@@ -56,11 +56,18 @@ export class EmailToolbarComponent {
 
   blockTypeSubscription!: Subscription;
   footerSubscription!: Subscription;
+  logoSubscription!: Subscription;
 
   selectedFontSize = '14px';
-  currentAlignment: 'left' | 'center' | 'right' = 'center';
+  currentLogoAlignment: logoAlignment = logoAlignment.Center;
+  logoAlignment = logoAlignment;
   footer!: Footer;
   unsubscribeColor!: any;
+
+  originalWidth: any;
+  selectedSize: string = 'original';
+  logoSizesData = logoTypesData;
+  imageSrcStatus!: boolean;
 
   constructor(
     private es: EmailElementService,
@@ -114,11 +121,27 @@ export class EmailToolbarComponent {
       }
     });
 
-    this.es.logoSelected$.subscribe(l => {
+    this.logoSubscription = this.es.logoSelected$.pipe(
+      debounceTime(50)
+    ).subscribe(l => {
       this.logoSelected = l;
       if (this.logoSelected) {
         if (this.emailElements.general.logo) {
           this.imageLink = this.emailElements.general.logo.link;
+          this.currentLogoAlignment = (this.emailElements.general.logo.align as logoAlignment) ?? 'center';
+          const logoData = this.emailElements.general.logo;
+          const logoOriginalWidth = logoData.originalWidth;
+          const logoWidth = logoData.width;
+          this.originalWidth = logoOriginalWidth ?? logoWidth;
+          if (logoData.src !== '') {
+            this.selectedSize = logoData.sizeType ?? 'original';
+          } else {
+            this.selectedSize = ''
+          }
+          this.imageSrcStatus = ((logoData.src === '') ? true : false);
+          if (logoOriginalWidth === undefined) {
+            logoData.originalWidth = logoWidth;
+          }
         }
       }
     })
@@ -228,18 +251,16 @@ export class EmailToolbarComponent {
     this.es.updateLogoLink(this.imageLink);
     // this.imageLink = '';
   }
-  alignText(alignValue: 'left' | 'center' | 'right'): void {
-    this.currentAlignment = alignValue;
-    this.es.updateLogoAlign(this.currentAlignment)
+  alignText(alignValue: logoAlignment): void {
+    this.currentLogoAlignment = alignValue;
+    this.es.updateLogoAlign(this.currentLogoAlignment)
   }
 
   onImageUploadTrigger(data: any) {
-    // console.log('Image Upload Trigger', data);
     this.imageUploadTriggered.emit(data);
   }
 
   imageSelectionTrigger(isLogo = false) {
-    // console.log('Image Selection Trigger', isLogo, this.selectedSIindex, this.selectedCindex, this.selectedBIndex);
     this.imageSelectionTriggered.emit({ s: this.selectedSIindex, c: this.selectedCindex, b: this.selectedBIndex, logo: isLogo });
   }
 
@@ -263,7 +284,6 @@ export class EmailToolbarComponent {
             this.message.error(`please enter valid url.`, 'Error');
           } else {
             this.message.error(`${this.videoUrl} Wrong URL`, 'Error');
-            console.log(this.videoUrl, 'Video Thumbnail upload Failed!');
           }
         },
         error: (err) => {
@@ -272,7 +292,6 @@ export class EmailToolbarComponent {
       });
     } else {
       this.message.error(`Enter Video Url!`, 'Error');
-      console.log('Enter Video Url');
     }
   }
 
@@ -282,10 +301,25 @@ export class EmailToolbarComponent {
       this.blockTypeSubscription.unsubscribe();
     }
     this.footerSubscription.unsubscribe();
+    this.logoSubscription.unsubscribe();
   }
 
   closeSidebar(event: any) {
     this.es.elementClickedStatus.next(false);
     this.closeSlideanel.emit(false)
+  }
+
+  logoResize(type: string) {
+    if (!this.logoSelected || !this.emailElements.general.logo || !this.emailElements.general.logo.src) return;
+    const sizes: any = {
+      small: 80,
+      medium: 100,
+      large: 120
+    };
+    this.selectedSize = type;
+    if (type === 'original') {
+      sizes['original'] = this.originalWidth;
+    }
+    this.es.updateLogoSize(type, sizes[type], this.originalWidth)
   }
 }

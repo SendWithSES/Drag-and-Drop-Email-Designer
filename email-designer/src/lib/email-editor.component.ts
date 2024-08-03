@@ -50,7 +50,6 @@ export class EmailEditorComponent {
   }
 
   onEmailContentChange(content: any) {
-    // console.log('Email content changed', content);
     this.content = content;
     this.emailContentChanged.emit(content);
   }
@@ -85,7 +84,9 @@ export class EmailEditorComponent {
       this.elementsService.updateOrAddBrandList(null, inputData);
     } else {
       if (inputData.logo) {
+        image.sizeType = 'original';
         this.elementsService.updateLogoContent(image);
+        this.elementsService.logoSelected$.next(true)
       } else {
         this.elementsService.updateImageVideoBlockContent(inputData.s, inputData.c, inputData.b, image);
       }

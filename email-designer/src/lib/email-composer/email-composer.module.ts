@@ -7,7 +7,7 @@ import { TwoColumnComponent } from './email-elements/two-column/two-column.compo
 import { OneColumnComponent } from './email-elements/one-column/one-column.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailComposerContainerComponent } from './email-composer-container/email-composer-container.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { StructureComponent } from './email-elements/structure/structure.component';
 import { BlockComponent } from './email-elements/block/block.component';
 import { EmailTextComponent } from './email-elements/email-text/email-text.component';
@@ -68,6 +68,7 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbTypeaheadModule,
     NgxSuneditorModule,
+    NgbTooltipModule,
   ],
   exports: [
     EmailComposerContainerComponent,

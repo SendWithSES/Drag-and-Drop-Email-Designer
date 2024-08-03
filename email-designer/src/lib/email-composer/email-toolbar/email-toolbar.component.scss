@@ -257,3 +257,40 @@ input[type="color"]::-moz-color-swatch {
     max-width: none;
   }
 }
+
+.logo-radio-wrapper {
+  border-bottom: 1px solid #ccc;
+  background-color: #eee;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    &.label-name {
+      cursor: default;
+    }
+  }
+  .form-check-inline {
+    display: flex;
+    align-items: center;
+    margin-inline: 2px 0px;
+    margin-bottom: 0px;
+  }
+  .form-check {
+    padding-left: 0px;
+    min-height: 24px;
+  }
+  .form-check .form-check-input {
+    margin: 0px 8px 0px 0px;
+    padding: 7px;
+    cursor: pointer;
+    border: 1px solid #aaa;
+  }
+}

@@ -36,7 +36,6 @@ export class BlockComponent {
     this.es.selectedBlockIndex$
       .pipe(takeUntil(this.destroy$))
       .subscribe(i => {
-        //console.log(this.bIndex, i, 'selected b')
         this.selectedBIndex = i
       });
     this.es.selectedBlockType$

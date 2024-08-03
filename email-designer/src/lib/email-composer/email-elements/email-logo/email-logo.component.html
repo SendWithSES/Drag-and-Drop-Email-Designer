@@ -6,7 +6,7 @@
     </div>
     <div *ngIf="logo.src">
         <img [src]="logo.src"
-            [ngStyle]="{'width': logo.width || '100%','max-width':'100%','height': logo.height || null}" />
+            [ngStyle]="{'width': logo.width+'px' || '100%','max-width':'100%','height': logo.height || null}" />
     </div>
     <div *ngIf="logoSelected && logo.src" class="logo-hover-box">
 

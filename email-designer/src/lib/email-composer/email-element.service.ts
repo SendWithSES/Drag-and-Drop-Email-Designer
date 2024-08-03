@@ -334,7 +334,6 @@ export class EmailElementService {
   }
   resetElements() {
     this.emailElements = { general: { ...this.initialElement.general, isLoading: true }, structures: [] };
-    //console.log(emailElements, 'emailElements in setElements')
     this.emailElements$.next({ ...this.emailElements });
     this.resetAllSelection();
   }
@@ -343,7 +342,6 @@ export class EmailElementService {
       emailElements.general.footer.brands = this.initialElement.general.footer.brands;
     }
     this.emailElements = emailElements;
-    //console.log(emailElements, 'emailElements in setElements')
     this.emailElements$.next({ ...emailElements });
     this.resetAllSelection();
   }
@@ -478,6 +476,16 @@ export class EmailElementService {
       this.contentUpdated$.next(true);
     }
   }
+
+  updateLogoSize(updatedSizeType: string, updatedWidth: any, originalWidth: any) {
+    if (this.emailElements.general && this.emailElements.general.logo) {
+      this.emailElements.general.logo.width = updatedWidth || originalWidth;
+      this.emailElements.general.logo.sizeType = updatedSizeType || 'original';
+      this.emailElements$.next(this.emailElements);
+      // this.contentUpdated$.next(sizeType !== updatedSizeType);
+    }
+  }
+
   updateBgColor(value: string) {
     if (
       this.emailElements.general
@@ -705,7 +713,6 @@ export class EmailElementService {
         }
       }
     }
-    // console.log('updateAddBrand', this.emailElements.general.footer.brands);
     this.emailElements$.next(this.emailElements);
     this.contentUpdated$.next(true);
   }

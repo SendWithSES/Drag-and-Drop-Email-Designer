@@ -21,7 +21,7 @@
         </button>
     </div>
 
-    <div class="container action-list_types sws-divider text-center" >
+    <div class="container action-list_types sws-divider text-center">
         <div class="row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
             <div class="col icon-box" (click)="onTextClick()">
                 <i class="icon fa-solid fa-heading"></i>
@@ -195,14 +195,28 @@
                 <div class="col-sm-12 logo header-text">
                     Logo
                     <span class="icons-container">
-                        <i class="aln-icon fas fa-align-left" (click)="alignText('left')"
-                            [class.selected]="currentAlignment==='left'"></i>
-                        <i class="aln-icon fas fa-align-center" (click)="alignText('center')"
-                            [class.selected]="currentAlignment==='center'"></i>
-                        <i class="aln-icon fas fa-align-right" (click)="alignText('right')"
-                            [class.selected]="currentAlignment==='right'"></i>
+                        <i class="aln-icon fas fa-align-left" (click)="alignText(logoAlignment.Left)"
+                            [class.selected]="(currentLogoAlignment=== logoAlignment.Left)"></i>
+                        <i class="aln-icon fas fa-align-center" (click)="alignText(logoAlignment.Center)"
+                            [class.selected]="(currentLogoAlignment=== logoAlignment.Center)"></i>
+                        <i class="aln-icon fas fa-align-right" (click)="alignText(logoAlignment.Right)"
+                            [class.selected]="(currentLogoAlignment=== logoAlignment.Right)"></i>
                     </span>
                 </div>
+
+                <div class="col-sm-12 logo-radio-wrapper">
+                    <div *ngFor="let size of logoSizesData" class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sizeRadio" [id]="size.id"
+                            [value]="size.value" (change)="logoResize(size.value)"
+                            [checked]="(selectedSize === size.value)"
+                            [disabled]="(originalWidth <= size.minWidth) || imageSrcStatus" />
+                        <label class="form-check-label" [for]="size.id"
+                            [ngClass]="{'label-name': ((originalWidth <= size.minWidth) || imageSrcStatus)}">
+                            {{size.label }}
+                        </label>
+                    </div>
+                </div>
+
                 <div class="col-sm-12">
                     <div class="image-upload-content icon-box" (click)="imageSelectionTrigger(true)">
                         <i class="icon fa-solid fa-upload"></i>

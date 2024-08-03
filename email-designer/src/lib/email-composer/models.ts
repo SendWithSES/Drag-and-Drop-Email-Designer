@@ -26,7 +26,9 @@ export interface Logo {
     link?: string
     width?: string,
     height?: string,
-    align?: string
+    align?: string,
+    sizeType?: string,
+    originalWidth?: string
 }
 export interface Footer {
     brands: Brand[],

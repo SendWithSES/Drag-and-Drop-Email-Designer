@@ -116,6 +116,7 @@ export class EmailToolbarFooterComponent {
     if (selectedItem && !this.selectedBrands.some(brand => brand.iconName === selectedItem.iconName)) {
       this.selectedBrands.push(selectedItem);
       this.emailElementService.selectedBrands = this.selectedBrands;
+
       if (selectedItem.color === undefined) {
         selectedItem.color = '#aaaaaa';
       }
@@ -151,12 +152,10 @@ export class EmailToolbarFooterComponent {
   async footerLinkChange(brand: any) {
     try {
       if (this.isValidLink(brand.link) && (brand.changed || brand.src === undefined)) {
-        // console.log('Image Upload Trigger', brand);
         this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
         brand.changed = false;
       }
     } catch (err) {
-      console.log('Footer link error', err);
       brand.changed = true;
     }
   }
@@ -230,7 +229,6 @@ export class EmailToolbarFooterComponent {
   }
   onFooterTxtPaste(data: any) {
     //const { event, cleanData, maxCharCount, core } = data
-    console.log('onFooterTxtPaste clean data')
     return false;
   }
 

@@ -17,3 +17,16 @@ export const ConstantsData = {
     bodyTextContent: '<p><br></p>',
     headerTextContent: '<h1><br></h1>'
 };
+
+export const logoTypesData = [
+    { id: 'original', value: 'original', label: 'Original', minWidth: 0 },
+    { id: 'small', value: 'small', label: 'S', minWidth: 80, tooltip: 'Small' },
+    { id: 'medium', value: 'medium', label: 'M', minWidth: 100, tooltip: 'Medium' },
+    { id: 'large', value: 'large', label: 'L', minWidth: 120, tooltip: 'Large' }
+];
+
+export enum logoAlignment {
+    Left = 'left',
+    Center = 'center',
+    Right = 'right'
+}

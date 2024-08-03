@@ -599,7 +599,6 @@ export class EmailHtmlGeneratorService {
   }
   getBody(block: BlockBean) {
     let text = '';
-    // console.log(block, 'block')
     if (block.content) {
       text = `
         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
@@ -673,7 +672,6 @@ export class EmailHtmlGeneratorService {
   }
 
   getButton(block: BlockBean) {
-    // console.log(block, 'block content')
     let hrefText = ' href="#"';
     if (block.link) {
       hrefText = ` href="${block.link}"`
