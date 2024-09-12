@@ -170,7 +170,14 @@ export class EmailHtmlGeneratorService {
       font-size: 16px;
       /* color: #333; */
       margin: 0px;
-  }
+    }
+    .email-text-content ul,
+    .email-text-content ol {
+      margin: 0px;
+    }
+    .email-text-content li {
+      margin-left: 0px;
+    }
   /* Text Body content styles Ends */
   `
   }

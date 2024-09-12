@@ -4,6 +4,7 @@ import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins'; // Import all offical available plugins
 import { BlockBean, BlockType } from '../models';
 import { NgxSuneditorComponent } from 'ngx-suneditor';
+import { cleanHtmlData, htmlRegex, listsRegex, replaceHtmlRegex } from '../constants';
 
 @Component({
   selector: 'app-email-content-editor',
@@ -36,7 +37,7 @@ export class EmailContentEditorComponent {
       ["bold", "underline", "italic", "strike"],
       // ["paragraphStyle", "blockquote"],
       ["fontColor", "hiliteColor"],
-      ["align"],
+      ["align", "list"],
       ["link"],
       // ["fullScreen", "showBlocks", "codeView"],
       // ["preview", "print"],
@@ -50,7 +51,11 @@ export class EmailContentEditorComponent {
     defaultStyle: 'font-size: 28px;font-family: Verdana', // Set your desired default font size here
     linkProtocol: '', // Set the default protocol for links
     linkTargetNewWindow: true,
-
+    attributesWhitelist: {
+      // 'ol': 'style',
+      'li': 'style',
+      'script': 'src'
+    }
   };
 
   bodyEditorOptions: SunEditorOptions = {
@@ -60,7 +65,7 @@ export class EmailContentEditorComponent {
       ["font", "fontSize"],
       ["bold", "underline", "italic", "strike"],
       ["fontColor", "hiliteColor"],
-      ["align"],
+      ["align", "list"],
       //  ["formatBlock"],
       ["link"],
     ],
@@ -70,6 +75,9 @@ export class EmailContentEditorComponent {
     defaultStyle: 'font-size: 16px;font-family: Verdana', // Set your desired default font size here
     linkProtocol: '', // Set the default protocol for links
     linkTargetNewWindow: true,
+    attributesWhitelist: {
+      'li': 'style',
+    }
   };
   editorOptions!: SunEditorOptions;
 
@@ -129,6 +137,8 @@ export class EmailContentEditorComponent {
   }
   ngAfterViewInit() {
     this.changeHeaderEditorStyles();
+    const editorInstance = this.ngxSunEditor.getEditor();
+    editorInstance.onPaste = (e, cleanData, maxCharCount) => this.handlePaste(e as ClipboardEvent, cleanData)
   }
   changeHeaderEditorStyles() {
     if (this.ngxSunEditor) {
@@ -137,9 +147,89 @@ export class EmailContentEditorComponent {
     }
   }
   headerTxtChange(headerContent: any) {
-    this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', headerContent.content)
+    if (this.containsListTags(headerContent.content)) {
+      /* this is for List */
+      const selection = window.getSelection();
+      const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
+
+      if (selection && selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const anchorNode = range.startContainer;
+        let parentElement: HTMLElement | null = (anchorNode.nodeType === Node.TEXT_NODE)
+          ? (anchorNode as Text).parentNode as HTMLElement
+          : anchorNode as HTMLElement;
+
+        // Check if parentElement is a valid HTMLElement
+        if (parentElement) {
+          switch (parentElement.tagName) {
+            case 'LI':
+              parentElement = parentElement.closest('div');
+              break;
+            case 'P':
+              parentElement = parentElement.parentNode as HTMLElement || null;
+              break;
+            case 'SPAN':
+              parentElement = parentElement.closest('div');
+              break;
+            default:
+              parentElement = parentElement.closest('div');
+          }
+        }
+        const updatedContent: any = parentElement?.innerHTML.replace(
+          listsRegex,
+          `<$1$2 style="${styles}">$3</$1>`
+        );
+        if (this.selectedBlock.content !== updatedContent) {
+          this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
+        }
+      }
+    } else {
+      this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', headerContent.content)
+    }
   }
   ngOnDestroy() {
+  }
+
+  containsListTags(html: string): boolean {
+    // Create a temporary DOM element to parse HTML content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Check for <ul> or <ol> tags
+    const ulTag = tempDiv.querySelector('ul');
+    const olTag = tempDiv.querySelector('ol');
+
+    return ulTag !== null || olTag !== null;
+  }
+
+  handlePaste(event: ClipboardEvent, cleanData: any): string | boolean {
+    event.preventDefault(); // Prevent the default paste action
+    const clipboardData = event.clipboardData || (window as any).clipboardData;
+    const pastedData = clipboardData?.getData('text/plain');
+
+    if (pastedData) {
+      const isHtmlContent = this.isHtmlContent(pastedData);
+      if (!isHtmlContent) {
+        const cleanedData = pastedData.replace(replaceHtmlRegex, '').trim(); // 
+        // Return the cleaned data to insert it into the editor
+        return cleanedData;
+      } else {
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = cleanData;
+
+        const cleanedData = cleanHtmlData(tempElement.innerHTML);
+        // Return the cleaned data to insert it into the editor
+        return cleanedData;
+      }
+    }
+
+    // If nothing is returned or if the paste action should be blocked, return false
+    return false;
+  }
+
+  isHtmlContent(content: string): boolean {
+    // A simple check to see if the content contains any HTML tags
+    return htmlRegex.test(content);
   }
 
 }

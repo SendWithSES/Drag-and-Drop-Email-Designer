@@ -30,3 +30,17 @@ export enum logoAlignment {
     Center = 'center',
     Right = 'right'
 }
+
+export const cleanHtmlData = (htmlString: string): string => {
+    return htmlString
+        .replace(/<\/?[^>]+(>|$)/g, ' ')         // Remove HTML tags
+        .replace(/\s*=\s*/g, '=')                // Remove spaces around '='
+        .replace(/"\s*(.*?)\s*"/g, '"$1"')       // Trim spaces inside quotes (for attribute values)
+        .replace(/\s{2,}/g, ' ')                 // Replace multiple spaces with a single space
+        .replace(/>\s+</g, '><')                 // Remove spaces between tags
+        .trim();
+};
+
+export const htmlRegex = /<\/?[a-z][\s\S]*>/i;
+export const replaceHtmlRegex = /<\/?[^>]+(>|$)/g;
+export const listsRegex = /<(ol|ul)(?![^>]*\sstyle=)(.*?)>(.*?)<\/(ol|ul)>/gs;
