@@ -1,5 +1,5 @@
 
-# 💌 SENDUNE - Free, Open Source HTML Email Editor and Designer.
+# 💌 Free, Open Source HTML Email Editor and Designer.
 
 ![sendwithses-opensource-drag-and-drop-html-editor](https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/assets/3350646/86020ce2-a818-4b7f-8823-f5c898b737ee)
 
