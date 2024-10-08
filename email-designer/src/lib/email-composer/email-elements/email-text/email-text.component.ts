@@ -29,7 +29,10 @@ export class EmailTextComponent {
     const tempElement = document.createElement('div');
     tempElement.innerHTML = content;
 
+    // Remove newline characters, zero-width spaces, and the word joiner character (U+2060)
+    const textContent = tempElement.innerText.replace(/[\n\u200B\u2060]/g, '').trim();
+
     // Check if the innerText of the temporary element contains non-whitespace characters
-    return tempElement.innerText.trim().length > 0;
+    return textContent.length > 0;
   }
 }

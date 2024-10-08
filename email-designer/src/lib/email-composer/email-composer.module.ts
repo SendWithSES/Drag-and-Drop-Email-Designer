@@ -24,7 +24,7 @@ import { EmailMessageComponent } from './email-message/email-message.component';
 import { EmailMessageService } from './email-message/email-message.service';
 import { EmailElementService } from './email-element.service';
 import { EmailContentEditorComponent } from './email-content-editor/email-content-editor.component';
-import { NgxSuneditorModule } from 'ngx-suneditor';
+import { NgxSuneditorModule } from 'ngx-sendune-editor';
 import { SanitizePipe } from './sanitize.pipe';
 import { EmailToolbarButtonComponent } from './email-toolbar-button/email-toolbar-button.component';
 import { EmailToolbarFooterComponent } from './email-toolbar-footer/email-toolbar-footer.component';

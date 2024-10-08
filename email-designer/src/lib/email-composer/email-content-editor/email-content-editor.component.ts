@@ -3,8 +3,9 @@ import { EmailElementService } from '../email-element.service';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins'; // Import all offical available plugins
 import { BlockBean, BlockType } from '../models';
-import { NgxSuneditorComponent } from 'ngx-suneditor';
-import { cleanHtmlData, htmlRegex, listsRegex, replaceHtmlRegex } from '../constants';
+import { NgxSuneditorComponent } from 'ngx-sendune-editor';
+import { listsRegex } from '../constants';
+import { handlePaste } from '../../helpers/utils';
 
 @Component({
   selector: 'app-email-content-editor',
@@ -138,7 +139,7 @@ export class EmailContentEditorComponent {
   ngAfterViewInit() {
     this.changeHeaderEditorStyles();
     const editorInstance = this.ngxSunEditor.getEditor();
-    editorInstance.onPaste = (e, cleanData, maxCharCount) => this.handlePaste(e as ClipboardEvent, cleanData)
+    editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData)
   }
   changeHeaderEditorStyles() {
     if (this.ngxSunEditor) {
@@ -200,36 +201,6 @@ export class EmailContentEditorComponent {
     const olTag = tempDiv.querySelector('ol');
 
     return ulTag !== null || olTag !== null;
-  }
-
-  handlePaste(event: ClipboardEvent, cleanData: any): string | boolean {
-    event.preventDefault(); // Prevent the default paste action
-    const clipboardData = event.clipboardData || (window as any).clipboardData;
-    const pastedData = clipboardData?.getData('text/plain');
-
-    if (pastedData) {
-      const isHtmlContent = this.isHtmlContent(pastedData);
-      if (!isHtmlContent) {
-        const cleanedData = pastedData.replace(replaceHtmlRegex, '').trim(); // 
-        // Return the cleaned data to insert it into the editor
-        return cleanedData;
-      } else {
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = cleanData;
-
-        const cleanedData = cleanHtmlData(tempElement.innerHTML);
-        // Return the cleaned data to insert it into the editor
-        return cleanedData;
-      }
-    }
-
-    // If nothing is returned or if the paste action should be blocked, return false
-    return false;
-  }
-
-  isHtmlContent(content: string): boolean {
-    // A simple check to see if the content contains any HTML tags
-    return htmlRegex.test(content);
   }
 
 }

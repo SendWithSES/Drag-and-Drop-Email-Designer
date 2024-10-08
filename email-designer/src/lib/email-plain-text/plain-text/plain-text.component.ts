@@ -1,7 +1,9 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins'; // Import all offical available plugins
 import { TemplateBean } from '../../beans/templateBean';
+import { NgxSuneditorComponent } from 'ngx-sendune-editor';
+import { handlePaste } from '../../helpers/utils';
 
 @Component({
   selector: 'app-plain-text',
@@ -9,6 +11,7 @@ import { TemplateBean } from '../../beans/templateBean';
   styleUrls: ['./plain-text.component.scss']
 })
 export class PlainTextComponent {
+  @ViewChild(NgxSuneditorComponent) ngxSunEditor!: NgxSuneditorComponent;
   @Input() plainTxtData!: TemplateBean;
 
   @Output() onPlainTxtContentChange: EventEmitter<any> = new EventEmitter<any>();
@@ -84,5 +87,10 @@ export class PlainTextComponent {
         mail_subject: ''
       }
     }
+  }
+
+  ngAfterViewInit() {
+    const editorInstance = this.ngxSunEditor.getEditor();
+    editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData);
   }
 }

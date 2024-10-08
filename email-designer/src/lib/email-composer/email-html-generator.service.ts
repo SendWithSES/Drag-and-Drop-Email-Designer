@@ -147,6 +147,7 @@ export class EmailHtmlGeneratorService {
       word-wrap: break-word;
       word-break: break-word;
       text-align: left;
+      color : #333;
     }
     .email-text-content h1 {
       font-size: 28px;
@@ -759,7 +760,7 @@ export class EmailHtmlGeneratorService {
       ${this.getHead(true, isPreview)} 
       <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly;">
         <center role="article" aria-roledescription="email" lang="en" style="width: 100%;">
-          <table class="email-center-table" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">     
+          <table class="email-center-table" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;color: #333;">     
             <tr>
               <td style="padding:0 10px;">
               ${emailContent}
