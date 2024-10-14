@@ -1,6 +1,6 @@
-@import "bootstrap.min.css";
-@import "../../../../node_modules/suneditor/dist/css/suneditor.min";
-@import "../../../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import "css/bootstrap.min.css";
+@import "css/suneditor.min.css";
+@import "css/fontawesome.min.css";
 
 
 .ng-email-editor .icon,

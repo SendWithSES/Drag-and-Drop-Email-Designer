@@ -1,6 +1,6 @@
 {
   "name": "@send-with-ses/ng-email-designer",
-  "version": "0.4.6",
+  "version": "0.5.14",
   "description": "Design responsive HTML emails that work in every email client. Fast and light weight.",
   "peerDependencies": {
     "@angular/common": "^15.2.0",
@@ -10,7 +10,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "ngx-monaco-editor-v2": "^15.0.1",
-    "ngx-suneditor": "^1.1.2",
+    "ngx-sendune-editor": "^1.1.6",
     "suneditor": "^2.45.1"
   },
   "dependencies": {},
@@ -26,12 +26,13 @@
     "Open source",
     "drag and drop",
     "HTML email designer",
-    "SendWithSES"
+    "SendWithSES",
+    "SENDUNE"
   ],
-  "author": "SendWithSES",
+  "author": "SENDUNE",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SendWithSES/Drag-and-Drop-Email-Designer/issues"
   },
-  "homepage": "https://designer.sendwithses.org"
+  "homepage": "https://designer.sendune.com"
 }

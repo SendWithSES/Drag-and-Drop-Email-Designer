@@ -3,5 +3,18 @@
   "dest": "../../dist/email-designer",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "src/lib/css/bootstrap.min.css",
+    "src/lib/css/suneditor.min.css",
+    "src/lib/css/fontawesome.min.css",
+    "src/lib/webfonts/*",
+    "src/lib/email-editor.css",
+    "src/lib/theme.scss",
+    {
+      "glob": "**/*",
+      "input": "node_modules/monaco-editor/min",
+      "output": "src/lib/assets/monaco/min"
+    }
+  ]
 }
