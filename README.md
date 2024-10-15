@@ -69,8 +69,8 @@ You can make a few changes to make the Email Designer match your website colors.
 Import the following styles into your global styles file (e.g., styles.scss):
 
 ```css
-@import '../node_modules/email-designer/src/lib/theme.scss';
-@import '../node_modules/email-designer/src/lib/email-editor.css';
+@import '../node_modules/@send-with-ses/ng-email-designer/src/lib/theme.scss';
+@import '../node_modules/@send-with-ses/ng-email-designer/src/lib/email-editor.css';
 ```
 
 To make the Email Designer match your website's UI, include the following in your main.scss or styles.scss file and change the colors as you like.
