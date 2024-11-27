@@ -695,6 +695,7 @@ export class EmailHtmlGeneratorService {
       btnContent = `
       <a ${hrefText}
         class="button-a button-a-primary"
+        target="_blank"
         style="background: ${block.backgroundColor}; 
         color: ${block.color}; 
         font-family: ${block.font ? this.getFontFamily(block.font) : this.defaultFont}; 

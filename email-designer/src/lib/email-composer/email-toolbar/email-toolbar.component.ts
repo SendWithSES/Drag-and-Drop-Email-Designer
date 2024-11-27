@@ -152,9 +152,11 @@ export class EmailToolbarComponent {
         this.footerContent = this.emailElements.general.footer.content;
         const selectedBrandsLength = this.emailElements.general.footer.brands;
         if (selectedBrandsLength.length > 0) {
-          this.selectedBrands = this.emailElements.general.footer.brands;
+          const selectedBrands = this.emailElements.general.footer.brands;
+          this.selectedBrands = selectedBrands.filter(brand => brand.link?.trim());
         } else {
-          this.selectedBrands = this.es.initialElement.general.footer.brands;
+          this.selectedBrands = [];
+          // this.selectedBrands = this.es.initialElement.general.footer.brands;
           // this.emailElements.general.footer.brands = this.es.initialElement.general.footer.brands
         }
         // this.includeUnsubscribe = this.footer.unsubscribe ? this.footer.unsubscribe : this.es.initialElement.general.footer.unsubscribe;
@@ -278,7 +280,7 @@ export class EmailToolbarComponent {
           if (data.success) {
             this.changeVideoSource(data.image);
             this.addVideoLink(this.videoUrl)
-            this.videoUrl = '';
+            // this.videoUrl = '';
             this.message.success(`Video added successfully!`, 'Success');
           } else if (data === 'notValidUrl') {
             this.message.error(`please enter valid url.`, 'Error');

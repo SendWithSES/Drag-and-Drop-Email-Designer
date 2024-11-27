@@ -150,6 +150,21 @@ export class EmailContentEditorComponent {
   headerTxtChange(headerContent: any) {
     if (this.containsListTags(headerContent.content)) {
       /* this is for List */
+
+      // Define the styles to be applied to <ul>
+      const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
+      let changeContent = headerContent.content;
+      // Apply styles to the <ul> | <ol> tag
+      const updatedContent = changeContent.replace(
+        /<(ul|ol)(?![^>]*\sstyle=)(.*?)>/gs,
+        `<$1$2 style="${styles}">`
+      );
+
+      if (this.selectedBlock.content !== updatedContent) {
+        this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
+      }
+
+      /*
       const selection = window.getSelection();
       const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
 
@@ -184,6 +199,7 @@ export class EmailContentEditorComponent {
           this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
         }
       }
+      */
     } else {
       this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', headerContent.content)
     }

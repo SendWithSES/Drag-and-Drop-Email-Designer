@@ -167,15 +167,18 @@ input[type="color"] {
     height: 25px;
     cursor: pointer;
     border: none;
+    border-radius: 0px;
     // -webkit-appearance: none;
 }
 
 input[type="color"]::-webkit-color-swatch {
     border: 1px solid #ccc;
+    border-radius: 0px;
 }
 
 input[type="color"]::-moz-color-swatch {
     border: 1px solid #ccc;
+    border-radius: 0px;
 }
 
 /* ngb typeaHead styles */

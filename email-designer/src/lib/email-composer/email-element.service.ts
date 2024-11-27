@@ -338,9 +338,9 @@ export class EmailElementService {
     this.resetAllSelection();
   }
   setElements(emailElements: EmailElements) {
-    if (emailElements && emailElements.general && emailElements.general.footer && emailElements.general.footer.brands.length === 0) {
-      emailElements.general.footer.brands = this.initialElement.general.footer.brands;
-    }
+    // if (emailElements && emailElements.general && emailElements.general.footer && emailElements.general.footer.brands.length === 0) {
+    //   emailElements.general.footer.brands = this.initialElement.general.footer.brands;
+    // }
     this.emailElements = emailElements;
     this.emailElements$.next({ ...emailElements });
     this.resetAllSelection();
@@ -517,8 +517,9 @@ export class EmailElementService {
   updateImageVideoBlockContent(sIndex: number, cIndex: number, bIndex: number, updatedData: BlockBean): void {
     const structure = this.emailElements.structures[sIndex];
     if (structure && structure.blocks && structure.blocks[cIndex] && structure.blocks[cIndex][bIndex]) {
-      const imageData = structure.blocks[cIndex][bIndex]
-      this.emailElements.structures[sIndex].blocks[cIndex][bIndex] = { ...imageData, ...updatedData }
+      const imageData = structure.blocks[cIndex][bIndex];
+      Object.assign(imageData, updatedData);
+      // this.emailElements.structures[sIndex].blocks[cIndex][bIndex] = { ...imageData, ...updatedData }
       this.emailElements$.next(this.emailElements);
       this.contentUpdated$.next(true);
     }

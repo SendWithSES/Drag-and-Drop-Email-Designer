@@ -2,13 +2,13 @@
     <div class="email-footer-brands">
         <ng-container *ngIf="footer.brands && footer.brands.length;">
             <ng-container *ngFor="let b of footer.brands">
-                <a *ngIf='isValidLink(b.link); else noLink' [href]="b.link" target="_blank" class="footer-icon"
+                <a *ngIf='isValidLink(b.link);' [href]="b.link" target="_blank" class="footer-icon"
                     [innerHtml]="b.svgTxt  | sanitize : 'html'">
                 </a>
-                <ng-template #noLink>
+                <!-- <ng-template #noLink>
                     <a href="javascript:void(0);" class="footer-icon" [innerHtml]="b.svgTxt  | sanitize : 'html'">
                     </a>
-                </ng-template>
+                </ng-template> -->
             </ng-container>
         </ng-container>
     </div>

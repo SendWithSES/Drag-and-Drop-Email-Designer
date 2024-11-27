@@ -112,8 +112,11 @@ export class EmailToolbarFooterComponent {
   formatter = (x: { iconName: string }) => x.iconName;
 
   onSelectItem(event: NgbTypeaheadSelectItemEvent): void {
-    const selectedItem = this.allBrandIcons.find(brand => brand.iconName === event.item);
-    if (selectedItem && !this.selectedBrands.some(brand => brand.iconName === selectedItem.iconName)) {
+    const selectedItemData = this.allBrandIcons.find(brand => brand.iconName === event.item);
+    if (selectedItemData && !this.selectedBrands.some(brand => brand.iconName === selectedItemData.iconName)) {
+      
+      const selectedItem = { ...selectedItemData }; // Shallow copy of the object
+
       this.selectedBrands.push(selectedItem);
       this.emailElementService.selectedBrands = this.selectedBrands;
 

@@ -22,6 +22,8 @@ export class EmailFooterComponent {
     this.emailElementService.footerVisibility$.subscribe(l => {
       this.footerSelected = l
     });
+
+    this.footer.brands = this.footer.brands.filter(brand => brand.link && brand.link?.trim() !== "");
   }
 
   footerClick() {
