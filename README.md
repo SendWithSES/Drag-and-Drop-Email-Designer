@@ -36,6 +36,7 @@ Play around with the live demo at https://designer.sendune.com. You can design a
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/sendune)
 
+(This StackBlitz demo is built with Angular 15. The same process should work with other Angular versions.)
 
 Install via NPM:
 
