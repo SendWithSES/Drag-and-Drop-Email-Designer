@@ -34,6 +34,9 @@ Play around with the live demo at https://designer.sendune.com. You can design a
 
 ## 👩‍💻 Installation
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/sendune)
+
+
 Install via NPM:
 
 ```
