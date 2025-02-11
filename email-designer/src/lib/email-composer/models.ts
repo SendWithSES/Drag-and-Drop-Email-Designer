@@ -28,7 +28,8 @@ export interface Logo {
     height?: string,
     align?: string,
     sizeType?: string,
-    originalWidth?: string
+    originalWidth?: string,
+    altTxt?: string
 }
 export interface Footer {
     brands: Brand[],
@@ -50,6 +51,8 @@ export interface Brand {
     prefix: any;
     svgTxt?: string; // Add this property
     changed?: boolean;
+    linkChanged?:boolean;
+    altTxt?: string;
 }
 
 export class Structure {
@@ -87,6 +90,7 @@ export interface BlockBean {
     fontSize?: string;
     align?: string;
     format?: string;
+    altTxt?: string
 }
 export class Block implements BlockBean {
     id?: number;
@@ -103,6 +107,7 @@ export class Block implements BlockBean {
     fontSize?: string;
     align?: string;
     format?: string;
+    altTxt?: string
     constructor(block: Block) {
         {
             this.id = block.id;
@@ -118,7 +123,8 @@ export class Block implements BlockBean {
             this.font = block.font || '';
             this.fontSize = block.fontSize || '';
             this.align = block.align || ''
-            this.format = block.format || ''
+            this.format = block.format || '';
+            this.altTxt = block.altTxt || '';
         }
     }
 }

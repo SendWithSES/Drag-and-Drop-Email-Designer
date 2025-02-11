@@ -421,8 +421,8 @@ export class EmailHtmlGeneratorService {
   }
   getLogo(logo: Logo) {
     const logoText = `
-    <img src="${logo.src}" width="${logo.width ? logo.width : ''}" height="" alt="alt_text" border="0"
-                style="height: auto;max-width:100%;font-family: ${this.defaultFont}; font-size: 15px; line-height: 15px;">
+    <img src="${logo.src}" width="${logo.width ? logo.width : ''}" height=""  border="0"
+                style="height: auto;max-width:100%;font-family: ${this.defaultFont}; font-size: 15px; line-height: 15px;"  alt="${logo.altTxt ? logo.altTxt : 'image'}" onerror="this.src='';">
     `
     let linkText = logoText;
     if (logo.link) {
@@ -503,7 +503,7 @@ export class EmailHtmlGeneratorService {
     if (isPreview) {
       iconContent = brand.svgTxt;
     } else {
-      iconContent = `<img height="30" src="${brand.src}" style="border-radius:3px;display:block">`;
+      iconContent = `<img height="30" src="${brand.src}" style="border-radius:3px;display:block" alt="${brand.iconName}">`;
     }
     return `
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" ><tr><td><![endif]-->
@@ -626,17 +626,17 @@ export class EmailHtmlGeneratorService {
     if (block.src) {
       if (cols === 1) {
         imageText = `
-        <img src="${block.src}" width="${block.width ? block.width : '100%'}" height="" alt="alt_text" border="0"
+        <img src="${block.src}" width="${block.width ? block.width : '100%'}" height="" border="0"
         style="max-width: 100%; height: auto; 
          line-height: 15px;  margin: auto; display: block;"
-        class="g-img">             
+        class="g-img" alt="${block.altTxt || 'image'}" onerror="this.src='';">             
         `
       } else {
         imageText = `
         <img src="${block.src}" width="${block.width ? block.width : '100%'}" height=""
-        border="0" alt="alt_text"
+        border="0"
         style="max-width: 100%; height: auto; line-height: 20px; "
-        class="center-on-narrow">
+        class="center-on-narrow" alt="${block.altTxt || 'image'}" onerror="this.src='';">
         `
       }
       if (block.link) {
@@ -653,7 +653,7 @@ export class EmailHtmlGeneratorService {
         ` <tr>
             <td></td>
             <td rowspan="2"> 
-              <img src="${block.src}" width="100%" style="max-width: 100%; height: auto; display: block;">
+              <img src="${block.src}" width="100%" style="max-width: 100%; height: auto; display: block;" alt="${block.altTxt || 'image'}" onerror="this.src='';">
             </td>
           </tr>
           <tr>

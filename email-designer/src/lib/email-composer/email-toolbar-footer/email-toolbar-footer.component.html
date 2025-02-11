@@ -17,7 +17,7 @@
             <div class="input-group sws-border">
                 <input type="text" class="form-control" [(ngModel)]="selectedValue" [ngbTypeahead]="search"
                     id="autocompleteInput" placeholder="Search social or brand icon"
-                    (selectItem)="onSelectItem($event)" />
+                    (selectItem)="onSelectItem($event)" #brandSearch/>
                 <span class="input-group-text search-icon" id="search-icon">
                     <i class="fas fa-search text-grey" aria-hidden="true"></i>
                 </span>
@@ -35,7 +35,7 @@
             <div class="col-10"> <!-- col-6 col-sm-10 -->
                 <div class="input-group">
                     <input type="text" class="form-control" [(ngModel)]="brand.link"
-                        placeholder="{{brand.iconName}} link">
+                        placeholder="{{brand.iconName}} link" (ngModelChange)="iconLinkChange(brand)">
 
                     <span class="color-picker-wrapper input-group-text">
                         <input type="color" id="colorPicker" class="form-control" [(ngModel)]="brand.color"
@@ -43,14 +43,15 @@
                     </span>
                     <span class="icon-wrapper input-group-text">
                         <i class="fa-solid fa-floppy-disk" (click)="brand.link ? footerLinkChange(brand) : ''"
-                            [ngStyle]="{'color': (this.isValidLink(brand.link) && (brand.changed || brand.src === undefined)) ? '#ef8081':'#ccc'}"></i>
+                            [ngStyle]="{'color': (this.isValidLink(brand.link) && ((brand.changed || brand.linkChanged) || brand.src == undefined) ) ? '#ef8081':'#ccc'}"></i>
                         <i class="fa-solid fa-trash-can" (click)="deleteIcon(brand)"></i>
                     </span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="icon-note"><b>NOTE:</b> Add link with https:// . Choose color. Click save. Icons without link will not be included in
+    <div class="icon-note"><b>NOTE:</b> Add link with https:// . Choose color. Click save. Icons without link will not
+        be included in
         emails.</div>
     <div class="line-break"></div>
     <div class="declamation-wrapper">

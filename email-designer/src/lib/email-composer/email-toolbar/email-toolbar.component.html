@@ -133,6 +133,14 @@
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
+
+                <div class="form-group mt-2 position-relative image-link sws-border">
+                    <input type="text" class="form-control" id="altInput" [(ngModel)]="imageAltTxt"
+                        placeholder="Alt text tag">
+                    <span class="play-icon" (click)="changeImageAltTxt()">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="container video-contaner mt-3" *ngIf="selectedBType == blockType.Video && !isFooterVisible">
@@ -148,6 +156,14 @@
                             <i class="fa-solid fa-floppy-disk"></i>
                         </span>
                     </div>
+                </div>
+
+                <div class="form-group mt-2 position-relative image-link sws-border">
+                    <input type="text" class="form-control" id="altVideoInput" [(ngModel)]="imageAltTxt"
+                        placeholder="Alt text tag">
+                    <span class="play-icon" (click)="changeVideoImageAltTxt()">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </span>
                 </div>
             </div>
         </div>
@@ -184,7 +200,7 @@
                 <app-email-toolbar-footer [sIndex]="selectedSIindex" [cIndex]="selectedCindex" [bIndex]="selectedBIndex"
                     [footerContent]="footerContent" [selectedBrands]="selectedBrands" [footer]="footer"
                     [includeUnsubscribe]="includeUnsubscribe" [unsubscribeColor]="unsubscribeColor"
-                    (imageUploadTriggered)="onImageUploadTrigger($event)"></app-email-toolbar-footer>
+                    (imageUploadTriggered)="onImageUploadTrigger($event)" #toolbarFooter></app-email-toolbar-footer>
             </div>
         </div>
     </ng-container>
@@ -232,6 +248,13 @@
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
+            </div>
+
+            <div class="form-group mt-2 position-relative image-link sws-border">
+                <input type="text" class="form-control" id="altLogoInput" [(ngModel)]="imageAltTxt" placeholder="Alt text tag">
+                <span class="play-icon" (click)="updateLogoAltTxt()">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </span>
             </div>
         </div>
     </ng-template>

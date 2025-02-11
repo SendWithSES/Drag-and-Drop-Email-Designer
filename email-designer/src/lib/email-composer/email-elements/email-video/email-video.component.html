@@ -1,7 +1,7 @@
 <div class="image-block email-video-block">
     <div *ngIf="block.src">
         <img [src]="block.src"
-            [ngStyle]="{'width': block.width || '100%','max-width':'100%','height': block.height || null}" />
+            [ngStyle]="{'width': block.width || '100%','max-width':'100%','height': block.height || null}" [alt]="block.altTxt || 'image'"  onerror="this.src='';"/>
         <span
             style='position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background:transparent;display:inline-block;width: 0;height:0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-left: 30px solid red;'>
         </span>

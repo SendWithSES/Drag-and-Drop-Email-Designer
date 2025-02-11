@@ -6,6 +6,7 @@ import { ConstantsData, logoAlignment, logoTypesData } from '../constants'
 import { EmailElementService } from '../email-element.service';
 import { EmailMessageService } from '../email-message/email-message.service';
 import { BlockBean, BlockType, EmailElements, Footer, Logo, StructureType } from '../models';
+import { EmailToolbarFooterComponent } from '../email-toolbar-footer/email-toolbar-footer.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { BlockBean, BlockType, EmailElements, Footer, Logo, StructureType } from
 })
 export class EmailToolbarComponent {
   @ViewChild('fileInput') fileInputElement!: ElementRef;
+  @ViewChild('toolbarFooter') toolbarFooter!: EmailToolbarFooterComponent;
   @Input() isMobileView: any;
 
   @Output() oneClicked = new EventEmitter<void>();
@@ -51,6 +53,7 @@ export class EmailToolbarComponent {
   videoUrl: any = '';
   imageUrl = '';
   imageLink: any = '';
+  imageAltTxt: any = '';
   logoSelected = false;
   emailElements!: EmailElements //= this.es.initialElement;
 
@@ -113,9 +116,11 @@ export class EmailToolbarComponent {
           break;
         case this.blockType.Image:
           this.imageLink = this.selectedBlock.link;
+          this.imageAltTxt = this.selectedBlock.altTxt;
           break;
         case this.blockType.Video:
           this.videoUrl = this.selectedBlock.link;
+          this.imageAltTxt = this.selectedBlock.altTxt;
           break;
 
       }
@@ -128,6 +133,7 @@ export class EmailToolbarComponent {
       if (this.logoSelected) {
         if (this.emailElements.general.logo) {
           this.imageLink = this.emailElements.general.logo.link;
+          this.imageAltTxt = this.emailElements.general.logo.altTxt;
           this.currentLogoAlignment = (this.emailElements.general.logo.align as logoAlignment) ?? 'center';
           const logoData = this.emailElements.general.logo;
           const logoOriginalWidth = logoData.originalWidth;
@@ -150,6 +156,13 @@ export class EmailToolbarComponent {
         this.isFooterVisible = visibility;
         this.footer = this.emailElements.general.footer;
         this.footerContent = this.emailElements.general.footer.content;
+        if (this.isFooterVisible) {
+          setTimeout(() => {
+            if (this.toolbarFooter) {
+              this.toolbarFooter.scrollToSearch();
+            }
+          });
+        }
         const selectedBrandsLength = this.emailElements.general.footer.brands;
         if (selectedBrandsLength.length > 0) {
           const selectedBrands = this.emailElements.general.footer.brands;
@@ -323,5 +336,17 @@ export class EmailToolbarComponent {
       sizes['original'] = this.originalWidth;
     }
     this.es.updateLogoSize(type, sizes[type], this.originalWidth)
+  }
+
+  changeImageAltTxt() {
+    this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'altTxt', this.imageAltTxt);
+  }
+
+  updateLogoAltTxt() {
+    this.es.updateLogoAltTxt(this.imageAltTxt);
+  }
+
+  changeVideoImageAltTxt() {
+    this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'altTxt', this.imageAltTxt);
   }
 }

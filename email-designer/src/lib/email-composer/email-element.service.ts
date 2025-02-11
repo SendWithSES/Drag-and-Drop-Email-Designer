@@ -469,6 +469,18 @@ export class EmailElementService {
       this.contentUpdated$.next(true);
     }
   }
+
+  updateLogoAltTxt(altTxt: string) {
+    if (
+      this.emailElements.general &&
+      this.emailElements.general.logo
+    ) {
+      this.emailElements.general.logo.altTxt = altTxt;
+      this.emailElements$.next(this.emailElements);
+      this.contentUpdated$.next(true);
+    }
+  }
+
   updateLogoAlign(alignType: any) {
     if (this.emailElements.general && this.emailElements.general.logo) {
       this.emailElements.general.logo.align = alignType;
@@ -711,6 +723,9 @@ export class EmailElementService {
         }
         if (brandData.src) {
           brandToUpdate.src = brandData.src;
+        }
+        if (brandData.svgTxt) {
+          brandToUpdate.svgTxt = brandData.svgTxt;
         }
       }
     }

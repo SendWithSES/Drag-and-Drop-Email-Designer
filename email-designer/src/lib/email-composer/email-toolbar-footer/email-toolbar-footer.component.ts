@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins'; // Import all offical available plugins
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -16,6 +16,7 @@ import { EmailElementService } from '../email-element.service';
 })
 export class EmailToolbarFooterComponent {
   @ViewChild('footerSunEditor') footerSunEditor!: any; // NgxSuneditorComponent;
+  @ViewChild('brandSearch') brandSearch!: ElementRef;
 
   @Input() sIndex!: number;
   @Input() cIndex!: number;
@@ -81,7 +82,8 @@ export class EmailToolbarFooterComponent {
   ngOnInit() {
     this.selectedBrands = this.selectedBrands.map((brand: any) => ({
       ...brand,
-      changed: brand.changed === undefined ? false : brand.changed,
+      changed: false,
+      linkChanged: false
     }));
   }
 
@@ -114,7 +116,7 @@ export class EmailToolbarFooterComponent {
   onSelectItem(event: NgbTypeaheadSelectItemEvent): void {
     const selectedItemData = this.allBrandIcons.find(brand => brand.iconName === event.item);
     if (selectedItemData && !this.selectedBrands.some(brand => brand.iconName === selectedItemData.iconName)) {
-      
+
       const selectedItem = { ...selectedItemData }; // Shallow copy of the object
 
       this.selectedBrands.push(selectedItem);
@@ -154,12 +156,21 @@ export class EmailToolbarFooterComponent {
 
   async footerLinkChange(brand: any) {
     try {
-      if (this.isValidLink(brand.link) && (brand.changed || brand.src === undefined)) {
-        this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
+      if (this.isValidLink(brand.link) && ((brand.changed || brand.linkChanged) || brand.src === undefined)) {
+        if (brand.changed || brand.src == undefined) {
+          this.getSvgIcons(brand, () => { });
+          setTimeout(() => {
+            this.imageUploadTriggered.emit({ ...brand, source: 'footer' });
+          }, 2);
+        } else {
+          this.updateFooterSelected(brand);
+        }
         brand.changed = false;
+        brand.linkChanged = false;
       }
     } catch (err) {
       brand.changed = true;
+      brand.linkChanged = true;
     }
   }
 
@@ -167,7 +178,8 @@ export class EmailToolbarFooterComponent {
     try {
       const url = new URL(link);
       // return !!url.host;
-      return url.protocol === 'https:' && url.hostname.endsWith('.com');
+      return url.protocol === 'https:' || url.protocol === 'http:';
+      // && url.hostname.endsWith('.com');
     } catch (error) {
       return false;  // the URL is not valid
     }
@@ -177,9 +189,9 @@ export class EmailToolbarFooterComponent {
     if (!brand.changed) {
       brand.changed = true;
     }
-    this.getSvgIcons(brand, () => {
-      this.updateFooterSelected(brand);
-    });
+    /*  this.getSvgIcons(brand, () => {
+       this.updateFooterSelected(brand);
+     }); */
   }
 
   updateFooterSelected(brandList?: any) {
@@ -233,6 +245,18 @@ export class EmailToolbarFooterComponent {
   onFooterTxtPaste(data: any) {
     //const { event, cleanData, maxCharCount, core } = data
     return false;
+  }
+
+  iconLinkChange(selectedBrand: any) {
+    if (selectedBrand.link !== '' && this.isValidLink(selectedBrand.link)) {
+      if (!selectedBrand.linkChanged) {
+        selectedBrand.linkChanged = true;
+      }
+    }
+  }
+
+  scrollToSearch(): void {
+    this.brandSearch.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
 }
