@@ -153,31 +153,39 @@ export class EmailHtmlGeneratorService {
       font-size: 28px;
       font-weight: normal;
       /* color: #333; */
-      margin: 0px;
+      margin: 0px 0px 2px 0px !important;
+      line-height: normal !important;
     }
     .email-text-content h2 {
         font-size: 26px;
         font-weight: normal;
         /* color: #333; */
-        margin: 0px;
+        margin: 0px 0px 2px 0px !important;
+        line-height: normal !important;
     }
     .email-text-content h3 {
         font-size: 22px;
         font-weight: normal;
         /* color: #333; */
-        margin: 0px;
+        margin: 0px 0px 2px 0px !important;
+        line-height: normal !important;
     }
     .email-text-content p {
       font-size: 16px;
       /* color: #333; */
-      margin: 0px;
+      margin: 0px 0px 2px 0px !important;
+      line-height: normal !important;
     }
     .email-text-content ul,
     .email-text-content ol {
-      margin: 0px;
+      /*font-size: 16px;*/     
+      /*line-height: 35px;*/
+      margin: 10px 0px 14px 0px;
+      line-height: normal;
     }
     .email-text-content li {
-      margin-left: 0px;
+      /* margin-left: 0px; */
+      margin: 4px 0px 4px 0px !important;
     }
   /* Text Body content styles Ends */
   `
@@ -188,7 +196,11 @@ export class EmailHtmlGeneratorService {
       ${ww}
     font-family: ${this.defaultFont};
   }
-    a{text-decoration: none;} p{font-family: ${this.defaultFont};font-size: 14px; margin:0 0 16px 0 !important;padding:0 !important;line-height: 160%;}`
+    a{text-decoration: none;} 
+    p{font-family: ${this.defaultFont};font-size: 14px; margin:0 0 16px 0 !important;padding:0 !important;line-height: 160%;}
+    ul{font-family: ${this.defaultFont};font-size: 14px;line-height: 20px;margin:0px 0px 14px 0px !important;}
+    ol{font-family: ${this.defaultFont};font-size: 14px;line-height: 20px;margin:0px 0px 14px 0px !important}
+    `
   }
   getHtmlEditorStyles() {
     return `
@@ -532,7 +544,7 @@ export class EmailHtmlGeneratorService {
   }
 
   getBlock(block: BlockBean, cols: number = 1) {
-    if (((block.type === BlockType.Image || block.type === BlockType.Video) && !block.src)
+    if (((block.type === BlockType.Image || block.type === BlockType.Video) && (!block.src && !block.imageUrl))
       || ((block.type === BlockType.Body || block.type === BlockType.Text || block.type === BlockType.Button) && !block.content)) {
       return '';
     }
@@ -589,6 +601,24 @@ export class EmailHtmlGeneratorService {
     return `<p style="border-top:solid 2px ${block.color};font-size:1px;margin:0 auto;width:100%"></p>`
   }
 
+  addMarginToTags(content: string, tags: string[]): string {
+    const tagPattern = new RegExp(`<(${tags.join('|')})([^>]*)>`, 'gi');
+    const stylesToAppend = `margin:0px 0px 2px 0px;`;
+
+    return content.replace(tagPattern, (match, tag, attrs) => {
+      const hasStyle = /style\s*=\s*["']([^"']*)["']/.test(attrs);
+      if (hasStyle) {
+        // Append styles to existing style attribute
+        return `<${tag}${attrs.replace(/style\s*=\s*["']([^"']*)["']/, (styleMatch: any, existingStyles: any) => {
+          return `style="${existingStyles}; ${stylesToAppend}"`;
+        })}>`;
+      } else {
+        // No style present, add one
+        return `<${tag}${attrs} style="${stylesToAppend}">`;
+      }
+    });
+  }
+
   getText(block: BlockBean) {
     let text = '';
     if (block.content) {
@@ -597,11 +627,12 @@ export class EmailHtmlGeneratorService {
         style="margin: auto;width: 100%;">
           <tr>
             <td class="email-text-content" style="font-family: ${this.defaultFont};">
-            ${block.content}
+            ${this.addMarginToTags(block.content, ['h1', 'h2', 'h3'])}
             </td>
           </tr>
         </table>
       `
+      // ${block.content} line 630
     }
     return text;
   }
@@ -613,7 +644,7 @@ export class EmailHtmlGeneratorService {
         style="margin: auto;width: 100%;">
           <tr>
             <td class="email-text-content" style="font-family: ${this.defaultFont}">
-            ${block.content}
+              ${this.addMarginToTags(block.content, ['p'])}
             </td>
           </tr>
         </table>
@@ -622,29 +653,49 @@ export class EmailHtmlGeneratorService {
     return text;
   }
   getImage(block: BlockBean, cols: number) {
-    let imageText = '';
-    if (block.src) {
-      if (cols === 1) {
-        imageText = `
-        <img src="${block.src}" width="${block.width ? block.width : '100%'}" height="" border="0"
-        style="max-width: 100%; height: auto; 
-         line-height: 15px;  margin: auto; display: block;"
-        class="g-img" alt="${block.altTxt || 'image'}" onerror="this.src='';">             
-        `
-      } else {
-        imageText = `
-        <img src="${block.src}" width="${block.width ? block.width : '100%'}" height=""
-        border="0"
-        style="max-width: 100%; height: auto; line-height: 20px; "
-        class="center-on-narrow" alt="${block.altTxt || 'image'}" onerror="this.src='';">
-        `
-      }
-      if (block.link) {
-        imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`
-      }
+    const src = block.imgCreatFrom === 'imgRepo' ? block.src : block.imageUrl;
+    if (!src) return ''; // <-- prevent rendering when there's no src
+  
+    const width = block.width || '100%';
+    const lineHeight = cols === 1 ? '15px' : '20px';
+    const imgClass = cols === 1 ? 'g-img' : 'center-on-narrow';
+    const style = `max-width: 100%; height: auto; line-height: ${lineHeight}; ${cols === 1 ? 'margin: auto; display: block;' : ''}`;
+  
+    let imageText = `
+      <img src="${src}" width="${width}" height="" border="0"
+           style="${style}" class="${imgClass}"
+           alt="${block.altTxt || 'image'}" onerror="this.src='';">
+    `;
+  
+    if (block.link) {
+      imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`;
     }
 
     return imageText;
+
+    /*  let imageText = '';
+     if (block.src) {
+       if (cols === 1) {
+         imageText = `
+         <img src="${block.src}" width="${block.width ? block.width : '100%'}" height="" border="0"
+         style="max-width: 100%; height: auto; 
+          line-height: 15px;  margin: auto; display: block;"
+         class="g-img" alt="${block.altTxt || 'image'}" onerror="this.src='';">             
+         `
+       } else {
+         imageText = `
+         <img src="${block.src}" width="${block.width ? block.width : '100%'}" height=""
+         border="0"
+         style="max-width: 100%; height: auto; line-height: 20px; "
+         class="center-on-narrow" alt="${block.altTxt || 'image'}" onerror="this.src='';">
+         `
+       }
+       if (block.link) {
+         imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`
+       }
+     }
+ 
+     return imageText; */
   }
   getVideo(block: BlockBean, cols: number) {
     let imageText = '';
@@ -663,7 +714,7 @@ export class EmailHtmlGeneratorService {
           </tr>`
       if (cols === 1) {
         imageText = `
-              <table border="0" cellpadding="0" cellspacing="0">
+              <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto !important">
                 ${tableBodyElem} 
               </table>`
       } else {

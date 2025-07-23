@@ -78,6 +78,7 @@ export class EmailContentEditorComponent {
     linkTargetNewWindow: true,
     attributesWhitelist: {
       'li': 'style',
+      'script': 'src'
     }
   };
   editorOptions!: SunEditorOptions;
@@ -139,7 +140,7 @@ export class EmailContentEditorComponent {
   ngAfterViewInit() {
     this.changeHeaderEditorStyles();
     const editorInstance = this.ngxSunEditor.getEditor();
-    editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData)
+    editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData, this.bodyType)
   }
   changeHeaderEditorStyles() {
     if (this.ngxSunEditor) {
@@ -152,7 +153,7 @@ export class EmailContentEditorComponent {
       /* this is for List */
 
       // Define the styles to be applied to <ul>
-      const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
+      const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};margin:10px 0px 14px 0px;`;
       let changeContent = headerContent.content;
       // Apply styles to the <ul> | <ol> tag
       const updatedContent = changeContent.replace(
@@ -164,42 +165,41 @@ export class EmailContentEditorComponent {
         this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
       }
 
-      /*
-      const selection = window.getSelection();
-      const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
-
-      if (selection && selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const anchorNode = range.startContainer;
-        let parentElement: HTMLElement | null = (anchorNode.nodeType === Node.TEXT_NODE)
-          ? (anchorNode as Text).parentNode as HTMLElement
-          : anchorNode as HTMLElement;
-
-        // Check if parentElement is a valid HTMLElement
-        if (parentElement) {
-          switch (parentElement.tagName) {
-            case 'LI':
-              parentElement = parentElement.closest('div');
-              break;
-            case 'P':
-              parentElement = parentElement.parentNode as HTMLElement || null;
-              break;
-            case 'SPAN':
-              parentElement = parentElement.closest('div');
-              break;
-            default:
-              parentElement = parentElement.closest('div');
+      /* const selection = window.getSelection();
+        const styles = `font-family:${this.selectedFont};font-size:${this.selectedFontSize};`;
+  
+        if (selection && selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          const anchorNode = range.startContainer;
+          let parentElement: HTMLElement | null = (anchorNode.nodeType === Node.TEXT_NODE)
+            ? (anchorNode as Text).parentNode as HTMLElement
+            : anchorNode as HTMLElement;
+  
+          // Check if parentElement is a valid HTMLElement
+          if (parentElement) {
+            switch (parentElement.tagName) {
+              case 'LI':
+                parentElement = parentElement.closest('div');
+                break;
+              case 'P':
+                parentElement = parentElement.parentNode as HTMLElement || null;
+                break;
+              case 'SPAN':
+                parentElement = parentElement.closest('div');
+                break;
+              default:
+                parentElement = parentElement.closest('div');
+            }
           }
-        }
-        const updatedContent: any = parentElement?.innerHTML.replace(
-          listsRegex,
-          `<$1$2 style="${styles}">$3</$1>`
-        );
-        if (this.selectedBlock.content !== updatedContent) {
-          this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
-        }
-      }
-      */
+          const updatedContent: any = parentElement?.innerHTML.replace(
+            listsRegex,
+            `<$1$2 style="${styles}">$3</$1>`
+          );
+          if (this.selectedBlock.content !== updatedContent) {
+            this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', updatedContent)
+          }
+        } */
+
     } else {
       this.emailElementService.editBlockContent(this.sIndex, this.cIndex, this.bIndex, 'content', headerContent.content)
     }

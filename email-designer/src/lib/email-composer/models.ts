@@ -90,7 +90,9 @@ export interface BlockBean {
     fontSize?: string;
     align?: string;
     format?: string;
-    altTxt?: string
+    altTxt?: string,
+    imageUrl?:string,
+    imgCreatFrom?:string
 }
 export class Block implements BlockBean {
     id?: number;
@@ -107,7 +109,9 @@ export class Block implements BlockBean {
     fontSize?: string;
     align?: string;
     format?: string;
-    altTxt?: string
+    altTxt?: string;
+    imageUrl?: string;
+    imgCreatFrom?: string;
     constructor(block: Block) {
         {
             this.id = block.id;
@@ -125,6 +129,8 @@ export class Block implements BlockBean {
             this.align = block.align || ''
             this.format = block.format || '';
             this.altTxt = block.altTxt || '';
+            this.imageUrl = block.imageUrl || '';
+            this.imgCreatFrom = block.imgCreatFrom || '';
         }
     }
 }

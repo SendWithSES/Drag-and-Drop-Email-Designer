@@ -89,6 +89,7 @@ export class EmailEditorComponent {
         this.elementsService.updateLogoContent(image);
         this.elementsService.logoSelected$.next(true)
       } else {
+        image.imgCreatFrom ='imgRepo';
         this.elementsService.updateImageVideoBlockContent(inputData.s, inputData.c, inputData.b, image);
       }
     }

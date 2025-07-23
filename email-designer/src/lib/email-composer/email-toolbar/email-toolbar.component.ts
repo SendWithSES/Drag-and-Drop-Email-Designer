@@ -51,7 +51,7 @@ export class EmailToolbarComponent {
   dividerBgClrValue: any = ConstantsData.dividerBgClrValue
 
   videoUrl: any = '';
-  imageUrl = '';
+  imageUrl:any = '';
   imageLink: any = '';
   imageAltTxt: any = '';
   logoSelected = false;
@@ -71,6 +71,8 @@ export class EmailToolbarComponent {
   selectedSize: string = 'original';
   logoSizesData = logoTypesData;
   imageSrcStatus!: boolean;
+  savedVideoUrl: any;
+  logoBlock!:Logo;
 
   constructor(
     private es: EmailElementService,
@@ -115,11 +117,12 @@ export class EmailToolbarComponent {
           this.dividerBgClrValue = this.selectedBlock.color
           break;
         case this.blockType.Image:
+          this.imageUrl = this.selectedBlock.imageUrl;
           this.imageLink = this.selectedBlock.link;
           this.imageAltTxt = this.selectedBlock.altTxt;
           break;
         case this.blockType.Video:
-          this.videoUrl = this.selectedBlock.link;
+          this.savedVideoUrl = this.videoUrl = this.selectedBlock.link;
           this.imageAltTxt = this.selectedBlock.altTxt;
           break;
 
@@ -131,6 +134,7 @@ export class EmailToolbarComponent {
     ).subscribe(l => {
       this.logoSelected = l;
       if (this.logoSelected) {
+        this.logoBlock = this.emailElements.general.logo;
         if (this.emailElements.general.logo) {
           this.imageLink = this.emailElements.general.logo.link;
           this.imageAltTxt = this.emailElements.general.logo.altTxt;
@@ -250,7 +254,7 @@ export class EmailToolbarComponent {
     this.es.updateImageVideoBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, data);
   }
   changeImageUrl() {
-    this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'src', this.imageUrl);
+    this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'imageUrl', this.imageUrl, 'imgUrl');
   }
   changeImageLink() {
     this.es.editBlockContent(this.selectedSIindex, this.selectedCindex, this.selectedBIndex, 'link', this.imageLink);
@@ -284,29 +288,31 @@ export class EmailToolbarComponent {
   }
 
   getVideoData() {
-    if (this.videoUrl) {
-      // this.loaderService.loading = true;
+    if (this.savedVideoUrl != this.videoUrl) {
+      if (this.videoUrl) {
+        // this.loaderService.loading = true;
 
-      this.es.getVideoData(this.videoUrl, '').subscribe({
-        next: (data: any) => {
-          // this.loaderService.loading = false;
-          if (data.success) {
-            this.changeVideoSource(data.image);
-            this.addVideoLink(this.videoUrl)
-            // this.videoUrl = '';
-            this.message.success(`Video added successfully!`, 'Success');
-          } else if (data === 'notValidUrl') {
-            this.message.error(`please enter valid url.`, 'Error');
-          } else {
+        this.es.getVideoData(this.videoUrl, '').subscribe({
+          next: (data: any) => {
+            // this.loaderService.loading = false;
+            if (data.success) {
+              this.changeVideoSource(data.image);
+              this.addVideoLink(this.videoUrl)
+              // this.videoUrl = '';
+              this.message.success(`Video added successfully!`, 'Success');
+            } else if (data === 'notValidUrl') {
+              this.message.error(`please enter valid url.`, 'Error');
+            } else {
+              this.message.error(`${this.videoUrl} Wrong URL`, 'Error');
+            }
+          },
+          error: (err) => {
             this.message.error(`${this.videoUrl} Wrong URL`, 'Error');
           }
-        },
-        error: (err) => {
-          this.message.error(`${this.videoUrl} Wrong URL`, 'Error');
-        }
-      });
-    } else {
-      this.message.error(`Enter Video Url!`, 'Error');
+        });
+      } else {
+        this.message.error(`Enter Video Url!`, 'Error');
+      }
     }
   }
 

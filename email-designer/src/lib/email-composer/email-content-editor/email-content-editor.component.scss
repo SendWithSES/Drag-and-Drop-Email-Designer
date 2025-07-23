@@ -1,4 +1,3 @@
-
 h4 {
     font-size: 15px;
     font-weight: 700;
@@ -145,9 +144,40 @@ h4 {
         font-weight: normal;
     }
 
-    .sun-editor-editable h3 {
+  /* .sun-editor-editable h3 {
         font-size: 16px;
         font-weight: normal;
-    }
+    } 
+  */
 
+  .sun-editor-editable {
+    h1,
+    h2,
+    h3,
+    p {
+      line-height: normal !important;
+      margin-bottom: 2px !important;
+    }
+  }
+
+  .sun-editor-editable {
+    ol,
+    ul {
+      // font-size: 16px;
+      font-weight: normal;
+      // line-height: 35px;
+      margin: 10px 0px 14px 0px !important;
+      line-height: normal;
+    }
+  }
+
+  /* .sun-editor-editable {
+    ol,
+    ul {
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 35px;
+      margin: 14px 0px;
+    }
+  } */
 }

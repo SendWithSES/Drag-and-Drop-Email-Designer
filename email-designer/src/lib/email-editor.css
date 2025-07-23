@@ -57,7 +57,7 @@ input:focus {
 }
 
 .sun-editor-editable * {
-    margin-block: 4px !important;
+    margin-block: 0px !important;
 }
 
 .ng-email-editor .mobile-padding {

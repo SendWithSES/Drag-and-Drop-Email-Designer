@@ -1,7 +1,13 @@
 <div class="image-block email-image-block">
-    <div *ngIf="block.src">
+    <!--  <div *ngIf="block.src">
         <img [src]="block.src"
             [ngStyle]="{'width':block.width?block.width:'100%','max-width':'100%','height':block.height?block.height:null}" [alt]="block.altTxt || 'image'"  onerror="this.src='';"/>
+    </div> -->
+    <div
+        *ngIf="(block.imgCreatFrom === 'imgRepo' && block.src) || (block.imgCreatFrom !== 'imgRepo' && block.imageUrl)">
+        <img [src]="block.imgCreatFrom === 'imgRepo' ? block.src : block.imageUrl"
+            [ngStyle]="{'width': block.width ? block.width : '100%','max-width': '100%','height': block.height ? block.height : null}"
+            [alt]="block.altTxt || 'image'" onerror="this.src='';" />
     </div>
-    <div class="empty-image-block" *ngIf="!block.src"><i class="fa-solid fa-image"></i></div>
+    <div class="empty-image-block" *ngIf="!block.src && !block.imageUrl"><i class="fa-solid fa-image"></i></div>
 </div>

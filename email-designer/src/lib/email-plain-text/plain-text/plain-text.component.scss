@@ -18,23 +18,60 @@
 }
 
 ::ng-deep {
-    .plainTxt-wrapper .sun-editor {
-        border-top: none;
-        border-bottom: none;
-        overflow: hidden;
+  .plainTxt-wrapper .sun-editor {
+    border-top: none;
+    border-bottom: none;
+    overflow: hidden;
 
-        .se-wrapper {
-            .se-wrapper-inner {
-                height: calc(100vh - 238px) !important;
-                overflow: auto;
-                padding: 10px 10px;
-            }
-        }
-
-        .sun-editor-editable p {
-            padding: 0 !important;
-            margin: 0 0 16px 0 !important;
-            line-height: 160%;
-        }
+    .se-wrapper {
+      .se-wrapper-inner {
+        height: calc(100vh - 238px) !important;
+        overflow: auto;
+        padding: 10px 10px;
+      }
     }
+
+    .sun-editor-editable {
+      // line-height: 180%;
+      p {
+        padding: 0 !important;
+        margin: 0 0 16px 0 !important;
+        line-height: 160%;
+      }
+
+      ul,
+      ol {
+        line-height: 20px !important;
+        margin: 0 0 14px 0 !important;
+      }
+    }
+
+    .se-btn-tray {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 6px 3px 6px;
+    }
+
+    .se-toolbar .unsubscribe-wrapper {
+      width: max-content;
+      height: 38px;
+      padding-inline: 8px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 14px;
+      color: #555;
+
+      input#unsubscribeCheckbox {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .check-box-label {
+        cursor: pointer;
+      }
+    }
+  }
 }

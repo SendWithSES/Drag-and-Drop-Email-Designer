@@ -517,10 +517,13 @@ export class EmailElementService {
       this.contentUpdated$.next(true);
     }
   }
-  editBlockContent(sIndex: number, cIndex: number, bIndex: number, property: string, value: string): void {
+  editBlockContent(sIndex: number, cIndex: number, bIndex: number, property: string, value: string, imgCreatFrom?: any): void {
     const structure = this.emailElements.structures[sIndex];
     if (structure && structure.blocks && structure.blocks[cIndex]) {
       this.emailElements.structures[sIndex].blocks[cIndex][bIndex][property] = value;
+      if (imgCreatFrom) {
+        this.emailElements.structures[sIndex].blocks[cIndex][bIndex]['imgCreatFrom'] = imgCreatFrom;
+      }
       this.emailElements$.next(this.emailElements);
       this.contentUpdated$.next(true);
     }

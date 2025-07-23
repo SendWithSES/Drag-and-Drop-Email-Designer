@@ -294,3 +294,13 @@ input[type="color"]::-moz-color-swatch {
     border: 1px solid #aaa;
   }
 }
+
+.video-contaner {
+  .video-input-border {
+    border-top: 1px solid #ccc;
+  }
+}
+
+.email-toolbar .unsaved-data {
+  color: #ef8081;
+}

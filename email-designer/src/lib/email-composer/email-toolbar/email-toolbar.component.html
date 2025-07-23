@@ -122,14 +122,14 @@
                 <div class="form-group mt-2 position-relative image-link sws-border">
                     <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageUrl"
                         placeholder="Image Url">
-                    <span class="play-icon" (click)="changeImageUrl()">
+                    <span class="play-icon" (click)="changeImageUrl()" [ngClass]="{'unsaved-data ': (imageUrl && selectedBlock.imageUrl !== imageUrl)}">
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
                 <div class="form-group mt-2 position-relative image-link sws-border">
                     <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageLink"
                         placeholder="Link to open on clicking image">
-                    <span class="play-icon" (click)="changeImageLink()">
+                    <span class="play-icon" (click)="changeImageLink()" [ngClass]="{'unsaved-data ': ( imageLink && selectedBlock.link !== imageLink)}">
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
@@ -137,7 +137,7 @@
                 <div class="form-group mt-2 position-relative image-link sws-border">
                     <input type="text" class="form-control" id="altInput" [(ngModel)]="imageAltTxt"
                         placeholder="Alt text tag">
-                    <span class="play-icon" (click)="changeImageAltTxt()">
+                    <span class="play-icon" (click)="changeImageAltTxt()" [ngClass]="{'unsaved-data ': (imageAltTxt && selectedBlock.altTxt !== imageAltTxt)}">
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
@@ -152,16 +152,16 @@
                     <div class="position-relative">
                         <input type="text" class="form-control" [(ngModel)]="videoUrl"
                             placeholder="Youtube or Vimeo URL">
-                        <span class="play-icon" (click)="getVideoData()">
+                        <span class="play-icon" (click)="getVideoData()" [ngClass]="{'unsaved-data ': (videoUrl && selectedBlock.link !== videoUrl)}">
                             <i class="fa-solid fa-floppy-disk"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class="form-group mt-2 position-relative image-link sws-border">
+                <div class="form-group position-relative image-link video-input-border">
                     <input type="text" class="form-control" id="altVideoInput" [(ngModel)]="imageAltTxt"
                         placeholder="Alt text tag">
-                    <span class="play-icon" (click)="changeVideoImageAltTxt()">
+                    <span class="play-icon" (click)="changeVideoImageAltTxt()" [ngClass]="{'unsaved-data ': (imageAltTxt && selectedBlock.altTxt !== imageAltTxt)}">
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
@@ -244,7 +244,7 @@
                 <div class="form-group mt-3 position-relative image-link sws-border">
                     <input type="text" class="form-control" id="linkInput" [(ngModel)]="imageLink"
                         placeholder="Link to open on clicking image">
-                    <span class="play-icon" (click)="updateLogoLink()">
+                    <span class="play-icon" (click)="updateLogoLink()" [ngClass]="{'unsaved-data ': (imageLink && logoBlock.link !== imageLink)}">
                         <i class="fa-solid fa-floppy-disk"></i>
                     </span>
                 </div>
@@ -252,7 +252,7 @@
 
             <div class="form-group mt-2 position-relative image-link sws-border">
                 <input type="text" class="form-control" id="altLogoInput" [(ngModel)]="imageAltTxt" placeholder="Alt text tag">
-                <span class="play-icon" (click)="updateLogoAltTxt()">
+                <span class="play-icon" (click)="updateLogoAltTxt()" [ngClass]="{'unsaved-data ': (imageAltTxt && logoBlock.altTxt !== imageAltTxt)}">
                     <i class="fa-solid fa-floppy-disk"></i>
                 </span>
             </div>

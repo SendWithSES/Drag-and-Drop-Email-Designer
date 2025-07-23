@@ -35,6 +35,11 @@ export class PlainTextComponent {
     defaultStyle: 'font-size: 14px; font-family: Verdana', // Set your desired default font size here
     linkProtocol: '', // Set the default protocol for links,
     linkTargetNewWindow: true,
+    attributesWhitelist: {
+      // 'ol': 'style',
+      'li': 'style',
+      'script': 'src'
+    }
   };
 
   loading = true;
@@ -61,8 +66,62 @@ export class PlainTextComponent {
     this.plainTxtData = { ...this.plainTxtData, content: data.content }
     this.onPlainTxtContentChange.emit(this.plainTxtData);
     this.plainTxtUpdated.emit(true);
+
+    const editorInstance = this.ngxSunEditor?.getEditor();
+    if (!editorInstance) return;
+
+    const checkbox = document.querySelector('#unsubscribeCheckbox') as HTMLInputElement;
+    if (!checkbox) return;
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = editorInstance.getContents(true);
+    checkbox.checked = tempDiv.innerText.includes('{{Unsubscribe}}');
+
+    checkbox.onchange = () => this.toggleUnsubLink(checkbox.checked);
+
     this.cdr.detectChanges();
   }
+
+  checkUnsubLink() {
+    const editorToolbar = document.querySelector('.se-btn-tray');
+    if (!editorToolbar || document.querySelector('#unsubscribeCheckbox')) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('unsubscribe-wrapper', 'se-btn-module', 'se-btn-module-border');
+
+    wrapper.innerHTML = `
+    <input type="checkbox" id="unsubscribeCheckbox" />
+    <label for="unsubscribeCheckbox" class='check-box-label'>Include Unsubscribe Link</label>`;
+
+    editorToolbar.appendChild(wrapper);
+
+    const editorInstance = this.ngxSunEditor?.getEditor();
+    if (!editorInstance) return;
+
+    const checkbox = wrapper.querySelector('#unsubscribeCheckbox') as HTMLInputElement;
+    checkbox.checked = editorInstance.getContents(true).includes('{{Unsubscribe}}');
+
+    checkbox.addEventListener('change', () => this.toggleUnsubLink(checkbox.checked));
+  }
+
+  toggleUnsubLink(isChecked: boolean) {
+    const editorInstance = this.ngxSunEditor?.getEditor();
+    if (!editorInstance) return;
+
+    setTimeout(() => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = editorInstance.getContents(true);
+
+      tempDiv.querySelectorAll('*').forEach((el: any) => {
+        if (el.innerText.includes('{{Unsubscribe}}')) el.remove();
+      });
+
+      if (isChecked) tempDiv.innerHTML += ' {{Unsubscribe}}';
+
+      editorInstance.setContents(tempDiv.innerHTML);
+    }, 0);
+  }
+
 
   onEmailFormChange(formData: any) {
     //this.mail_content = content;
@@ -87,10 +146,17 @@ export class PlainTextComponent {
         mail_subject: ''
       }
     }
+
+    setTimeout(() => {
+      const editorInstance = this.ngxSunEditor?.getEditor();
+      if (!editorInstance) return; // Ensure editorInstance is available
+      editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData,'plainTxt');
+      this.checkUnsubLink();
+    }, 500);
   }
 
-  ngAfterViewInit() {
-    const editorInstance = this.ngxSunEditor.getEditor();
-    editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData);
-  }
+  /*  ngAfterViewInit() {
+     const editorInstance = this.ngxSunEditor.getEditor();
+     editorInstance.onPaste = (e, cleanData, maxCharCount) => handlePaste(e as ClipboardEvent, cleanData);
+   } */
 }
