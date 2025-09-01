@@ -38,7 +38,7 @@ export class EmailEditorComponent {
   exportHtml() {
     let content = this.content.content;
     if (this.type === 'plain_text') {
-      content = this.eh.getPainTextHTML(this.content.content);
+      content = this.eh.getPlainTextHTML(this.content.content);
     } else if (this.type === 'ses_designer') {
       content = this.eh.getEmailHtml(this.content.content);
     }

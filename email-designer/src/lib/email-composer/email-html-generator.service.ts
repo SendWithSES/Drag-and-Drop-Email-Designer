@@ -355,8 +355,8 @@ export class EmailHtmlGeneratorService {
   getStructure(structure: Structure, contentBgColor: string) {
     let structureHtml = '';
 
-    if (structure.blocks && structure.blocks.length && structure.blocks[0] && structure.blocks[0].length) {
-      if (structure.type === '1') {
+    if (structure.blocks && structure.blocks.length > 0) { //&& structure.blocks[0] && structure.blocks[0].length
+      if (structure.type === '1' && Array.isArray(structure.blocks[0])) {
         structureHtml += `<tr>
         <td style="background-color: ${contentBgColor};padding: 0 20px;">`
         for (const block of structure.blocks[0]) {
@@ -380,12 +380,14 @@ export class EmailHtmlGeneratorService {
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
                                             width="100%" style="font-size: 14px; text-align: left;">
                                             `;
-        for (const block of structure.blocks[0]) {
-          structureHtml += `<tr>
+        if (Array.isArray(structure.blocks[0])) {
+          for (const block of structure.blocks[0]) {
+            structureHtml += `<tr>
                                                   <td style="padding: 0px;">`
-          structureHtml += this.getBlock(block, 2);
-          structureHtml += `</td>
+            structureHtml += this.getBlock(block, 2);
+            structureHtml += `</td>
                                             </tr>`
+          }
         }
         structureHtml += `
                                         </table>
@@ -405,12 +407,14 @@ export class EmailHtmlGeneratorService {
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0"
                                             width="100%" style="font-size: 14px;text-align: left;">
                                             `;
-        for (const block of structure.blocks[1]) {
-          structureHtml += `<tr>
+        if (Array.isArray(structure.blocks[1])) {
+          for (const block of structure.blocks[1]) {
+            structureHtml += `<tr>
                                                   <td style="padding: 0px;">`
-          structureHtml += this.getBlock(block, 2);
-          structureHtml += `</td>
+            structureHtml += this.getBlock(block, 2);
+            structureHtml += `</td>
                                             </tr>`
+          }
         }
         structureHtml += `
                                         </table>
@@ -434,8 +438,8 @@ export class EmailHtmlGeneratorService {
   getLogo(logo: Logo) {
     const logoText = `
     <img src="${logo.src}" width="${logo.width ? logo.width : ''}" height=""  border="0"
-                style="height: auto;max-width:100%;font-family: ${this.defaultFont}; font-size: 15px; line-height: 15px;"  alt="${logo.altTxt ? logo.altTxt : 'image'}" onerror="this.src='';">
-    `
+                style="height: auto;max-width:100%;font-family: ${this.defaultFont}; font-size: 15px; line-height: 15px;"  ${this.getImageAccessibilityAttrs(logo.altTxt, 'logo')} onerror="this.src=''"> 
+    ` // Bug Fixed..
     let linkText = logoText;
     if (logo.link) {
       linkText = `<a href="${logo.link}">
@@ -467,11 +471,18 @@ export class EmailHtmlGeneratorService {
 
     const resetStyles = "text-decoration: none;font-weight: normal;padding:0;";
     const path = isPreview ? this.unsubscribePath : "{{Unsubscribe}}"
-    const unsubscribe = footer.unsubscribe ? `<span 
+    /* const unsubscribe = footer.unsubscribe ? `<span 
     style="${resetStyles}font-family: ${footer.font ? this.getFontFamily(footer.font) : this.defaultFont};font-size:${footer.fontSize || '14px'};color:${footer.unsubscribeColor || ConstantsData.defaultUnsubscribeColor}">
     <a style="${resetStyles}font-family: ${footer.font ? this.getFontFamily(footer.font) : this.defaultFont};font-size:${footer.fontSize || '14px'};color:${footer.unsubscribeColor || ConstantsData.defaultUnsubscribeColor}"
     href="${path}" target="_blank">Unsubscribe</a>
-    </span>` : '';
+    </span>` : ''; */
+
+    const unsubscribe = footer.unsubscribe ? `
+           <span>
+            <a style="${resetStyles}font-family: ${footer.font ? this.getFontFamily(footer.font) : this.defaultFont};font-size:${footer.fontSize || '14px'};color:${footer.unsubscribeColor || ConstantsData.defaultUnsubscribeColor}" href="${path}" target="_blank">Unsubscribe</a>
+          </span>
+    ` : '';
+
     return `
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                 style="max-width: 680px;">
@@ -508,11 +519,19 @@ export class EmailHtmlGeneratorService {
     `
   }
   getBrand(brand: Brand, isPreview: boolean) {
-    if (!brand.link || (!isPreview && !brand.src)) {
+    /*  if (!brand.link || (!isPreview && !brand.src)) {
+       return '';
+     } */
+    if (!brand.link) {
       return '';
     }
-    let iconContent: any = brand.iconName;
-    if (isPreview) {
+
+    if (!isPreview && !brand.src) {
+      return '';
+    }
+
+    let iconContent: string = brand.iconName;
+    if (isPreview && brand.svgTxt) {
       iconContent = brand.svgTxt;
     } else {
       iconContent = `<img height="30" src="${brand.src}" style="border-radius:3px;display:block" alt="${brand.iconName}">`;
@@ -529,7 +548,7 @@ export class EmailHtmlGeneratorService {
                             <tbody>
                                 <tr>
                                     <td style="font-size:0;height:30px;vertical-align:middle;width:auto;">
-                                    <a href="${brand.link}" target="_blank">
+                                    <a href="${brand.link}" target="_blank" rel="noopener noreferrer">
                                       ${iconContent}
                                     </a>
                                     </td>
@@ -570,13 +589,13 @@ export class EmailHtmlGeneratorService {
     };
     switch (block.type) {
       case BlockType.Text:
-        if (block.content != ConstantsData.headerTextContent) {
+        if (!this.isDefaultContent(block.content, BlockType.Text)) {
           // blockHtml += this.getText(block);
           addCellContent(this.getText(block));
         }
         break;
       case BlockType.Body:
-        if (block.content != ConstantsData.bodyTextContent) {
+        if (!this.isDefaultContent(block.content, BlockType.Body)) {
           addCellContent(this.getBody(block));
         }
         break;
@@ -597,6 +616,20 @@ export class EmailHtmlGeneratorService {
     blockHtml += `</tr></table>`
     return blockHtml;
   }
+
+  isDefaultContent(content: string | undefined, type: BlockType): boolean {
+    if (!content) return false; // treat undefined/null as non-placeholder
+
+    switch (type) {
+      case BlockType.Text:
+        return content.trim() === ConstantsData.headerTextContent;
+      case BlockType.Body:
+        return content.trim() === ConstantsData.bodyTextContent;
+      default:
+        return false;
+    }
+  }
+
   getDivider(block: BlockBean) {
     return `<p style="border-top:solid 2px ${block.color};font-size:1px;margin:0 auto;width:100%"></p>`
   }
@@ -664,11 +697,11 @@ export class EmailHtmlGeneratorService {
     let imageText = `
       <img src="${src}" width="${width}" height="" border="0"
            style="${style}" class="${imgClass}"
-           alt="${block.altTxt || 'image'}" onerror="this.src='';">
-    `;
-  
+           ${this.getImageAccessibilityAttrs(block.altTxt, 'img')} onerror="this.src='';">
+    `; // Bug Fixed
+
     if (block.link) {
-      imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`;
+      imageText = `<a href="${block.link}" target="_blank" title="alt test" rel="noopener noreferrer">${imageText}</a>`;
     }
 
     return imageText;
@@ -704,7 +737,7 @@ export class EmailHtmlGeneratorService {
         ` <tr>
             <td></td>
             <td rowspan="2"> 
-              <img src="${block.src}" width="100%" style="max-width: 100%; height: auto; display: block;" alt="${block.altTxt || 'image'}" onerror="this.src='';">
+              <img src="${block.src}" width="100%" style="max-width: 100%; height: auto; display: block;" ${this.getImageAccessibilityAttrs(block.altTxt, 'video')} onerror="this.style.display='none';"> 
             </td>
           </tr>
           <tr>
@@ -724,17 +757,17 @@ export class EmailHtmlGeneratorService {
               </table>`
       }
       if (block.link) {
-        imageText = `<a href="${block.link}" target="_blank" title="alt test">${imageText}</a>`
+        imageText = `<a href="${block.link}" target="_blank" title="alt test" rel="noopener noreferrer">${imageText}</a>`
       }
     }
     return imageText;
   }
 
   getButton(block: BlockBean) {
-    let hrefText = ' href="#"';
-    if (block.link) {
-      hrefText = ` href="${block.link}"`
-    }
+    /*  let hrefText = ' href="#"';
+     if (block.link) {
+       hrefText = ` href="${block.link}"`
+     } */
     let tAlign = 'align="center"';
     let tdAlignStyle = `text-align: center;`
     if (block.align) {
@@ -744,7 +777,7 @@ export class EmailHtmlGeneratorService {
     let btnContent = ``;
     if (block.link) {
       btnContent = `
-      <a ${hrefText}
+      <a href="${block.link}"
         class="button-a button-a-primary"
         target="_blank"
         style="background: ${block.backgroundColor}; 
@@ -801,7 +834,7 @@ export class EmailHtmlGeneratorService {
     }
     return fontFamily
   }
-  getPainTextHTML(emailContent: EmailElements, isPreview = false) {
+  getPlainTextHTML(emailContent: EmailElements, isPreview = false) {
     const bgColor = ConstantsData.bgPickerValue;
     const contentBgColor = ConstantsData.contentBgValue;
 
@@ -826,4 +859,23 @@ export class EmailHtmlGeneratorService {
 
     return html;
   }
+
+  getImageAccessibilityAttrs(altTxt?: string, type?: 'img' | 'video' | 'logo') { // Bug Fixed
+    if (altTxt && altTxt.trim() !== '') {
+      return `alt="${altTxt}"`;
+    }
+
+    // If no altTxt, use fallback based on type
+    switch (type) {
+      case 'logo':
+        return `alt="Company logo"`;
+      case 'video':
+        return `alt="Video thumbnail"`;
+      case 'img':
+        return `alt="block source"`;
+      default:
+        return `alt="" role="presentation"`;
+    }
+  }
+
 }

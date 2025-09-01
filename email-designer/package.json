@@ -1,6 +1,6 @@
 {
   "name": "@send-with-ses/ng-email-designer",
-  "version": "0.5.19",
+  "version": "0.5.22",
   "description": "Design responsive HTML emails that work in every email client. Fast and light weight.",
   "peerDependencies": {
     "@angular/common": "^15.2.0",

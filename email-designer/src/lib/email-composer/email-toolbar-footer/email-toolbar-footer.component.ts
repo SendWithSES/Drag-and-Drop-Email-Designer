@@ -156,6 +156,10 @@ export class EmailToolbarFooterComponent {
 
   async footerLinkChange(brand: any) {
     try {
+      if (!this.isValidLink(brand.link)) {
+        return
+      }
+  
       if (this.isValidLink(brand.link) && ((brand.changed || brand.linkChanged) || brand.src === undefined)) {
         if (brand.changed || brand.src == undefined) {
           this.getSvgIcons(brand, () => { });

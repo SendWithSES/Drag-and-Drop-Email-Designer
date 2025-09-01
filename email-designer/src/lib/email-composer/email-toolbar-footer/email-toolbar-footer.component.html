@@ -42,7 +42,7 @@
                             (ngModelChange)="iconColorChange(brand)" value="#EEEEEE">
                     </span>
                     <span class="icon-wrapper input-group-text">
-                        <i class="fa-solid fa-floppy-disk" (click)="brand.link ? footerLinkChange(brand) : ''"
+                        <i class="fa-solid fa-floppy-disk" (click)="footerLinkChange(brand)"
                             [ngStyle]="{'color': (this.isValidLink(brand.link) && ((brand.changed || brand.linkChanged) || brand.src == undefined) ) ? '#ef8081':'#ccc'}"></i>
                         <i class="fa-solid fa-trash-can" (click)="deleteIcon(brand)"></i>
                     </span>
